@@ -17,9 +17,13 @@ RUN ./get-papermc-server.sh ${MINECRAFT_VERSION}
 
 FROM docker.io/eclipse-temurin:21-jre-noble@sha256:3ef64ec531571987f58ccc90bd3d7f92950539f1baa00a5c45b660d6faccf37d
 
+# Need to be turned to "true" manually to confirm agreement with Minecraft EULA (https://aka.ms/MinecraftEULA)
+ENV EULA=false
+
 # Install required dependencies
 RUN apt-get update && \
     apt-get upgrade -y && \
+    apt-get install -y gettext && \
     apt-get auto-remove && \
     apt-get clean
 
@@ -45,8 +49,6 @@ COPY --chown=papermc --chmod=700 runtime/config/papermc/ config/
 
 # Copy the server startup script
 COPY --chown=papermc --chmod=500 runtime/start.sh ./
-
-RUN ls -la .
 
 # Minecraft ports
 EXPOSE 25565/tcp

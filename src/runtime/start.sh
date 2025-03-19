@@ -9,7 +9,7 @@ CONFIG_DIR="${SCRIPT_DIR}/config"
 WORLD_DIR="${SCRIPT_DIR}/worlds"
 
 ## Server file
-SERVER_FILE_NAME='papermc-server-1.21.4-211.jar'
+SERVER_FILE_NAME='papermc-server-1.21.4-212.jar'
 SERVER_FILE="${SCRIPT_DIR}/${SERVER_FILE_NAME}"
 
 ## JVM arguments
@@ -64,4 +64,11 @@ SERVER_ARGS=(
 )
 
 cd "${SCRIPT_DIR}"
+
+echo 'Preparing PaperMC server configuration files...'
+
+TMP="$(envsubst '$EULA' < eula.txt)" && echo "${TMP}" > eula.txt && echo 'File eula.txt processed'
+
+echo 'PaperMC server ready to start!'
+
 java "${JVM_ARGUMENTS[@]}" -jar "${SERVER_FILE}" "${SERVER_ARGS[@]}"
