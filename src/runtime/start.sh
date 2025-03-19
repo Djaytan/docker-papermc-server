@@ -8,10 +8,6 @@ SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" &>/dev/null && pwd -P)
 CONFIG_DIR="${SCRIPT_DIR}/config"
 WORLD_DIR="${SCRIPT_DIR}/worlds"
 
-## Server file
-SERVER_FILE_NAME='papermc-server-1.21.4-212.jar'
-SERVER_FILE="${SCRIPT_DIR}/${SERVER_FILE_NAME}"
-
 ## JVM arguments
 # server.properties: https://minecraft.wiki/w/Server.properties
 # bukkit.yml: https://bukkit.fandom.com/wiki/Bukkit.yml
@@ -71,4 +67,4 @@ TMP="$(envsubst '$EULA' < eula.txt)" && echo "${TMP}" > eula.txt && echo 'File e
 
 echo 'PaperMC server ready to start!'
 
-java "${JVM_ARGUMENTS[@]}" -jar "${SERVER_FILE}" "${SERVER_ARGS[@]}"
+java "${JVM_ARGUMENTS[@]}" -jar "${SCRIPT_DIR}"/papermc-server-*.jar "${SERVER_ARGS[@]}"
