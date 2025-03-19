@@ -39,7 +39,7 @@ USER papermc
 WORKDIR /home/papermc
 
 # Copy the PaperMC server
-COPY --from=build --chown=papermc --chmod=500 /build/papermc-server-* ./
+COPY --from=build --chown=papermc --chmod=500 /build/papermc-server-*.jar ./
 
 # Copy the configuration files
 # Write access is required by PaperMC to update the configuration files
