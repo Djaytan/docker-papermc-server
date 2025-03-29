@@ -3,7 +3,7 @@
   extends: [
     'config:best-practices',
     'schedule:quarterly',
-    'security:openssf-scorecard',
+    'security:openssf-scorecard'
   ],
   configMigration: true,
   labels: [
@@ -24,5 +24,41 @@
     labels: [
       't:security'
     ]
-  }
+  },
+
+  // Registering PaperMC datasource
+  customDatasources: {
+    // cf. https://docs.renovatebot.com/modules/datasource/custom/
+    papermc: {
+      // This datasource only contains one package (i.e. paper), thus not requiring {{packageName}} in template
+      defaultRegistryUrlTemplate: 'https://api.papermc.io/v2/projects/paper/',
+
+      // JSONata template: https://docs.jsonata.org/overview.html
+      // JSONata Exerciser for testing purposes: https://try.jsonata.org/9sendQHs_
+      transformTemplates: [
+        '{"releases": [$.versions.{"version": $[]}], "sourceUrl": "https://github.com/PaperMC/Paper", "homepage": "https://papermc.io/"}'
+      ]
+    }
+  },
+  customManagers: [
+    {
+      // cf. https://docs.renovatebot.com/modules/manager/regex/
+      customType: 'regex',
+
+      // i.e. the "papermc" custom datasource previously defined
+      datasourceTemplate: 'custom.papermc',
+      packageNameTemplate: 'useless', // Required, but useless
+
+      // PaperMC/Minecraft versioning seems to only follow the SemVer format, not the whole specs
+      versioningTemplate: 'semver',
+
+      // Matchers
+      fileMatch: [
+        '(^|\\/)get-papermc-server\\.sh$'
+      ],
+      matchStrings: [
+        '# renovate: datasource=papermc\\s+MINECRAFT_VERSION=(?<currentValue>.+)'
+      ]
+    }
+  ]
 }
