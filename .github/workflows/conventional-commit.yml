@@ -1,0 +1,60 @@
+name: Conventional Commit
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main, '+.x', next, next-major, beta, alpha]
+  pull_request:
+    branches: [main, '+.x', next, next-major, beta, alpha]
+
+permissions: {}
+
+jobs:
+  commit-check:
+    name: Commit check
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+
+    permissions:
+      contents: read
+
+    steps:
+      - name: Harden runner
+        uses: step-security/harden-runner@4d991eb9b905ef189e4c376166672c3f2f230481 # v2.11.0
+        with:
+          disable-sudo: true
+          egress-policy: block
+          allowed-endpoints: >
+            github.com:443
+            api.github.com:443
+            registry.npmjs.org:443
+
+      - name: Checkout repository
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
+          fetch-depth: 0 # Required by commitlint
+
+      - name: Setup Node.js
+        uses: actions/setup-node@1d0ff469b7ec7b3cb9d8673fde0c81c44821de2a # v4.2.0
+        with:
+          node-version: lts/jod
+          cache: npm
+          cache-dependency-path: .github/semantic-release/package-lock.json
+
+      - name: Install commitlint
+        working-directory: .github/semantic-release/
+        run: npm clean-install
+
+      - name: Validate current commit (last commit) with commitlint
+        if: ${{ github.event_name != 'pull_request' }}
+        working-directory: .github/semantic-release/
+        run: npx --no-install commitlint --verbose --last
+
+      - name: Validate PR commits with commitlint
+        if: ${{ github.event_name == 'pull_request' }}
+        working-directory: .github/semantic-release/
+        run: |
+          npx --no-install commitlint --verbose \
+            --from ${{ github.event.pull_request.head.sha }}~${{ github.event.pull_request.commits }} \
+            --to ${{ github.event.pull_request.head.sha }}
