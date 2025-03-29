@@ -47,7 +47,11 @@
 
       // i.e. the "papermc" custom datasource previously defined
       datasourceTemplate: 'custom.papermc',
-      packageNameTemplate: 'useless', // Required, but useless
+
+      // Required
+      // Useless for the datasource since mono-package
+      // Useful as name reference in commits/PRs/... (e.g. "chore(deps): update dependency papermc to v1.21.4")
+      packageNameTemplate: 'papermc',
 
       // PaperMC/Minecraft versioning seems to only follow the SemVer format, not the whole specs
       versioningTemplate: 'semver',
