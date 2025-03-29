@@ -1,7 +1,5 @@
 FROM docker.io/ubuntu:noble@sha256:72297848456d5d37d1262630108ab308d3e9ec7ed1c3286a32fe09856619a782 AS build
 
-ARG MINECRAFT_VERSION=1.21.4
-
 WORKDIR /build
 
 # Install required dependencies
@@ -13,7 +11,7 @@ RUN apt-get update && \
 
 # Retrieve latest Paper server for the given version
 COPY --chmod=500 build/get-papermc-server.sh .
-RUN ./get-papermc-server.sh ${MINECRAFT_VERSION}
+RUN ./get-papermc-server.sh
 
 FROM docker.io/eclipse-temurin:21-jre-noble@sha256:3ef64ec531571987f58ccc90bd3d7f92950539f1baa00a5c45b660d6faccf37d
 
