@@ -55,6 +55,9 @@ WORKDIR /home/papermc
 # Copy the PaperMC server
 COPY --from=build --chown=papermc --chmod=500 /build/papermc-server-*.jar ./
 
+# Copy license file
+ADD --chmod=444 https://raw.githubusercontent.com/Djaytan/docker-papermc-server/refs/heads/main/LICENSE.md .
+
 # Copy the configuration files
 # Write access is required by PaperMC to update the configuration files
 # even tho we would prefer otherwise in containers (read-only access for immutability enforcement)
