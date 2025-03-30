@@ -26,4 +26,7 @@ our [Security Policy](docs/SECURITY.md).
 
 ## Licence
 
-This project is under the [MIT](https://opensource.org/licenses/MIT) license.
+This project is under the [GNU GPL v3.0](https://www.gnu.org/licenses/gpl-3.0.html) license.
+
+As the distributed OCI image is based on [the Ubuntu one](https://hub.docker.com/_/ubuntu), additional licensing information can be
+found [here](https://ubuntu.com/legal/intellectual-property-policy).
