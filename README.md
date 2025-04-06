@@ -17,7 +17,9 @@ If you want to help us improve the project, you can learn more about ways to do 
 
 ## Versioning
 
-This project follows [Semantic Versioning](http://semver.org/).
+This project follows [Semantic Versioning](https://semver.org/).
+
+The Docker tagging scheme is `<mc-version>-v<image-version>-<timestamp-YYYYMMDD>` (e.g. `1.21.4-v1.2.1-20250406`)
 
 ## Security Policy
 
