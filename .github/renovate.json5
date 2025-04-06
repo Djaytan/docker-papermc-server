@@ -58,8 +58,8 @@
 
       // Matchers
       fileMatch: [
-        '^src/build/get-papermc-server\\.sh$',
-        '^.github/semantic-release/release\\.sh$'
+        '^src\\/build\\/get-papermc-server\\.sh$',
+        '^.github\\/semantic-release\\/release\\.sh$'
       ],
       matchStrings: [
         '# renovate: datasource=papermc\\s+MINECRAFT_VERSION=(?<currentValue>.+)'
