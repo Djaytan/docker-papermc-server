@@ -12,7 +12,7 @@
   lockFileMaintenance: {
     enabled: true,
     extends: [
-      'schedule:quarterly'
+      'schedule:monthly'
     ]
   },
   osvVulnerabilityAlerts: true,
@@ -53,7 +53,7 @@
       // Useful as name reference in commits/PRs/... (e.g. "chore(deps): update dependency papermc to v1.21.4")
       packageNameTemplate: 'papermc',
 
-      // PaperMC/Minecraft versioning seems to only follow the SemVer format, not the whole specs
+      // PaperMC/Minecraft has SemVer-like versioning
       versioningTemplate: 'semver',
 
       // Matchers
