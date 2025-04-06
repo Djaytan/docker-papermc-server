@@ -3,7 +3,7 @@
 set -Eeuo pipefail
 
 NEXT_RELEASE_VERSION=$1
-NEXT_RELEASE_CHANNEL=$2
+NEXT_RELEASE_CHANNEL=${2:-default}
 
 # Extract <major>.<minor> part of the SemVer version
 NEXT_RELEASE_MAJOR_MINOR_VERSION="${NEXT_RELEASE_VERSION%".${NEXT_RELEASE_VERSION#*.*.}"}"
