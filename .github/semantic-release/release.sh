@@ -14,10 +14,9 @@ NEXT_RELEASE_MAJOR_VERSION="${NEXT_RELEASE_MAJOR_MINOR_VERSION%.*}"
 MINECRAFT_VERSION='1.21.4'
 
 IMAGE_NAME=djaytan/papermc-server
+IMAGE_BUILD_CONTEXT_DIR="$ROOT_PROJECT_DIR/src"
 
-cd "$ROOT_PROJECT_DIR/src"
-
-docker build --platform=linux/amd64,linux/arm64 --tag "$IMAGE_NAME"
+docker build --platform=linux/amd64,linux/arm64 --tag "$IMAGE_NAME" "$IMAGE_BUILD_CONTEXT_DIR"
 
 # Docker tag format: <mc-version>-v<image-version>-<timestamp-YYYYMMDD>
 docker tag "$IMAGE_NAME" "$IMAGE_NAME:$MINECRAFT_VERSION"
