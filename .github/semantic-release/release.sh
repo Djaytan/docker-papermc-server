@@ -26,10 +26,9 @@ docker tag "$IMAGE_NAME" "$IMAGE_NAME:$MINECRAFT_VERSION-v$NEXT_RELEASE_MAJOR_MI
 docker tag "$IMAGE_NAME" "$IMAGE_NAME:$MINECRAFT_VERSION-v$NEXT_RELEASE_MAJOR_VERSION"
 docker tag "$IMAGE_NAME" "$IMAGE_NAME:$MINECRAFT_VERSION-v$NEXT_RELEASE_VERSION-$(date +%Y%m%d)"
 
-# Empty channel = default channel
 # The default channel binds to the default Git branch (i.e. "main")
 # If we release from "main" branch -> we add the "latest" tag
-if [[ -z "$NEXT_RELEASE_CHANNEL" ]]; then
+if [[ "$NEXT_RELEASE_CHANNEL" == 'default' ]]; then
   docker tag "$IMAGE_NAME" "$IMAGE_NAME:latest"
 fi
 

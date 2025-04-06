@@ -24,7 +24,7 @@ module.exports = {
       {
         // The "nextRelease" variable comes from the Result object
         // Specifications: https://semantic-release.gitbook.io/semantic-release/developer-guide/js-api#result
-        publishCmd: './release.sh ${nextRelease.version} ${nextRelease.channel}'
+        publishCmd: './release.sh ${nextRelease.version} ${nextRelease.channel:-default}'
       }
     ],
     [
