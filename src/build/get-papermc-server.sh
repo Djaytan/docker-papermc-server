@@ -2,7 +2,7 @@
 # Reference: https://docs.papermc.io/misc/downloads-api
 
 # renovate: datasource=papermc
-MINECRAFT_VERSION=1.21.4
+MINECRAFT_VERSION='1.21.4'
 
 LATEST_BUILD=$(curl -sSf "https://api.papermc.io/v2/projects/paper/versions/${MINECRAFT_VERSION}/builds" | \
     jq -r '.builds | map(select(.channel == "default") | .build) | .[-1]')
