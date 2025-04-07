@@ -1,3 +1,6 @@
+# syntax=docker/dockerfile:1.14.0
+# check=error=true
+
 # Docker PaperMC Server
 # Copyright (C) 2025 Djaytan
 #
