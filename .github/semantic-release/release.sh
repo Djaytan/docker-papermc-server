@@ -16,6 +16,7 @@ MINECRAFT_VERSION='1.21.4'
 IMAGE_NAME=djaytan/papermc-server
 IMAGE_BUILD_CONTEXT_DIR="$ROOT_PROJECT_DIR/src"
 
+docker info
 docker build --platform=linux/amd64,linux/arm64 --tag "$IMAGE_NAME" "$IMAGE_BUILD_CONTEXT_DIR"
 
 # Docker tag format: <mc-version>-v<image-version>-<timestamp-YYYYMMDD>
