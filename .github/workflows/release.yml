@@ -1,8 +1,11 @@
 name: Release
 
-# TODO: frequent releases (once per week or at push time)
 on:
   workflow_dispatch:
+  push:
+    branches: [ main, '+.x', beta, alpha ]
+  schedule:
+    - cron: '7 8 * * 6' # Every Saturday at 08:07 (weekly release)
 
 permissions: {}
 
