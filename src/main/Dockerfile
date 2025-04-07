@@ -38,7 +38,7 @@ RUN apt-get update && \
     apt-get clean
 
 # Retrieve latest Paper server for the given version
-COPY --chmod=500 build/get-papermc-server.sh .
+COPY --chmod=500 get-papermc-server.sh .
 RUN ./get-papermc-server.sh "$MINECRAFT_VERSION"
 
 FROM docker.io/eclipse-temurin:21-jre-noble@sha256:3ef64ec531571987f58ccc90bd3d7f92950539f1baa00a5c45b660d6faccf37d
@@ -68,7 +68,6 @@ WORKDIR /home/papermc
 COPY --from=build --chown=papermc --chmod=500 /build/papermc-server-*.jar ./
 
 # Copy license file
-# TODO: rely on named build context instead: https://docs.docker.com/build/concepts/context/#named-contexts
 ADD --chmod=444 https://raw.githubusercontent.com/Djaytan/docker-papermc-server/refs/heads/main/LICENSE.md .
 
 # Copy the configuration files
@@ -85,3 +84,5 @@ EXPOSE 25565/tcp
 EXPOSE 25565/udp
 
 ENTRYPOINT ["./start.sh"]
+
+# TODO: healthcheck
