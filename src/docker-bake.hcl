@@ -47,7 +47,7 @@ function "date" {
 
 target "dev" {
   description = "Builds the image for development purposes."
-  args {
+  args = {
     MINECRAFT_VERSION = "${MINECRAFT_VERSION}"
   }
   tags = [
@@ -57,7 +57,7 @@ target "dev" {
 
 target "release" {
   description = "Builds the image for production purposes."
-  args {
+  args = {
     MINECRAFT_VERSION = "${MINECRAFT_VERSION}"
   }
   platforms = ["linux/amd64", "linux/arm64"]
