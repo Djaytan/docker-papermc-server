@@ -8,6 +8,9 @@ variable "IMAGE_NAME" {
   # TODO: make organization configurable
   default = "djaytan/papermc-server"
 }
+variable "REVISION" {
+  default = ""
+}
 
 # Tags properties
 variable "IS_LATEST_RELEASE" {
@@ -72,6 +75,17 @@ target "release" {
     tag("${MINECRAFT_VERSION}-v${extractMajorMinorFromSemVer(IMAGE_VERSION)}"),
     tag("${MINECRAFT_VERSION}-v${extractMajorFromSemVer(IMAGE_VERSION)}")
   ]
-  # TODO: annotations => https://github.com/opencontainers/image-spec/blob/main/annotations.md (or at Dockerfile level maybe?)
-  # TODO: what about labels?
+  annotations = [
+    "org.opencontainers.image.title=PaperMC Server",
+    "org.opencontainers.image.description=Dockerized and fine-grained customizable PaperMC server.",
+    "org.opencontainers.image.version=${MINECRAFT_VERSION}-v${IMAGE_VERSION}-${date()}",
+    "org.opencontainers.image.url=https://github.com/Djaytan/docker-papermc-server",
+    "org.opencontainers.image.documentation=https://github.com/Djaytan/docker-papermc-server",
+    "org.opencontainers.image.source=https://github.com/Djaytan/docker-papermc-server.git",
+    "org.opencontainers.image.authors=Djaytan <https://github.com/Djaytan>",
+    "org.opencontainers.image.vendor=Djaytan",
+    "org.opencontainers.image.licenses=GPL-3.0-or-later",
+    "org.opencontainers.image.created=${formatdate("YYYY-MM-DD'T'hh:mm:ss'Z'", timestamp())}",
+    "${notequal(REVISION, "") ? "org.opencontainers.image.revision=${REVISION}" : ""}"
+  ]
 }
