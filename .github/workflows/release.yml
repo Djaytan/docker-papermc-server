@@ -88,5 +88,6 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ github.token }}
           ROOT_PROJECT_DIR: ${{ github.workspace }}
+          REVISION: ${{ github.sha }}
         working-directory: .github/semantic-release/
         run: npx --no-install semantic-release
