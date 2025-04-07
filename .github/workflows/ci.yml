@@ -11,6 +11,10 @@ on:
 
 permissions: {}
 
+# TODO: rework CI - Use the test.sh script and rely on the generated tag
+# TODO: fail if container run fails
+# TODO: do we want to test multi-arch build?
+# TODO: what about cache?
 jobs:
   build-and-test:
     name: Build & Test

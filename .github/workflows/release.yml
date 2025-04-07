@@ -1,5 +1,6 @@
 name: Release
 
+# TODO: frequent releases (once per week or at push time)
 on:
   workflow_dispatch:
 
@@ -43,6 +44,7 @@ jobs:
             production.cloudflare.docker.com:443
             archive.ubuntu.com:80
             security.ubuntu.com:80
+            ports.ubuntu.com:80
             api.papermc.io:443
             api.nuget.org:443
             registry.npmjs.org:443
@@ -72,8 +74,10 @@ jobs:
 
       # Setup of QEMU x Buildx
       # Required for multi-arch builds (typically for ARM architecture support)
+      # TODO: rely on native ARM64 native node instead of QEMU: https://docs.docker.com/build/ci/github-actions/multi-platform/
       - name: Set up QEMU
         uses: docker/setup-qemu-action@29109295f81e9208d7d86ff1c6c12d2833863392 # v3.6.0
+
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@b5ca514318bd6ebac0fb2aedd5d36ec1b5c232a2 # v3.10.0
 

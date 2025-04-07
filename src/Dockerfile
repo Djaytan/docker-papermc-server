@@ -16,6 +16,15 @@
 
 FROM docker.io/ubuntu:noble@sha256:72297848456d5d37d1262630108ab308d3e9ec7ed1c3286a32fe09856619a782 AS build
 
+ARG MINECRAFT_VERSION
+
+RUN if [[ -z "$MINECRAFT_VERSION" ]]; then \
+        echo "Error: MINECRAFT_VERSION argument is not set." >&2; \
+        exit 1; \
+    fi
+
+RUN echo "Building PaperMC server for Minecraft version: $MINECRAFT_VERSION"
+
 WORKDIR /build
 
 # Install required dependencies
@@ -27,7 +36,7 @@ RUN apt-get update && \
 
 # Retrieve latest Paper server for the given version
 COPY --chmod=500 build/get-papermc-server.sh .
-RUN ./get-papermc-server.sh
+RUN ./get-papermc-server.sh "$MINECRAFT_VERSION"
 
 FROM docker.io/eclipse-temurin:21-jre-noble@sha256:3ef64ec531571987f58ccc90bd3d7f92950539f1baa00a5c45b660d6faccf37d
 
@@ -56,6 +65,7 @@ WORKDIR /home/papermc
 COPY --from=build --chown=papermc --chmod=500 /build/papermc-server-*.jar ./
 
 # Copy license file
+# TODO: rely on named build context instead: https://docs.docker.com/build/concepts/context/#named-contexts
 ADD --chmod=444 https://raw.githubusercontent.com/Djaytan/docker-papermc-server/refs/heads/main/LICENSE.md .
 
 # Copy the configuration files
