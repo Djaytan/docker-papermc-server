@@ -1,10 +1,7 @@
 #!/usr/bin/env bash
+# Assumption: The OCI image is already built and tagged as 'djaytan/papermc-server:dev'
 
 set -Eeuo pipefail
-
-SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" &>/dev/null && pwd -P)
-
-bash "$SCRIPT_DIR"/build-dev.sh
 
 CONTAINER_NAME='test-papermc-server'
 
