@@ -17,6 +17,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
+# TODO: what about an alpine variant?
 FROM docker.io/ubuntu:noble@sha256:72297848456d5d37d1262630108ab308d3e9ec7ed1c3286a32fe09856619a782 AS build
 
 ARG MINECRAFT_VERSION
@@ -64,11 +65,11 @@ USER papermc
 
 WORKDIR /home/papermc
 
-# Copy the PaperMC server
-COPY --from=build --chown=papermc --chmod=500 /build/papermc-server-*.jar ./
-
 # Copy license file
 ADD --chmod=444 https://raw.githubusercontent.com/Djaytan/docker-papermc-server/refs/heads/main/LICENSE.md .
+
+# Copy the PaperMC server
+COPY --from=build --chown=papermc --chmod=500 /build/papermc-server-*.jar ./
 
 # Copy the configuration files
 # Write access is required by PaperMC to update the configuration files
