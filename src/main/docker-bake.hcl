@@ -21,7 +21,7 @@ variable "MINECRAFT_VERSION" {
   default = "1.21.4"
 }
 variable "IMAGE_VERSION" {
-  default = "$IMAGE_VERSION"
+  default = "0.0.0"
 }
 
 # ========== FUNCTIONS ========== #
@@ -69,7 +69,7 @@ target "release" {
   # Docker tag format: <mc-version>-v<image-version>-<timestamp-YYYYMMDD>
   tags = [
     equal(IS_LATEST_RELEASE, true) ? tag("latest") : "", # Optional latest tag (empty string = no tag)
-    tag("${MINECRAFT_VERSION}"),
+    tag("${MINECRAFT_VERSION}"), # TODO: fix => only publish if latest release OR always consider latest release
     tag("${MINECRAFT_VERSION}-v${IMAGE_VERSION}"),
     tag("${MINECRAFT_VERSION}-v${IMAGE_VERSION}-${date()}"),
     tag("${MINECRAFT_VERSION}-v${extractMajorMinorFromSemVer(IMAGE_VERSION)}"),
