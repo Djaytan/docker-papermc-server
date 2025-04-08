@@ -83,6 +83,7 @@ COPY --chown=papermc --chmod=500 runtime/start.sh ./
 EXPOSE 25565/tcp
 EXPOSE 25565/udp
 
+# TODO: Pre-launch server to pre-download Mojang's server jar for quick startup
 ENTRYPOINT ["./start.sh"]
 
 # TODO: healthcheck
