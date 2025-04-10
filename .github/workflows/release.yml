@@ -1,5 +1,6 @@
 name: Release
 
+# TODO: actually doesn't work if semver not incremented. Better to make a separated workflow for this?
 on:
   workflow_dispatch:
   push:
@@ -102,6 +103,7 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@b5ca514318bd6ebac0fb2aedd5d36ec1b5c232a2 # v3.10.0
 
+      # TODO: Set annotation level to manifest,index: https://docs.docker.com/build/ci/github-actions/annotations/#configure-annotation-level
       - name: Release
         env:
           GITHUB_TOKEN: ${{ github.token }}

@@ -31,6 +31,11 @@ function "tag" {
   result = "${notequal(REGISTRY, "") ? "${REGISTRY}/" : ""}${IMAGE_NAME}:${tag}"
 }
 
+function "annotation" {
+  params = [key, value]
+  result = "index,manifest:${key}=${value}"
+}
+
 function "extractMajorFromSemVer" {
   params = [semver]
   result = split(".", semver)[0]
@@ -76,16 +81,16 @@ target "release" {
     tag("${MINECRAFT_VERSION}-v${extractMajorFromSemVer(IMAGE_VERSION)}")
   ]
   annotations = [
-    "org.opencontainers.image.title=PaperMC Server",
-    "org.opencontainers.image.description=Dockerized and fine-grained customizable PaperMC server.",
-    "org.opencontainers.image.version=${MINECRAFT_VERSION}-v${IMAGE_VERSION}-${date()}",
-    "org.opencontainers.image.url=https://github.com/Djaytan/docker-papermc-server",
-    "org.opencontainers.image.documentation=https://github.com/Djaytan/docker-papermc-server",
-    "org.opencontainers.image.source=https://github.com/Djaytan/docker-papermc-server.git",
-    "org.opencontainers.image.authors=Djaytan <https://github.com/Djaytan>",
-    "org.opencontainers.image.vendor=Djaytan",
-    "org.opencontainers.image.licenses=GPL-3.0-or-later",
-    "org.opencontainers.image.created=${formatdate("YYYY-MM-DD'T'hh:mm:ss'Z'", timestamp())}",
-    "${notequal(REVISION, "") ? "org.opencontainers.image.revision=${REVISION}" : ""}"
+    annotation("org.opencontainers.image.title", "PaperMC Server"),
+    annotation("org.opencontainers.image.description", "Dockerized and fine-grained customizable PaperMC server."),
+    annotation("org.opencontainers.image.version", "${MINECRAFT_VERSION}-v${IMAGE_VERSION}-${date()}"),
+    annotation("org.opencontainers.image.url", "https://github.com/Djaytan/docker-papermc-server"),
+    annotation("org.opencontainers.image.documentation", "https://github.com/Djaytan/docker-papermc-server"),
+    annotation("org.opencontainers.image.source", "https://github.com/Djaytan/docker-papermc-server.git"),
+    annotation("org.opencontainers.image.authors", "Djaytan <https://github.com/Djaytan>"),
+    annotation("org.opencontainers.image.vendor", "Djaytan"),
+    annotation("org.opencontainers.image.licenses", "GPL-3.0-or-later"),
+    annotation("org.opencontainers.image.created", "${formatdate("YYYY-MM-DD'T'hh:mm:ss'Z'", timestamp())}"),
+    notequal(REVISION, "") ? annotation("org.opencontainers.image.revision", REVISION) : ""
   ]
 }
