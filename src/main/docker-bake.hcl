@@ -4,9 +4,11 @@
 variable "REGISTRY" {
   default = ""
 }
+variable "ORGANIZATION" {
+  default = "djaytan"
+}
 variable "IMAGE_NAME" {
-  # TODO: make organization configurable
-  default = "djaytan/papermc-server"
+  default = "papermc-server"
 }
 variable "REVISION" {
   default = ""
@@ -24,11 +26,13 @@ variable "IMAGE_VERSION" {
   default = "0.0.0"
 }
 
+# TODO: customizable annotations (url, documentation, source, authors, vendor, ...)
+
 # ========== FUNCTIONS ========== #
 
 function "tag" {
   params = [tag]
-  result = "${notequal(REGISTRY, "") ? "${REGISTRY}/" : ""}${IMAGE_NAME}:${tag}"
+  result = "${notequal(REGISTRY, "") ? "${REGISTRY}/" : ""}${ORGANIZATION}/${IMAGE_NAME}:${tag}"
 }
 
 function "annotation" {
