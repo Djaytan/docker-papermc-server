@@ -76,7 +76,7 @@ jobs:
         uses: docker/bake-action@4ba453fbc2db7735392b93edf935aaf9b1e8f747 # v6.5.0
         with:
           source: .
-          workdir: src/main/
+          workdir: src/main/docker/
           targets: dev
           load: true # Export to Docker - Required for tests in later steps
           set: |
@@ -84,7 +84,7 @@ jobs:
             *.cache-to=type=gha,mode=max,timeout=20s
 
       - name: Test
-        run: src/test/test.sh
+        run: src/test/docker/test.sh
 
       - name: Run Trivy vulnerability scanner
         uses: aquasecurity/trivy-action@6c175e9c4083a92bbca2f9724c8a5e33bc2d97a5 # 0.30.0
