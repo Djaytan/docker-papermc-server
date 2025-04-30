@@ -35,8 +35,7 @@ WORKDIR /build
 RUN apt-get update && \
     apt-get upgrade -y && \
     apt-get install -y --no-install-recommends ca-certificates curl jq && \
-    apt-get auto-remove && \
-    apt-get clean
+    rm -rf /var/lib/apt/lists/*
 
 # Retrieve latest Paper server for the given version
 COPY --chmod=500 get-papermc-server.sh .
@@ -47,12 +46,12 @@ FROM docker.io/eclipse-temurin:21-jre-noble@sha256:3ef64ec531571987f58ccc90bd3d7
 # Need to be turned to "true" manually to confirm agreement with Minecraft EULA (https://aka.ms/MinecraftEULA)
 ENV EULA=false
 
-# Install required dependencies
+# Keep dependencies up-to-date
+# gettext is required for envsubst
 RUN apt-get update && \
     apt-get upgrade -y && \
-    apt-get install -y gettext && \
-    apt-get auto-remove && \
-    apt-get clean
+    apt-get install -y --no-install-recommends gettext && \
+    rm -rf /var/lib/apt/lists/*
 
 # Create the "papermc" user
 RUN groupadd --system papermc && useradd --system --gid papermc --create-home papermc
