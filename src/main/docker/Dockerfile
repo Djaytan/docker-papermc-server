@@ -17,7 +17,6 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
-# TODO: move to src/main/docker instead
 # TODO: what about an alpine variant?
 FROM docker.io/ubuntu:noble@sha256:72297848456d5d37d1262630108ab308d3e9ec7ed1c3286a32fe09856619a782 AS build
 
@@ -75,8 +74,8 @@ COPY --from=build --chown=papermc --chmod=500 /build/papermc-server-*.jar ./
 # Copy the configuration files
 # Write access is required by PaperMC to update the configuration files
 # even tho we would prefer otherwise in containers (read-only access for immutability enforcement)
-COPY --chown=papermc --chmod=700 runtime/config/base/ ./
-COPY --chown=papermc --chmod=700 runtime/config/papermc/ config/
+COPY --chown=papermc --chmod=700 runtime/config/base ./
+COPY --chown=papermc --chmod=700 runtime/config/papermc config/
 
 # Copy the server startup script
 COPY --chown=papermc --chmod=500 runtime/start.sh ./
