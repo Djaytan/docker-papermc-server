@@ -42,7 +42,7 @@ RUN apt-get update && \
 COPY --chmod=500 get-papermc-server.sh .
 RUN ./get-papermc-server.sh "$MINECRAFT_VERSION"
 
-FROM docker.io/eclipse-temurin:21-jre-noble@sha256:3ef64ec531571987f58ccc90bd3d7f92950539f1baa00a5c45b660d6faccf37d
+FROM docker.io/eclipse-temurin:21-jre-noble@sha256:ce9014ea8f38b2810e648f8497c2f8d2fa76318a7d476152ce4fddf86ae980d7
 
 # Need to be turned to "true" manually to confirm agreement with Minecraft EULA (https://aka.ms/MinecraftEULA)
 ENV EULA=false
