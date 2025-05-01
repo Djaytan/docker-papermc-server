@@ -4,7 +4,7 @@ set -Eeuo pipefail
 
 SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" &>/dev/null && pwd -P)
 
-cd "${SCRIPT_DIR}/../main"
+cd "${SCRIPT_DIR}/main/docker"
 
 echo '🏗️ Building the DEV image...'
 docker buildx bake dev --print
