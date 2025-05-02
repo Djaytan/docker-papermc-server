@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# TODO: migrate to sh
 
 set -Eeuo pipefail
 

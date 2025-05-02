@@ -67,6 +67,7 @@ target "dev" {
   ]
 }
 
+# TODO: OWASP RULE#13 https://cheatsheetseries.owasp.org/cheatsheets/Docker_Security_Cheat_Sheet.html#rule-13-enhance-supply-chain-security
 target "release" {
   description = "Builds the image for production purposes."
   args = {

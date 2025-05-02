@@ -1,5 +1,7 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 # Reference: https://docs.papermc.io/misc/downloads-api
+
+set -eu
 
 MINECRAFT_VERSION=$1
 
