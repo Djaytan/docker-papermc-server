@@ -29,7 +29,7 @@ RUN ${JAVA_HOME}/bin/jlink \
     --no-header-files \
     --output /jre
 
-FROM docker.io/ubuntu:noble@sha256:72297848456d5d37d1262630108ab308d3e9ec7ed1c3286a32fe09856619a782 AS papermc-server-build
+FROM docker.io/ubuntu:noble@sha256:1e622c5f073b4f6bfad6632f2616c7f59ef256e96fe78bf6a595d1dc4376ac02 AS papermc-server-build
 
 ARG MINECRAFT_VERSION
 
@@ -53,7 +53,7 @@ COPY --chmod=500 get-papermc-server.sh .
 RUN ./get-papermc-server.sh "$MINECRAFT_VERSION"
 
 # TODO: what about an alpine variant?
-FROM docker.io/ubuntu:noble@sha256:72297848456d5d37d1262630108ab308d3e9ec7ed1c3286a32fe09856619a782
+FROM docker.io/ubuntu:noble@sha256:1e622c5f073b4f6bfad6632f2616c7f59ef256e96fe78bf6a595d1dc4376ac02
 
 # JRE setup
 ENV JAVA_HOME=/opt/java
