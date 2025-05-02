@@ -8,7 +8,7 @@ cd "${SCRIPT_DIR}/main/docker"
 
 echo '🏗️ Building the DEV image...'
 docker buildx bake dev --print
-docker buildx bake dev
+docker buildx bake --progress=plain dev
 echo '✅  Image built successfully.'
 
 echo '▶️ Starting the localdev PaperMC server...'
