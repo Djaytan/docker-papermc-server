@@ -16,9 +16,20 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
+FROM docker.io/eclipse-temurin:21-jdk-noble@sha256:5d935f3e86b5b629fc8994503e89b73137b24048a5b465fbaa605de80c678b54 AS jre-build
 
-# TODO: what about an alpine variant?
-FROM docker.io/ubuntu:noble@sha256:72297848456d5d37d1262630108ab308d3e9ec7ed1c3286a32fe09856619a782 AS build
+# Create a custom Java runtime
+#
+# All modules are included (ALL-MODULE-PATH) since we are unable to know which ones
+# are required by plugins
+RUN ${JAVA_HOME}/bin/jlink \
+    --add-modules ALL-MODULE-PATH \
+    --strip-debug \
+    --no-man-pages \
+    --no-header-files \
+    --output /jre
+
+FROM docker.io/ubuntu:noble@sha256:72297848456d5d37d1262630108ab308d3e9ec7ed1c3286a32fe09856619a782 AS papermc-server-build
 
 ARG MINECRAFT_VERSION
 
@@ -41,7 +52,14 @@ RUN apt-get update && \
 COPY --chmod=500 get-papermc-server.sh .
 RUN ./get-papermc-server.sh "$MINECRAFT_VERSION"
 
-FROM docker.io/eclipse-temurin:21-jre-noble@sha256:3ef64ec531571987f58ccc90bd3d7f92950539f1baa00a5c45b660d6faccf37d
+# TODO: what about an alpine variant?
+FROM docker.io/ubuntu:noble@sha256:72297848456d5d37d1262630108ab308d3e9ec7ed1c3286a32fe09856619a782
+
+# JRE setup
+ENV JAVA_HOME=/opt/java
+ENV PATH="${JAVA_HOME}/bin:${PATH}"
+
+COPY --from=jre-build /jre ${JAVA_HOME}
 
 # Need to be turned to "true" manually to confirm agreement with Minecraft EULA (https://aka.ms/MinecraftEULA)
 ENV EULA=false
@@ -68,7 +86,7 @@ WORKDIR /home/papermc
 ADD --chmod=444 https://raw.githubusercontent.com/Djaytan/docker-papermc-server/refs/heads/main/LICENSE.md .
 
 # Copy the PaperMC server
-COPY --from=build --chown=papermc --chmod=500 /build/papermc-server-*.jar ./
+COPY --from=papermc-server-build --chown=papermc --chmod=500 /build/papermc-server-*.jar ./
 
 # Copy the configuration files
 # Write access is required by PaperMC to update the configuration files
