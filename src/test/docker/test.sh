@@ -1,7 +1,7 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 # Assumption: The OCI image is already built and tagged as 'djaytan/papermc-server:dev'
 
-set -Eeuo pipefail
+set -eu
 
 CONTAINER_NAME='test-papermc-server'
 
@@ -33,7 +33,7 @@ while true; do
   ELAPSED_TIME=$((CURRENT_TIME - START_TIME))
 
   # Check if timeout of 60 seconds has been reached
-  if [[ $ELAPSED_TIME -gt 60 ]]; then
+  if [ $ELAPSED_TIME -gt 60 ]; then
     echo "❌  Server failed to start within 60 seconds."
     exit 1
   fi

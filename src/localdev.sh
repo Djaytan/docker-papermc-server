@@ -1,8 +1,15 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
+# TODO: OWASP RULE#3 https://cheatsheetseries.owasp.org/cheatsheets/Docker_Security_Cheat_Sheet.html#rule-3-limit-capabilities-grant-only-specific-capabilities-needed-by-a-container
+# TODO: OWASP RULE#4 https://cheatsheetseries.owasp.org/cheatsheets/Docker_Security_Cheat_Sheet.html#rule-4-prevent-in-container-privilege-escalation
+# TODO: OWASP RULE#7 https://cheatsheetseries.owasp.org/cheatsheets/Docker_Security_Cheat_Sheet.html#rule-7-limit-resources-memory-cpu-file-descriptors-processes-restarts
+# TODO: Same OWASP rules in test.sh file
+# TODO: document security recommendations adapted to this project
+# TODO: document requirements for OWASP RULE#8 https://cheatsheetseries.owasp.org/cheatsheets/Docker_Security_Cheat_Sheet.html#rule-7-limit-resources-memory-cpu-file-descriptors-processes-restarts
+# TODO: try OWASP RULE#8 here
 
-set -Eeuo pipefail
+set -eu
 
-SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" &>/dev/null && pwd -P)
+SCRIPT_DIR=$(cd "$(dirname "$0")" > /dev/null 2>&1 && pwd -P)
 
 cd "${SCRIPT_DIR}/main/docker"
 

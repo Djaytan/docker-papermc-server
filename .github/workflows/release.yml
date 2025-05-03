@@ -45,7 +45,8 @@ jobs:
       # -> "objects.githubusercontent.com": Uploading of security reports
       # -> "raw.githubusercontent.com": Retrieve license file when building OCI image
       # -> "*.docker.io" & "*.docker.com": Standard interactions with Docker
-      # -> "*.ubuntu.com": Standard interactions with Ubuntu APT repositories
+      # -> "*.alpinelinux.org": Standard interactions with Alpine Linux package repositories
+      # -> "cdn.fwupd.org": Firmware updates (Alpine)
       # -> "api.papermc.io": Dynamic retrieval of the PaperMC server
       # -> "mirror.gcr.io": Downloading of the Trivy security scanner
       # -> "api.nuget.org" & "registry.npmjs.org": Downloading semantic-release CLI
@@ -60,13 +61,10 @@ jobs:
             objects.githubusercontent.com:443
             raw.githubusercontent.com:443
             uploads.github.com:443
-            index.docker.io:443
-            registry-1.docker.io:443
-            auth.docker.io:443
+            *.docker.io:443
             production.cloudflare.docker.com:443
-            archive.ubuntu.com:80
-            security.ubuntu.com:80
-            ports.ubuntu.com:80
+            dl-cdn.alpinelinux.org:443
+            cdn.fwupd.org:443
             api.papermc.io:443
             api.nuget.org:443
             registry.npmjs.org:443

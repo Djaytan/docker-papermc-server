@@ -13,6 +13,14 @@ Dockerized and fine-grained customizable PaperMC server.
 
 </div>
 
+## Features
+
+* Alpine-based image
+* Lightweight (~360 MB)
+* Multi-architecture support (amd64 & arm64)
+
+TODO
+
 ## Contributing
 
 If you want to help us improve the project, you can learn more about ways to do so [here](docs/CONTRIBUTING.md).
@@ -30,7 +38,13 @@ our [Security Policy](docs/SECURITY.md).
 
 ## Licence
 
-This project is under the [GNU GPL v3.0](https://www.gnu.org/licenses/gpl-3.0.html) license.
+This project inherits its licensing from the included upstream projects. As such, it is licensed under
+the [GNU GPL v3.0](https://www.gnu.org/licenses/gpl-3.0.html) license, as it inherits from PaperMC, which in turn inherits it from the original Bukkit and
+CraftBukkit projects.
 
-As the distributed OCI image is based on [the Ubuntu one](https://hub.docker.com/_/ubuntu), additional licensing information can be
-found [here](https://ubuntu.com/legal/intellectual-property-policy).
+The distributed OCI image is based on [the Alpine one](https://hub.docker.com/_/alpine).
+As with all Docker images, these likely also contain other software which may be under other licenses. Details about Alpine packages can be
+found [here](https://pkgs.alpinelinux.org/packages).
+
+As for any pre-built image usage, it is the image user's responsibility to ensure that any use of this image complies with
+any relevant licenses for all software contained within.

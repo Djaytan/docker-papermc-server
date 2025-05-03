@@ -16,7 +16,8 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
-FROM docker.io/eclipse-temurin:21-jdk-noble@sha256:5d935f3e86b5b629fc8994503e89b73137b24048a5b465fbaa605de80c678b54 AS jre-build
+# TODO: migrate to Podman? https://cheatsheetseries.owasp.org/cheatsheets/Docker_Security_Cheat_Sheet.html#podman-as-an-alternative-to-docker
+FROM docker.io/eclipse-temurin:21-jdk-alpine@sha256:2f2f553ce09d25e2d2f0f521ab94cd73f70c9b21327a29149c23a2b63b8e29a0 AS jre-build
 
 # Create a custom Java runtime
 #
@@ -29,11 +30,11 @@ RUN ${JAVA_HOME}/bin/jlink \
     --no-header-files \
     --output /jre
 
-FROM docker.io/ubuntu:noble@sha256:72297848456d5d37d1262630108ab308d3e9ec7ed1c3286a32fe09856619a782 AS papermc-server-build
+FROM docker.io/alpine:3.21.3@sha256:a8560b36e8b8210634f77d9f7f9efd7ffa463e380b75e2e74aff4511df3ef88c AS papermc-server-build
 
 ARG MINECRAFT_VERSION
 
-RUN if [[ -z "$MINECRAFT_VERSION" ]]; then \
+RUN if [ -z "$MINECRAFT_VERSION" ]; then \
         echo "Error: MINECRAFT_VERSION argument is not set." >&2; \
         exit 1; \
     fi
@@ -43,17 +44,14 @@ RUN echo "Building PaperMC server for Minecraft version: $MINECRAFT_VERSION"
 WORKDIR /build
 
 # Install required dependencies
-RUN apt-get update && \
-    apt-get upgrade -y && \
-    apt-get install -y --no-install-recommends ca-certificates curl jq && \
-    rm -rf /var/lib/apt/lists/*
+RUN apk add --no-cache ca-certificates curl jq
 
 # Retrieve latest Paper server for the given version
 COPY --chmod=500 get-papermc-server.sh .
 RUN ./get-papermc-server.sh "$MINECRAFT_VERSION"
 
-# TODO: what about an alpine variant?
-FROM docker.io/ubuntu:noble@sha256:72297848456d5d37d1262630108ab308d3e9ec7ed1c3286a32fe09856619a782
+# TODO: make the image UID/GID-agnostic (e.g., for compatibility with OpenShift)
+FROM docker.io/alpine:3.21.3@sha256:a8560b36e8b8210634f77d9f7f9efd7ffa463e380b75e2e74aff4511df3ef88c
 
 # JRE setup
 ENV JAVA_HOME=/opt/java
@@ -65,17 +63,20 @@ COPY --from=jre-build /jre ${JAVA_HOME}
 ENV EULA=false
 
 # Keep dependencies up-to-date
-# gettext is required for envsubst
-RUN apt-get update && \
-    apt-get upgrade -y && \
-    apt-get install -y --no-install-recommends gettext && \
-    rm -rf /var/lib/apt/lists/*
+# bash is still required by start.sh for now (to be removed)
+# gettext is required for envsubst: https://pkgs.alpinelinux.org/package/edge/main/x86_64/gettext
+# libudev-zero is the Alpine-equivalent of libudev, which is required by PaperMC: https://pkgs.alpinelinux.org/package/edge/community/x86/libudev-zero
+RUN apk add --no-cache bash gettext libudev-zero
 
 # Create the "papermc" user
-RUN groupadd --system papermc && useradd --system --gid papermc --create-home papermc
+#
+# Long-form parameters are not supported (e.g., --system, --group, --shell)
+# BusyBox "adduser" doc: https://busybox.net/downloads/BusyBox.html#adduser
+RUN addgroup -S papermc && adduser -S -G papermc -h /home/papermc -s /sbin/nologin papermc
 
 # Lock root user for security purposes
-RUN passwd --lock root
+# TODO: remove since unecessary
+RUN passwd -l root
 
 # Now rely exclusively on the PaperMC user (rootless mode)
 USER papermc
