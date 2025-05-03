@@ -1,9 +1,8 @@
-#!/usr/bin/env bash
-# TODO: migrate to sh
+#!/usr/bin/env sh
 
-set -Eeuo pipefail
+set -eu
 
-SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" &>/dev/null && pwd -P)
+SCRIPT_DIR=$(cd "$(dirname "$0")" > /dev/null 2>&1 && pwd -P)
 
 ## Directories
 CONFIG_DIR="${SCRIPT_DIR}/config"
@@ -16,10 +15,9 @@ WORLD_DIR="${SCRIPT_DIR}/worlds"
 # Paper config: https://docs.papermc.io/paper/reference/global-configuration
 # Aïkar's flags: https://docs.papermc.io/paper/aikars-flags
 # Paper system properties: https://docs.papermc.io/paper/reference/system-properties
-HEAP_SIZE=4
-AIKAR_FLAGS=(
-  -Xms"${HEAP_SIZE}"G
-  -Xmx"${HEAP_SIZE}"G
+AIKAR_FLAGS="
+  -Xms4G
+  -Xmx4G
   -XX:+AlwaysPreTouch
   -XX:+DisableExplicitGC
   -XX:+ParallelRefProcEnabled
@@ -40,32 +38,36 @@ AIKAR_FLAGS=(
   -XX:SurvivorRatio=32
   -Dusing.aikars.flags=https://mcflags.emc.gs
   -Daikars.new.flags=true
-)
-PAPER_FLAGS=(
+"
+PAPER_FLAGS='
   -Dnet.kyori.adventure.text.warnWhenLegacyFormattingDetected
   -Dpaper.ticklist-warn-on-excessive-delay
   -Dpaper.strict-thread-checks
   -DPaper.skipServerPropertiesComments
   -Dpaper.alwaysPrintWarningState
-)
-JVM_ARGUMENTS=("${AIKAR_FLAGS[@]}" "${SPIGOT_FLAGS[@]}" "${PAPER_FLAGS[@]}")
+'
+
+# Combine all JVM arguments into a single string
+JVM_ARGUMENTS="${AIKAR_FLAGS} ${PAPER_FLAGS}"
 
 ## Server arguments
 # Spigot start-up parameters: https://www.spigotmc.org/wiki/start-up-parameters/
-SERVER_ARGS=(
-  --spigot-settings "${CONFIG_DIR}/spigot.yml"
-  --commands-settings "${CONFIG_DIR}/commands.yml"
-  --world-dir "${WORLD_DIR}"
+SERVER_ARGS="
+  --spigot-settings ${CONFIG_DIR}/spigot.yml
+  --commands-settings ${CONFIG_DIR}/commands.yml
+  --world-dir ${WORLD_DIR}
   --log-strip-color
   --nogui
-)
+"
 
 cd "${SCRIPT_DIR}"
 
 echo 'Preparing PaperMC server configuration files...'
 
-TMP="$(envsubst '$EULA' < eula.txt)" && echo "${TMP}" > eula.txt && echo 'File eula.txt processed'
+TMP="$(envsubst '$EULA' < eula.txt)"
+echo "${TMP}" > eula.txt
+echo 'File eula.txt processed'
 
 echo 'PaperMC server ready to start!'
 
-java "${JVM_ARGUMENTS[@]}" -jar "${SCRIPT_DIR}"/papermc-server-*.jar "${SERVER_ARGS[@]}"
+java $JVM_ARGUMENTS -jar "${SCRIPT_DIR}"/papermc-server-*.jar $SERVER_ARGS
