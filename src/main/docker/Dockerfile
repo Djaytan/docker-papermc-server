@@ -18,10 +18,10 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 FROM docker.io/eclipse-temurin:21-jdk-alpine@sha256:2f2f553ce09d25e2d2f0f521ab94cd73f70c9b21327a29149c23a2b63b8e29a0 AS jre-build
 
-# Create a custom Java runtime
+# Create a custom Java runtime.
 #
 # All modules are included (ALL-MODULE-PATH) since we are unable to know which ones
-# are required by plugins
+# are required by plugins.
 RUN ${JAVA_HOME}/bin/jlink \
     --add-modules ALL-MODULE-PATH \
     --strip-debug \
@@ -42,57 +42,63 @@ RUN echo "Building PaperMC server for Minecraft version: $MINECRAFT_VERSION"
 
 WORKDIR /build
 
-# Install required dependencies
+# Install required dependencies.
 RUN apk add --no-cache ca-certificates curl jq
 
-# Retrieve latest Paper server for the given version
+# Retrieve latest Paper server for the given version.
 COPY --chmod=500 get-papermc-server.sh .
 RUN ./get-papermc-server.sh "$MINECRAFT_VERSION"
 
-# TODO: make the image UID/GID-agnostic (e.g., for compatibility with OpenShift)
+# TODO: explicitly declare volume mount points with VOLUME (e.g., /opt/papermc/worlds, /opt/papermc/plugins/my-plugin, etc)
 FROM docker.io/alpine:3.21.3@sha256:a8560b36e8b8210634f77d9f7f9efd7ffa463e380b75e2e74aff4511df3ef88c
 
-# JRE setup
+WORKDIR /opt/papermc
+
+# JRE setup.
 ENV JAVA_HOME=/opt/java
 ENV PATH="${JAVA_HOME}/bin:${PATH}"
 
 COPY --from=jre-build /jre ${JAVA_HOME}
 
-# Need to be turned to "true" manually to confirm agreement with Minecraft EULA (https://aka.ms/MinecraftEULA)
-ENV EULA=false
-
-# Keep dependencies up-to-date
-# gettext is required for envsubst: https://pkgs.alpinelinux.org/package/edge/main/x86_64/gettext
-# libudev-zero is the Alpine-equivalent of libudev, which is required by PaperMC: https://pkgs.alpinelinux.org/package/edge/community/x86/libudev-zero
+# Keep dependencies up-to-date, and install:
+# - gettext: is required for envsubst: https://pkgs.alpinelinux.org/package/edge/main/x86_64/gettext
+# - libudev-zero: is the Alpine-equivalent of libudev, which is required by PaperMC: https://pkgs.alpinelinux.org/package/edge/community/x86/libudev-zero
 RUN apk add --no-cache gettext libudev-zero
 
-# Create the "papermc" user
+# Need to be turned to "true" manually to confirm agreement with Minecraft EULA (https://aka.ms/MinecraftEULA).
+ENV EULA=false
+
+# Copy license file.
+ADD --chmod=440 https://raw.githubusercontent.com/Djaytan/docker-papermc-server/refs/heads/main/LICENSE.md .
+
+# Copy the PaperMC server.
+COPY --from=papermc-server-build --chmod=550 /build/papermc-server-*.jar ./
+
+# Copy the configuration files.
+# PaperMC attempts to update these files at runtime, which requires write access.
+# While not strictly necessary, making them writable prevents annoying warnings in the logs.
+# Ideally, configs would be read-only to enforce immutability, but this is a trade-off for cleaner logs.
+COPY --chmod=770 runtime/config/base ./
+COPY --chmod=770 runtime/config/papermc config/
+
+# Copy the server startup script.
+COPY --chmod=550 runtime/start.sh ./
+
+# Adjust permissions.
+RUN chmod 770 /opt/papermc /opt/papermc/config
+
+# Switch to rooless mode by default.
 #
-# Long-form parameters are not supported (e.g., --system, --group, --shell)
-# BusyBox "adduser" doc: https://busybox.net/downloads/BusyBox.html#adduser
-RUN addgroup -S papermc && adduser -S -G papermc -h /home/papermc -s /sbin/nologin papermc
+# Rely on the predefined "daemon" user.
+# Enforce "root" group to retain read and write access to files and directories
+# owned by group "root" with group-level permissions (e.g., 770, 550).
+# This avoids world-readable or writable permissions while remaining compatible with platforms
+# that assign arbitrary UIDs at runtime, such as OpenShift.
+# For more on OpenShift-compatible image design, see:
+# https://docs.redhat.com/en/documentation/openshift_container_platform/4.18/html/images/creating-images#use-uid_create-images
+USER daemon:root
 
-# Now rely exclusively on the PaperMC user (rootless mode)
-USER papermc
-
-WORKDIR /home/papermc
-
-# Copy license file
-ADD --chmod=444 https://raw.githubusercontent.com/Djaytan/docker-papermc-server/refs/heads/main/LICENSE.md .
-
-# Copy the PaperMC server
-COPY --from=papermc-server-build --chown=papermc --chmod=500 /build/papermc-server-*.jar ./
-
-# Copy the configuration files
-# Write access is required by PaperMC to update the configuration files
-# even tho we would prefer otherwise in containers (read-only access for immutability enforcement)
-COPY --chown=papermc --chmod=700 runtime/config/base ./
-COPY --chown=papermc --chmod=700 runtime/config/papermc config/
-
-# Copy the server startup script
-COPY --chown=papermc --chmod=500 runtime/start.sh ./
-
-# Minecraft ports
+# Minecraft ports.
 EXPOSE 25565/tcp
 EXPOSE 25565/udp
 

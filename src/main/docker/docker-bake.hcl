@@ -85,7 +85,6 @@ target "release" {
     tag("${MINECRAFT_VERSION}-v${extractMajorMinorFromSemVer(IMAGE_VERSION)}"),
     tag("${MINECRAFT_VERSION}-v${extractMajorFromSemVer(IMAGE_VERSION)}")
   ]
-  # TODO: version in Dockerfile? Another annotation in Dockerfile as label?
   annotations = [
     annotation("org.opencontainers.image.title", "PaperMC Server"),
     annotation("org.opencontainers.image.description", "Dockerized and fine-grained customizable PaperMC server."),

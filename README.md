@@ -20,7 +20,9 @@ Available in [Docker Hub](https://hub.docker.com/r/djaytan/papermc-server).
 * **[Alpine](https://hub.docker.com/_/alpine)-based image**
 * **Lightweight**: ~360 MB
 * **Minimalist**: Includes only essential dependencies to reduce image size and surface area
-* **Rootless**: Runs as a non-root user by default
+* **UID-agnostic**: Supports running the server with a custom/arbitrary UID (typically required when running container
+  in [OpenShift](https://www.redhat.com/fr/technologies/cloud-computing/openshift))
+* **Rootless**: Runs as a non-root user by default if no UID is specified
 * **Multi-architecture support**: Built for `amd64` & `arm64` (additional architectures available on request)
 * **JRE 21**, based on [Eclipse Temurin](https://hub.docker.com/_/eclipse-temurin)
   * Custom-built using `jlink` to minimize size
@@ -36,7 +38,6 @@ The image is under active development, with the following enhancements planned:
 * **Customizable server startup options**: Ability to set JVM options and server properties via environment variables.
 * **Enable/Disable Aikar's flags**: Aikar's researches ([link](https://aikar.co/2018/07/02/tuning-the-jvm-g1gc-garbage-collector-flags-for-minecraft/)) and [PaperMC recommendations](https://docs.papermc.io/paper/aikars-flags/)
 * **Configurable TimeZone**
-* **UID/GID-agnostic:** Support for running the server with configurable UID/GID (typically required when running container in OpenShift).
 * **Auto-updating builds**: Scheduled rebuilds for including upstream JDK/PaperMC updates and security patches.
 * **Compliancy with [OWASP Docker rules](https://cheatsheetseries.owasp.org/cheatsheets/Docker_Security_Cheat_Sheet.html)**
 * **GraalVM variant**
