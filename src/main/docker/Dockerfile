@@ -73,10 +73,6 @@ RUN apk add --no-cache bash gettext libudev-zero
 # BusyBox "adduser" doc: https://busybox.net/downloads/BusyBox.html#adduser
 RUN addgroup -S papermc && adduser -S -G papermc -h /home/papermc -s /sbin/nologin papermc
 
-# Lock root user for security purposes
-# TODO: remove since unecessary
-RUN passwd -l root
-
 # Now rely exclusively on the PaperMC user (rootless mode)
 USER papermc
 
