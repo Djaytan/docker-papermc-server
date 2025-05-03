@@ -62,10 +62,9 @@ COPY --from=jre-build /jre ${JAVA_HOME}
 ENV EULA=false
 
 # Keep dependencies up-to-date
-# bash is still required by start.sh for now (to be removed)
 # gettext is required for envsubst: https://pkgs.alpinelinux.org/package/edge/main/x86_64/gettext
 # libudev-zero is the Alpine-equivalent of libudev, which is required by PaperMC: https://pkgs.alpinelinux.org/package/edge/community/x86/libudev-zero
-RUN apk add --no-cache bash gettext libudev-zero
+RUN apk add --no-cache gettext libudev-zero
 
 # Create the "papermc" user
 #
