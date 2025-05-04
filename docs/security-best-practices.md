@@ -1,11 +1,15 @@
-# Guide
+²# Security Best Practices
 
-This guide helps you make the most of the OCI image, with a focus on compatibility and security.
+This guide provides practical instructions for optimizing the OCI image, with an emphasis on ensuring both compatibility and security.
 
 ## OWASP - Docker Security Cheat Sheet
 
-The [OWASP Docker Security Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Docker_Security_Cheat_Sheet.html) provides a comprehensive overview of
-best practices that we recommend you to follow when running the PaperMC server container.
+The [OWASP Docker Security Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Docker_Security_Cheat_Sheet.html) offers a thorough guide to securing
+Docker containers. We strongly recommend following these best practices when running the PaperMC server container.
+
+In the following sections, we’ll explain how to implement some of these recommendations specifically for this image.
+
+_**Note:** Making the filesystem read-only is not yet fully supported in this image._
 
 ## UID/GID
 
@@ -21,6 +25,14 @@ writable (`o+r`, `o+rw`) modes.
 
 For more details about OpenShift’s Security Context Constraints (SCCs), refer to
 the [official documentation](https://docs.openshift.com/container-platform/latest/concepts/policy/security-context-constraints.html).
+
+## Linux Kernel Capabilities & Privileges
+
+It is recommended to drop all Linux kernel capabilities, as this enhances security without affecting the container’s functionality. The PaperMC server does not
+require any special privileges, so this should not cause issues for most workloads. However, if you encounter specific problems, you can re-enable individual
+capabilities as needed.
+
+Additionally, disabling privilege escalation tools like `su` and `sudo` is recommended to further restrict potential security risks.
 
 ## Resource Limits
 

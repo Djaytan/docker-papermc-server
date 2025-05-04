@@ -1,7 +1,4 @@
 #!/usr/bin/env sh
-# TODO: document security recommendations adapted to this project
-# TODO: document requirements for OWASP RULE#8 https://cheatsheetseries.owasp.org/cheatsheets/Docker_Security_Cheat_Sheet.html#rule-7-limit-resources-memory-cpu-file-descriptors-processes-restarts
-# TODO: try OWASP RULE#8 here
 
 set -eu
 
