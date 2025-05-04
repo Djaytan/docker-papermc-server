@@ -12,10 +12,8 @@ on:
 permissions: {}
 
 # TODO: explore more options: https://docs.docker.com/build/ci/github-actions/
-# TODO: explore more options: https://github.com/docker/build-push-action
 # TODO: Experiment GitHub deployments
 # TODO: do we want to test multi-arch build?
-# TODO: reproductible builds? https://docs.docker.com/build/ci/github-actions/reproducible-builds/
 # TODO: SonarQube integration at both CI and Docker Scout levels?
 # TODO: Migrate from Trivy to Docker Scout
 jobs:

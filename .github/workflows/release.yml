@@ -101,10 +101,14 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@b5ca514318bd6ebac0fb2aedd5d36ec1b5c232a2 # v3.10.0
 
+      - name: Retrieve Git commit timestamp
+        run: echo "GIT_COMMIT_TIMESTAMP=$(git log -1 --pretty=%ct)" >> $GITHUB_ENV
+
       - name: Release
         env:
           GITHUB_TOKEN: ${{ github.token }}
           ROOT_PROJECT_DIR: ${{ github.workspace }}
           REVISION: ${{ github.sha }}
+          SOURCE_DATE_EPOCH: ${{ env.GIT_COMMIT_TIMESTAMP }} # Reproducible build: https://reproducible-builds.org/docs/source-date-epoch/
         working-directory: .github/semantic-release/
         run: npx --no-install semantic-release
