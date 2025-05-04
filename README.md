@@ -17,29 +17,25 @@ Available in [Docker Hub](https://hub.docker.com/r/djaytan/papermc-server).
 
 ## 📘 Usage
 
-For production-grade deployments, it is recommended to use the following command:
+For a quick start, you can run the following command:
 
 ```bash
-$ docker run -it \
-  --name papermc-server \
-  --restart=on-failure:10 \
-  --cap-drop all \
-  --security-opt no-new-privileges \
-  --ulimit nofile=16384 \
-  --ulimit nproc=4096 \
-  --ulimit core=0 \
-  --cpus=4 \
-  --memory=8GB \
-  -p 25565:25565/tcp -p 25565:25565/udp \
-  -e EULA=true \
-  'djaytan/papermc-server:1.21.4'
+$ docker run -d -it \
+    --name papermc-server \
+    --restart=always \
+    -p 25565:25565/tcp -p 25565:25565/udp \
+    -e EULA=true \
+    'djaytan/papermc-server:latest'
 ```
 
-_**Note:** These settings provide sensible defaults, but you may need to adjust them based on your server's specific requirements._
+> [!NOTE]
+> Available tags can be found [here](https://hub.docker.com/r/djaytan/papermc-server/tags).
 
-Details about security best practices and recommendations can be found [here](docs/security-best-practices.md).
+> [!IMPORTANT]
+> Setting the `EULA` environment variable to `true` implies that you have read and accepted the [Minecraft EULA](https://www.minecraft.net/en-us/eula).
 
-Available tags can be found [here](https://hub.docker.com/r/djaytan/papermc-server/tags).
+> [!TIP]
+> For production-grade deployments, it is recommended to follow [our dedicated guide](docs/security-best-practices.md).
 
 ## ✨ Features
 
@@ -67,11 +63,12 @@ The image is under active development, with the following enhancements planned:
 * **Auto-updating builds**: Scheduled rebuilds for including upstream JDK/PaperMC updates and security patches.
 * **GraalVM variant**
 * **Read-only filesystem**
+* **Docker Compose**
+* **Kubernetes**
 * **Helm chart**
 
 The below features may be implemented too, but are not a priority:
 
-* **Configurable Java module set**: Option to build smaller JREs by selecting only required Java modules.
 * **Support JMX**: Java Management Extensions enabling for remote management and monitoring (e.g., with [VisualVM](https://visualvm.github.io/), [JMC](https://openjdk.org/projects/jmc/), ...) => [spark](https://docs.papermc.io/paper/profiling/) may be preferred.
 * **Documentation**: Comprehensive documentation for all features and configurations with [AsciiDoc](https://asciidoc.org/).
 * **Share examples**
