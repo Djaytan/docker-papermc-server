@@ -24,6 +24,7 @@ echo '▶️ Starting the localdev PaperMC server...'
 #     - `nproc` (processes): 4096 — a safe and generous limit for JVM workloads.
 #     - `core`: 0 — disables core dumps to preserve disk space and avoid leaking sensitive information.
 docker run --rm -it \
+  --name localdev-papermc-server \
   --cap-drop all \
   --security-opt no-new-privileges \
   --ulimit nofile=16384 \
