@@ -30,7 +30,6 @@ docker run --rm -it \
   --ulimit nofile=16384 \
   --ulimit nproc=4096 \
   --ulimit core=0 \
-  --cpus=4 \
   --memory=8GB \
   -p 25565:25565 \
   -e EULA=true \
