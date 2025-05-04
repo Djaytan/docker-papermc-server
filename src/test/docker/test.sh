@@ -8,7 +8,12 @@ CONTAINER_NAME='test-papermc-server'
 echo '📋 Testing the Docker PaperMC server image...'
 
 echo '▶️ Starting the PaperMC server in background...'
-docker run --rm -d --name "$CONTAINER_NAME" -e EULA=true 'djaytan/papermc-server:dev'
+
+docker run --rm -d --name "$CONTAINER_NAME" \
+  --cap-drop all \
+  -p 25565:25565/tcp -p 25565:25565/udp \
+  -e EULA=true \
+  'djaytan/papermc-server:dev'
 
 cleanup() {
     echo '🛑 Automatically stopping and removing the PaperMC server container...'
