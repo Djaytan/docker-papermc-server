@@ -9,7 +9,7 @@
 [![Docker Pulls](https://img.shields.io/docker/pulls/djaytan/papermc-server.svg?logo=docker)](https://hub.docker.com/r/djaytan/papermc-server/)
 [![Docker Stars](https://img.shields.io/docker/stars/djaytan/papermc-server.svg?logo=docker)](https://hub.docker.com/r/djaytan/papermc-server/)
 
-Dockerized and fine-grained customizable PaperMC server.
+General-purpose, OCI-compliant PaperMC server with fine-grained customization capabilities.
 
 Available in [Docker Hub](https://hub.docker.com/r/djaytan/papermc-server).
 
