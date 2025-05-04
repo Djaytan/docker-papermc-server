@@ -2,6 +2,11 @@
 
 This guide helps you make the most of the OCI image, with a focus on compatibility and security.
 
+## OWASP - Docker Security Cheat Sheet
+
+The [OWASP Docker Security Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Docker_Security_Cheat_Sheet.html) provides a comprehensive overview of
+best practices that we recommend you to follow when running the PaperMC server container.
+
 ## UID/GID
 
 The image is **UID-agnostic** as long as the container’s user belongs to the `root` group (`GID = 0`). If no user is specified, it defaults to the built-in
