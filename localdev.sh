@@ -1,5 +1,4 @@
 #!/usr/bin/env sh
-# TODO: OWASP RULE#4 https://cheatsheetseries.owasp.org/cheatsheets/Docker_Security_Cheat_Sheet.html#rule-4-prevent-in-container-privilege-escalation
 # TODO: OWASP RULE#7 https://cheatsheetseries.owasp.org/cheatsheets/Docker_Security_Cheat_Sheet.html#rule-7-limit-resources-memory-cpu-file-descriptors-processes-restarts
 # TODO: Same OWASP rules in test.sh file
 # TODO: document security recommendations adapted to this project
@@ -22,6 +21,7 @@ echo '▶️ Starting the localdev PaperMC server...'
 
 docker run --rm -it \
   --cap-drop all \
+  --security-opt no-new-privileges \
   -p 25565:25565/tcp -p 25565:25565/udp \
   -e EULA=true \
   'djaytan/papermc-server:dev'

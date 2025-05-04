@@ -11,6 +11,7 @@ echo '▶️ Starting the PaperMC server in background...'
 
 docker run --rm -d --name "$CONTAINER_NAME" \
   --cap-drop all \
+  --security-opt no-new-privileges \
   -p 25565:25565/tcp -p 25565:25565/udp \
   -e EULA=true \
   'djaytan/papermc-server:dev'
