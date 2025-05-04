@@ -70,4 +70,5 @@ echo 'File eula.txt processed'
 
 echo 'PaperMC server ready to start!'
 
+# TODO: ensure that the server replace PID 1 instead of spawning a child process (exec command)
 java $JVM_ARGUMENTS -jar "${SCRIPT_DIR}"/papermc-server-*.jar $SERVER_ARGS
