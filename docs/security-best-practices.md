@@ -17,7 +17,7 @@ $ docker run -d -it \
     --ulimit core=0 \
     --cpus=4 \
     --memory=8GB \
-    -p 25565:25565/tcp -p 25565:25565/udp \
+    -p 25565:25565 \
     -e EULA=true \
     'djaytan/papermc-server:1.21.4'
 ```
