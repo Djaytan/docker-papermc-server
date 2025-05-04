@@ -23,11 +23,11 @@ Available in [Docker Hub](https://hub.docker.com/r/djaytan/papermc-server).
 * **UID-agnostic**: Supports running the server with a custom/arbitrary UID (typically required when running container
   in [OpenShift](https://www.redhat.com/fr/technologies/cloud-computing/openshift))
 * **Rootless**: Runs as a non-root user by default if no UID is specified
-* **Multi-architecture support**: Built for `amd64` & `arm64` (additional architectures available on request)
+* **Multi-architecture support**: Built for `amd64` & `arm64` _(additional architectures available on request)_
 * **JRE 21**, based on [Eclipse Temurin](https://hub.docker.com/_/eclipse-temurin)
   * Custom-built using `jlink` to minimize size
   * Includes all standard Java modules to ensure broad compatibility with plugins
-* Scanned by [Trivy](https://trivy.dev/latest/) and [Docker Scout](https://docs.docker.com/scout/) **to detect security vulnerabilities**
+* **Frequent security scans**: By relying on [Trivy](https://trivy.dev/latest/) and [Docker Scout](https://docs.docker.com/scout/)
 
 ### 🛠️ Planned Features
 
