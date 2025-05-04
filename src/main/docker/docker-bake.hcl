@@ -26,8 +26,6 @@ variable "IMAGE_VERSION" {
   default = "0.0.0"
 }
 
-# TODO: customizable annotations (url, documentation, source, authors, vendor, ...)
-
 # ========== FUNCTIONS ========== #
 
 function "tag" {
