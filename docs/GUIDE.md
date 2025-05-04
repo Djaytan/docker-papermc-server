@@ -21,3 +21,45 @@ writable (`o+r`, `o+rw`) modes.
 
 For more details about OpenShift’s Security Context Constraints (SCCs), refer to
 the [official documentation](https://docs.openshift.com/container-platform/latest/concepts/policy/security-context-constraints.html).
+
+## Resource Limits
+
+Setting appropriate resource limits is essential to ensure the container behaves reliably, securely, and within predictable boundaries. This aligns with [OWASP
+Docker Security Cheat Sheet – Rule #7](https://cheatsheetseries.owasp.org/cheatsheets/Docker_Security_Cheat_Sheet.html#rule-7-limit-resources-memory-cpu-file-descriptors-processes-restarts),
+which advises enforcing constraints on memory, CPU, file descriptors, and processes.
+
+Container resource limits fall into two main categories:
+
+### Process-Level Limits (`ulimit`)
+
+These limits apply at process level inside the container and are enforced via the Linux `ulimit` mechanism (i.e., `RLIMIT_*`). The following values are
+recommended:
+
+* `nofile` (maximum number of open files): `16384`
+* `nproc` (maximum number of processes): `4096`
+* `core` (core dump size): `0`
+
+These settings are generous and suitable for most workloads. You may consider tightening them further based on actual usage, after proper testing and
+monitoring.
+
+While a high `nproc` limit is typically safe, be aware that it can occasionally trigger unexpected
+behavior depending on the container runtime or host configuration. For further details, see
+the [Docker documentation on `nproc` usage](https://docs.docker.com/reference/cli/docker/container/run/#for-nproc-usage).
+
+Setting `core` to `0` disables core dumps, which can consume significant disk space and potentially expose sensitive information. This is especially important
+in production environments where security and data confidentiality are critical.
+
+### System Resource Limits (Cgroups)
+
+System-level resource limits control the overall consumption of CPU and memory by the container. These constraints are enforced by the Linux kernel using
+control groups (cgroups), ensuring that containers operate within defined boundaries and do not exhaust host resources.
+
+#### Recommended Settings
+
+* `memory` (maximum memory): At least **6 GB to 10 GB**, depending on the expected load. For detailed guidance, refer
+  to [PaperMC’s memory recommendations](https://docs.papermc.io/paper/aikars-flags/#recommended-memory).
+* `cpu` (CPU allocation): Allocate **2 to 4 cores** as a baseline. Actual needs may vary depending on the number of players, active plugins, world complexity,
+  and other workload characteristics.
+
+Cgroup limits are especially important in multi-tenant environments or orchestrated systems like Kubernetes, where resource isolation, predictability, and
+fairness across containers are critical for system stability.
