@@ -23,7 +23,7 @@ For a quick start, you can run the following command:
 $ docker run -d -it \
     --name papermc-server \
     --restart=always \
-    -p 25565:25565/tcp -p 25565:25565/udp \
+    -p 25565:25565 \
     -e EULA=true \
     'djaytan/papermc-server:latest'
 ```

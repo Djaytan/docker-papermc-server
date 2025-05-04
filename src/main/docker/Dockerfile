@@ -98,9 +98,8 @@ RUN chmod 770 /opt/papermc /opt/papermc/config
 # https://docs.redhat.com/en/documentation/openshift_container_platform/4.18/html/images/creating-images#use-uid_create-images
 USER daemon:root
 
-# Minecraft ports.
-EXPOSE 25565/tcp
-EXPOSE 25565/udp
+# Minecraft port.
+EXPOSE 25565
 
 # TODO: Pre-launch server to pre-download Mojang's server jar for quick startup
 ENTRYPOINT ["./start.sh"]
