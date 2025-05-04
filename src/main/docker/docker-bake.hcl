@@ -65,7 +65,6 @@ target "dev" {
   ]
 }
 
-# TODO: OWASP RULE#13 https://cheatsheetseries.owasp.org/cheatsheets/Docker_Security_Cheat_Sheet.html#rule-13-enhance-supply-chain-security
 target "release" {
   description = "Builds the image for production purposes."
   args = {
@@ -95,5 +94,14 @@ target "release" {
     annotation("org.opencontainers.image.licenses", "GPL-3.0-or-later"),
     annotation("org.opencontainers.image.created", "${formatdate("YYYY-MM-DD'T'hh:mm:ss'Z'", timestamp())}"),
     notequal(REVISION, "") ? annotation("org.opencontainers.image.revision", REVISION) : ""
+  ]
+  attest = [
+    {
+      type = "provenance",
+      mode = "max",
+    },
+    {
+      type = "sbom",
+    }
   ]
 }
