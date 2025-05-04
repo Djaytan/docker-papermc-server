@@ -19,7 +19,7 @@
 
 ARG BUILDKIT_SBOM_SCAN_STAGE=true
 
-FROM docker.io/eclipse-temurin:21-jdk-alpine@sha256:2f2f553ce09d25e2d2f0f521ab94cd73f70c9b21327a29149c23a2b63b8e29a0 AS jre-build
+FROM docker.io/eclipse-temurin:24-jdk-alpine@sha256:d729416b123cd50d4a70122328ae17d38adced6fa767062d0c0f134e5843deab AS jre-build
 
 # Create a custom Java runtime.
 #
