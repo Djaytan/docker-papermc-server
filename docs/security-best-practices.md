@@ -1,6 +1,29 @@
-²# Security Best Practices
+# Security Best Practices
 
 This guide provides practical instructions for optimizing the OCI image, with an emphasis on ensuring both compatibility and security.
+
+## Recommended Usage
+
+For production-grade deployments, it is recommended to use a command similar to this one:
+
+```bash
+$ docker run -d -it \
+    --name papermc-server \
+    --restart=on-failure:10 \
+    --cap-drop all \
+    --security-opt no-new-privileges \
+    --ulimit nofile=16384 \
+    --ulimit nproc=4096 \
+    --ulimit core=0 \
+    --cpus=4 \
+    --memory=8GB \
+    -p 25565:25565/tcp -p 25565:25565/udp \
+    -e EULA=true \
+    'djaytan/papermc-server:1.21.4'
+```
+
+These settings offer sensible defaults, but you may need to adjust them based on your server's unique requirements. This documentation explains the rationale
+behind these recommendations and guides you on how to tailor them to fit your needs.
 
 ## OWASP - Docker Security Cheat Sheet
 
