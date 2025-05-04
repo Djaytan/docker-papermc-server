@@ -101,7 +101,6 @@ USER daemon:root
 # Minecraft port.
 EXPOSE 25565
 
-# TODO: Pre-launch server to pre-download Mojang's server jar for quick startup
 ENTRYPOINT ["./start.sh"]
 
 # TODO: healthcheck
