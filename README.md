@@ -1,4 +1,4 @@
-<h1 align="center">Docker PaperMC Server</h1>
+<h1 align="center">🐳 Docker PaperMC Server</h1>
 
 <div align="center">
 
@@ -14,6 +14,32 @@ General-purpose, OCI-compliant PaperMC server with fine-grained customization ca
 Available in [Docker Hub](https://hub.docker.com/r/djaytan/papermc-server).
 
 </div>
+
+## 📘 Usage
+
+For production-grade deployments, it is recommended to use the following command:
+
+```bash
+$ docker run -it \
+  --name papermc-server \
+  --restart=on-failure:10 \
+  --cap-drop all \
+  --security-opt no-new-privileges \
+  --ulimit nofile=16384 \
+  --ulimit nproc=4096 \
+  --ulimit core=0 \
+  --cpus=4 \
+  --memory=8GB \
+  -p 25565:25565/tcp -p 25565:25565/udp \
+  -e EULA=true \
+  'djaytan/papermc-server:1.21.4'
+```
+
+_**Note:** These settings provide sensible defaults, but you may need to adjust them based on your server's specific requirements._
+
+Details about security best practices and recommendations can be found [here](docs/security-best-practices.md).
+
+Available tags can be found [here](https://hub.docker.com/r/djaytan/papermc-server/tags).
 
 ## ✨ Features
 
@@ -39,8 +65,9 @@ The image is under active development, with the following enhancements planned:
 * **Enable/Disable Aikar's flags**: Aikar's researches ([link](https://aikar.co/2018/07/02/tuning-the-jvm-g1gc-garbage-collector-flags-for-minecraft/)) and [PaperMC recommendations](https://docs.papermc.io/paper/aikars-flags/)
 * **Configurable TimeZone**
 * **Auto-updating builds**: Scheduled rebuilds for including upstream JDK/PaperMC updates and security patches.
-* **Compliancy with [OWASP Docker rules](https://cheatsheetseries.owasp.org/cheatsheets/Docker_Security_Cheat_Sheet.html)**
 * **GraalVM variant**
+* **Read-only filesystem**
+* **Helm chart**
 
 The below features may be implemented too, but are not a priority:
 
