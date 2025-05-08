@@ -191,7 +191,7 @@ jobs:
           LATEST_VERSION=$(npx --no-install semver $(git tag --list 'v*.*.*') | tail -n 1)
 
           # Print the latest version for verification
-          echo "Latest version: LATEST_VERSION"
+          echo "Latest version: $LATEST_VERSION"
 
           # Set the latest version as an environment variable
           echo "LATEST_VERSION=$LATEST_VERSION" >> $GITHUB_ENV
