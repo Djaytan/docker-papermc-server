@@ -116,14 +116,24 @@ jobs:
         working-directory: .github/semantic-release/
         run: npx --no-install semantic-release
 
+  maintenance-validate:
+    name: On Maintenance - Validate
+    uses: ./github/workflows/ci.yml
+
   release-on-maintenance:
-    name: On Maintenance
+    name: On Maintenance - Perform
     runs-on: ubuntu-24.04
     timeout-minutes: 15
 
     # This job is triggered by the schedule or workflow_dispatch events
     # and only runs on the default branch (i.e., main).
     if: ${{ (github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') && github.ref_name == 'main' }}
+
+    # Validate Docker image first
+    needs: maintenance-validate
+
+    permissions:
+      contents: read
 
     steps:
       # Firewall rules:
