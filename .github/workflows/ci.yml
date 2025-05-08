@@ -1,15 +1,15 @@
 name: CI
 
 on:
-  workflow_dispatch:
+  workflow_dispatch: { }
   push:
-    branches: [main, '+.x', next, next-major, beta, alpha]
+    branches: [ main, '+.x', next, next-major, beta, alpha ]
   pull_request:
-    branches: [main, '+.x', next, next-major, beta, alpha]
+    branches: [ main, '+.x', next, next-major, beta, alpha ]
   schedule:
-    - cron: '16 5 * * *' # Every day at 05:16
+    - cron: '16 5 * * *' # Every day at 05:16 UTC
 
-permissions: {}
+permissions: { }
 
 # TODO: explore more options: https://docs.docker.com/build/ci/github-actions/
 # TODO: Experiment GitHub deployments
