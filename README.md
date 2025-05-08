@@ -50,6 +50,7 @@ $ docker run -d -it \
   * Custom-built using `jlink` to minimize size
   * Includes all standard Java modules to ensure broad compatibility with plugins
 * **Frequent security scans**: By relying on [Trivy](https://trivy.dev/latest/) and [Docker Scout](https://docs.docker.com/scout/)
+* **Auto-update**: Scheduled bi-monthly rebuilds to incorporate upstream JDK/PaperMC updates and security patches
 
 ### 🛠️ Planned Features
 
@@ -60,7 +61,6 @@ The image is under active development, with the following enhancements planned:
 * **Customizable server startup options**: Ability to set JVM options and server properties via environment variables.
 * **Enable/Disable Aikar's flags**: Aikar's researches ([link](https://aikar.co/2018/07/02/tuning-the-jvm-g1gc-garbage-collector-flags-for-minecraft/)) and [PaperMC recommendations](https://docs.papermc.io/paper/aikars-flags/)
 * **Configurable TimeZone**
-* **Auto-updating builds**: Scheduled rebuilds for including upstream JDK/PaperMC updates and security patches.
 * **GraalVM variant**
 * **Read-only filesystem**
 * **Docker Compose**
