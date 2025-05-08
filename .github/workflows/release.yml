@@ -196,12 +196,11 @@ jobs:
           # Set the latest version as an environment variable
           echo "LATEST_VERSION=$LATEST_VERSION" >> $GITHUB_ENV
 
-      # TODO: from dry-run mode to release one
-#      - name: Release (on maintenance)
-#        env:
-#          GITHUB_TOKEN: ${{ github.token }}
-#          ROOT_PROJECT_DIR: ${{ github.workspace }}
-#          REVISION: ${{ github.sha }}
-#          SOURCE_DATE_EPOCH: ${{ env.GIT_COMMIT_TIMESTAMP }} # Reproducible build: https://reproducible-builds.org/docs/source-date-epoch/
-#        working-directory: .github/semantic-release/
-#        run: ./release.sh "$LATEST_VERSION"
+      - name: Release (on maintenance)
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          ROOT_PROJECT_DIR: ${{ github.workspace }}
+          REVISION: ${{ github.sha }}
+          SOURCE_DATE_EPOCH: ${{ env.GIT_COMMIT_TIMESTAMP }} # Reproducible build: https://reproducible-builds.org/docs/source-date-epoch/
+        working-directory: .github/semantic-release/
+        run: ./release.sh "$LATEST_VERSION"
