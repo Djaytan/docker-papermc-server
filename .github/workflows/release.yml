@@ -1,18 +1,17 @@
 name: Release
 
-# TODO: actually doesn't work if semver not incremented. Better to make a separated workflow for this?
 on:
-  workflow_dispatch:
+  workflow_dispatch: { }
   push:
     # next and next-major branches are not supported (never used so far & adjustments required)
-    branches: [main, '+.x', beta, alpha]
+    branches: [ main, '+.x', beta, alpha ]
   schedule:
-    - cron: '7 8 * * 6' # Every Saturday at 08:07 (weekly release)
+    - cron: '19 6 3,18 * *' # At 06:19 UTC on day-of-month 3 and 18 (bi-monthly maintenance releases)
 
 # https://docs.github.com/en/actions/writing-workflows/workflow-syntax-for-github-actions#concurrency
 concurrency:
   # Prevent concurrent releases on the same branch to avoid tag conflicts (e.g., "latest" on the main branch)
-  # Concurrent releases on different branches are allowed, as their tags don't overlap
+  # Concurrent releases on different branches are allowed, as their tags don't overlap.
   #
   # Note: GitHub's concurrency model cancels any *pending* job in the same group when a new one is queued.
   # This means that if multiple release requests are made in quick succession on the *same* branch,
@@ -26,13 +25,20 @@ concurrency:
   # Never cancel an ongoing release to prevent harmful interruptions
   cancel-in-progress: false
 
-permissions: {}
+permissions: { }
 
+# The release workflow is split into two separate jobs:
+# 1. release-on-change: triggered by push events (e.g., new commits)
+# 2. release-on-maintenance: triggered by schedule events (e.g., weekly releases)
+#
+# The maintenance releases are necessary to include the latest PaperMC builds and security patches.
 jobs:
-  release:
-    name: Release
+  release-on-change:
+    name: On Change
     runs-on: ubuntu-24.04
     timeout-minutes: 15
+
+    if: github.event_name == 'push'
 
     permissions:
       contents: write # Required to publish a GitHub release
@@ -42,13 +48,11 @@ jobs:
     steps:
       # Firewall rules:
       # -> "*.github.com": Standard interactions with GitHub
-      # -> "objects.githubusercontent.com": Uploading of security reports
       # -> "raw.githubusercontent.com": Retrieve license file when building OCI image
       # -> "*.docker.io" & "*.docker.com": Standard interactions with Docker
       # -> "*.alpinelinux.org": Standard interactions with Alpine Linux package repositories
       # -> "cdn.fwupd.org": Firmware updates (Alpine)
       # -> "api.papermc.io": Dynamic retrieval of the PaperMC server
-      # -> "mirror.gcr.io": Downloading of the Trivy security scanner
       # -> "api.nuget.org" & "registry.npmjs.org": Downloading semantic-release CLI
       - name: Harden runner
         uses: step-security/harden-runner@0634a2670c59f64b4a01f0f96f84700a4088b9f0 # v2.12.0
@@ -58,7 +62,6 @@ jobs:
           allowed-endpoints: >
             github.com:443
             api.github.com:443
-            objects.githubusercontent.com:443
             raw.githubusercontent.com:443
             uploads.github.com:443
             *.docker.io:443
@@ -82,7 +85,7 @@ jobs:
           cache: npm
           cache-dependency-path: .github/semantic-release/package-lock.json
 
-      - name: Install semantic-release
+      - name: Install semantic-release CLI
         working-directory: .github/semantic-release/
         run: npm clean-install
 
@@ -104,7 +107,7 @@ jobs:
       - name: Retrieve Git commit timestamp
         run: echo "GIT_COMMIT_TIMESTAMP=$(git log -1 --pretty=%ct)" >> $GITHUB_ENV
 
-      - name: Release
+      - name: Release (on change)
         env:
           GITHUB_TOKEN: ${{ github.token }}
           ROOT_PROJECT_DIR: ${{ github.workspace }}
@@ -112,3 +115,93 @@ jobs:
           SOURCE_DATE_EPOCH: ${{ env.GIT_COMMIT_TIMESTAMP }} # Reproducible build: https://reproducible-builds.org/docs/source-date-epoch/
         working-directory: .github/semantic-release/
         run: npx --no-install semantic-release
+
+  release-on-maintenance:
+    name: On Maintenance
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+
+    # This job is triggered by the schedule or workflow_dispatch events
+    # and only runs on the default branch (i.e., main).
+    if: ${{ (github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') && github.ref_name == 'main' }}
+
+    steps:
+      # Firewall rules:
+      # -> "*.github.com": Standard interactions with GitHub
+      # -> "raw.githubusercontent.com": Retrieve license file when building OCI image
+      # -> "*.docker.io" & "*.docker.com": Standard interactions with Docker
+      # -> "*.alpinelinux.org": Standard interactions with Alpine Linux package repositories
+      # -> "cdn.fwupd.org": Firmware updates (Alpine)
+      # -> "api.papermc.io": Dynamic retrieval of the PaperMC server
+      # -> "api.nuget.org" & "registry.npmjs.org": Downloading semver CLI
+      - name: Harden runner
+        uses: step-security/harden-runner@0634a2670c59f64b4a01f0f96f84700a4088b9f0 # v2.12.0
+        with:
+          disable-sudo: true
+          egress-policy: block
+          allowed-endpoints: >
+            github.com:443
+            api.github.com:443
+            raw.githubusercontent.com:443
+            uploads.github.com:443
+            *.docker.io:443
+            production.cloudflare.docker.com:443
+            dl-cdn.alpinelinux.org:443
+            cdn.fwupd.org:443
+
+      - name: Checkout repository
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
+          fetch-depth: 0 # Required to list all tags
+
+      - name: Setup Node.js
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: lts/jod
+          cache: npm
+          cache-dependency-path: .github/semantic-release/package-lock.json
+
+      - name: Install semver CLI
+        working-directory: .github/semantic-release/
+        run: npm clean-install
+
+      - name: Login to Docker Hub
+        uses: docker/login-action@74a5d142397b4f367a81961eba4e8cd7edddf772 # v3.4.0
+        with:
+          username: ${{ vars.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      # Setup of QEMU x Buildx
+      # Required for multi-arch builds (typically for ARM architecture support)
+      # TODO: rely on native ARM64 native node instead of QEMU: https://docs.docker.com/build/ci/github-actions/multi-platform/
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@29109295f81e9208d7d86ff1c6c12d2833863392 # v3.6.0
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@b5ca514318bd6ebac0fb2aedd5d36ec1b5c232a2 # v3.10.0
+
+      - name: Retrieve Git commit timestamp
+        run: echo "GIT_COMMIT_TIMESTAMP=$(git log -1 --pretty=%ct)" >> $GITHUB_ENV
+
+      - name: Retrieve latest SemVer tag
+        working-directory: .github/semantic-release/
+        run: |
+          # Retrieve all SemVer tags starting with 'v' and extract the latest version by sorting tags first
+          LATEST_VERSION=$(npx --no-install semver $(git tag --list 'v*.*.*') | tail -n 1)
+
+          # Print the latest version for verification
+          echo "Latest version: LATEST_VERSION"
+
+          # Set the latest version as an environment variable
+          echo "LATEST_VERSION=$LATEST_VERSION" >> $GITHUB_ENV
+
+      # TODO: from dry-run mode to release one
+#      - name: Release (on maintenance)
+#        env:
+#          GITHUB_TOKEN: ${{ github.token }}
+#          ROOT_PROJECT_DIR: ${{ github.workspace }}
+#          REVISION: ${{ github.sha }}
+#          SOURCE_DATE_EPOCH: ${{ env.GIT_COMMIT_TIMESTAMP }} # Reproducible build: https://reproducible-builds.org/docs/source-date-epoch/
+#        working-directory: .github/semantic-release/
+#        run: ./release.sh "$LATEST_VERSION"
