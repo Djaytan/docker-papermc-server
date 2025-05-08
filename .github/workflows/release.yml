@@ -119,9 +119,15 @@ jobs:
   maintenance-validate:
     name: On Maintenance - Validate
     uses: ./.github/workflows/ci.yml
+
+    # This job is triggered by the schedule or workflow_dispatch events
+    # and only runs on the default branch (i.e., main).
+    if: ${{ (github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') && github.ref_name == 'main' }}
+
     permissions:
       contents: read
       security-events: write # Required to upload found security gaps
+
     secrets:
       DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
 
