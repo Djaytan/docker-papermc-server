@@ -8,7 +8,11 @@ on:
     branches: [ main, '+.x', next, next-major, beta, alpha ]
   schedule:
     - cron: '16 5 * * *' # Every day at 05:16 UTC
-  workflow_call: { } # Typically for validating maintenance releases prior publishing them
+  # Typically for validating maintenance releases prior publishing them
+  workflow_call:
+    secrets:
+      DOCKERHUB_TOKEN:
+        required: true
 
 permissions: { }
 
