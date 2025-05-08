@@ -119,6 +119,9 @@ jobs:
   maintenance-validate:
     name: On Maintenance - Validate
     uses: ./.github/workflows/ci.yml
+    permissions:
+      contents: read
+      security-events: write # Required to upload found security gaps
 
   release-on-maintenance:
     name: On Maintenance - Perform
