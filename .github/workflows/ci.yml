@@ -101,3 +101,6 @@ jobs:
         uses: github/codeql-action/upload-sarif@60168efe1c415ce0f5521ea06d5c2062adbeed1b # v3.28.17
         with:
           sarif_file: results.sarif
+          # This is required to avoid scan results to be overridden by other types of workflows (e.g., maintenance release)
+          # See https://docs.github.com/en/code-security/code-scanning/integrating-with-code-scanning/sarif-support-for-code-scanning#uploading-more-than-one-sarif-file-for-a-commit
+          category: ${{ github.workflow }}
