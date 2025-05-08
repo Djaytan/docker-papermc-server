@@ -118,7 +118,7 @@ jobs:
 
   maintenance-validate:
     name: On Maintenance - Validate
-    uses: ./github/workflows/ci.yml
+    uses: ./.github/workflows/ci.yml
 
   release-on-maintenance:
     name: On Maintenance - Perform
