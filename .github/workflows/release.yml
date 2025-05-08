@@ -122,6 +122,8 @@ jobs:
     permissions:
       contents: read
       security-events: write # Required to upload found security gaps
+    secrets:
+      DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
 
   release-on-maintenance:
     name: On Maintenance - Perform
