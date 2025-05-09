@@ -4,6 +4,8 @@
 
 ![Compatibility](https://img.shields.io/badge/PaperMC_Support-v1.21.4-blue)
 [![CI](https://github.com/Djaytan/docker-papermc-server/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/Djaytan/docker-papermc-server/actions/workflows/ci.yml)
+[![semantic-release: conventional-commits](https://img.shields.io/badge/semantic--release-conventional--commits-e10079?logo=semantic-release)](https://github.com/semantic-release/semantic-release)<br/>
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=Djaytan_docker-papermc-server&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=Djaytan_docker-papermc-server)
 [![OpenSSF Best Practices](https://www.bestpractices.dev/projects/10360/badge)](https://www.bestpractices.dev/projects/10360)
 [![OpenSSF Scorecard](https://api.securityscorecards.dev/projects/github.com/Djaytan/docker-papermc-server/badge)](https://securityscorecards.dev/viewer/?uri=github.com/Djaytan/docker-papermc-server)<br/>
 [![Docker Pulls](https://img.shields.io/docker/pulls/djaytan/papermc-server.svg?logo=docker)](https://hub.docker.com/r/djaytan/papermc-server/)
