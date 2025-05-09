@@ -37,20 +37,20 @@ $ docker run -d -it \
 > [!TIP]
 > For production-grade deployments, it is recommended to follow [our dedicated guide](docs/production-grade-deployment.md).
 
-## ✨ Features
+## ✨ Features & Highlights
 
 * 🏔️ **[Alpine](https://hub.docker.com/_/alpine)-based image**
 * 🪶 **Lightweight**: ~360 MB
 * 🧘 **Minimalist**: Includes only essential dependencies to reduce image size and surface area
 * 👤 **UID-agnostic**: Supports running the server with a custom/arbitrary UID (typically required when running container
   in [OpenShift](https://www.redhat.com/fr/technologies/cloud-computing/openshift))
-* 🔐 **Rootless**: Runs as a non-root user by default if no UID is specified
+* 🔐 **Rootless by default**: Runs as a non-root user when no custom UID is specified
 * 🧬 **Multi-architecture support**: Built for `amd64` & `arm64` _(additional architectures available on request)_
 * ☕ **JRE 21**, based on [Eclipse Temurin](https://hub.docker.com/_/eclipse-temurin)
   * Custom-built using `jlink` to minimize size
   * Includes all standard Java modules to ensure broad compatibility with plugins
 * 🛡️ **Frequent security scans**: By relying on [Trivy](https://trivy.dev/latest/) and [Docker Scout](https://docs.docker.com/scout/)
-* 🔄 **Auto-update**: Scheduled bi-monthly rebuilds to incorporate upstream JDK/PaperMC updates and security patches
+* 🔄 **Scheduled auto-updates**: Bi-monthly rebuilds to incorporate upstream security patches and PaperMC updates
 
 ## 🛠️ Planned Features
 
