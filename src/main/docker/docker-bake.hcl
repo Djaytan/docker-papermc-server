@@ -1,3 +1,41 @@
+########################################
+#    Multi-target Docker image build   #
+########################################
+
+# This file defines multiple build targets using Docker Bake,
+# allowing for fine-grained control over how images are built,
+# tagged, and promoted across environments (dev, test, release, etc.).
+
+# ─────────────────────────────────────
+# 🏗️ Image Targets
+# ─────────────────────────────────────
+# dev:
+#   Lightweight image for development and local testing.
+#   Uses a single architecture and avoids production overhead.
+
+# test:
+#   Image used for automated testing pipelines.
+#   Always pulls latest base layers to validate rebuild reliability.
+
+# release:
+#   Final production image, tagged for distribution.
+#   Uses full multi-arch build, add annotations, disables cache, and
+#   assigns versioned + semantic tags (e.g., latest, major, minor,
+#   timestamp).
+
+# ─────────────────────────────────────
+# 💡 Usage Notes
+# ─────────────────────────────────────
+# - Use `dev` when iterating locally.
+# - Use `test` in CI pipelines to verify integrity.
+# - Use `release` only in actual publishing pipelines.
+
+# Build with:
+#   docker buildx bake <target>
+#
+# Example:
+#   docker buildx bake dev
+
 # ========== VARIABLES ========== #
 
 # General properties
@@ -55,33 +93,32 @@ function "date" {
 
 # ========== TARGETS ========== #
 
-target "dev" {
-  description = "Builds the image for development purposes."
+target "_common" {
+  description = "Base configuration inherited by all other targets."
   args = {
     MINECRAFT_VERSION = "${MINECRAFT_VERSION}"
   }
-  tags = [
-    tag("dev")
-  ]
+}
+
+target "dev" {
+  inherits = ["_common"]
+  description = "Builds a lightweight image for development and local testing."
+  tags = [ tag("dev") ]
+}
+
+target "test" {
+  inherits = ["_common"]
+  description = "Builds a test image with fresh base layers (always pulls upstream images)."
+  pull = true
+  tags = [ tag("test") ]
 }
 
 target "release" {
-  description = "Builds the image for production purposes."
-  args = {
-    MINECRAFT_VERSION = "${MINECRAFT_VERSION}"
-  }
+  inherits = ["_common"]
+  description = "Builds and tags the production image for publishing."
   platforms = ["linux/amd64", "linux/arm64"]
   pull = true
   no-cache = true
-  # Docker tag format: <mc-version>-v<image-version>-<timestamp-YYYYMMDD>
-  tags = [
-    equal(IS_LATEST_RELEASE, true) ? tag("latest") : "",
-    equal(IS_LATEST_RELEASE, true) ? tag("${MINECRAFT_VERSION}") : "",
-    tag("${MINECRAFT_VERSION}-v${IMAGE_VERSION}"),
-    tag("${MINECRAFT_VERSION}-v${IMAGE_VERSION}-${date()}"),
-    tag("${MINECRAFT_VERSION}-v${extractMajorMinorFromSemVer(IMAGE_VERSION)}"),
-    tag("${MINECRAFT_VERSION}-v${extractMajorFromSemVer(IMAGE_VERSION)}")
-  ]
   annotations = [
     annotation("org.opencontainers.image.title", "PaperMC Server"),
     annotation("org.opencontainers.image.description", "Dockerized and fine-grained customizable PaperMC server."),
@@ -96,12 +133,15 @@ target "release" {
     notequal(REVISION, "") ? annotation("org.opencontainers.image.revision", REVISION) : ""
   ]
   attest = [
-    {
-      type = "provenance",
-      mode = "max",
-    },
-    {
-      type = "sbom",
-    }
+    { type = "provenance", mode = "max", },
+    { type = "sbom", }
+  ]
+  tags = [
+    equal(IS_LATEST_RELEASE, true) ? tag("latest") : "",
+    equal(IS_LATEST_RELEASE, true) ? tag("${MINECRAFT_VERSION}") : "",
+    tag("${MINECRAFT_VERSION}-v${IMAGE_VERSION}"),
+    tag("${MINECRAFT_VERSION}-v${IMAGE_VERSION}-${date()}"),
+    tag("${MINECRAFT_VERSION}-v${extractMajorMinorFromSemVer(IMAGE_VERSION)}"),
+    tag("${MINECRAFT_VERSION}-v${extractMajorFromSemVer(IMAGE_VERSION)}")
   ]
 }

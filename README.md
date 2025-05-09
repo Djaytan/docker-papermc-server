@@ -51,7 +51,7 @@ $ docker run -d -it \
 * ☕ **JRE 21**, based on [Eclipse Temurin](https://hub.docker.com/_/eclipse-temurin)
   * Custom-built using `jlink` to minimize size
   * Includes all standard Java modules to ensure broad compatibility with plugins
-* 🛡️ **Frequent security scans**: By relying on [Trivy](https://trivy.dev/latest/) and [Docker Scout](https://docs.docker.com/scout/)
+* 🛡️ **Frequent security scans**: By relying on [Docker Scout](https://docs.docker.com/scout/)
 * 🔄 **Scheduled auto-updates**: Bi-monthly rebuilds to incorporate upstream security patches and PaperMC updates
 
 ## 🛠️ Planned Features

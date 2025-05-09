@@ -16,7 +16,6 @@ on:
 
 permissions: { }
 
-# TODO: Migrate from Trivy to Docker Scout: https://github.com/docker/scout-action
 jobs:
   build-and-test:
     name: Build & Test
@@ -25,6 +24,7 @@ jobs:
 
     permissions:
       contents: read
+      pull-requests: write # Required to write comments to the PR about security scans results
       security-events: write # Required to upload found security gaps
 
     steps:
@@ -36,7 +36,6 @@ jobs:
       # -> "*.alpinelinux.org": Standard interactions with Alpine Linux package repositories
       # -> "cdn.fwupd.org": Firmware updates (Alpine)
       # -> "api.papermc.io": Dynamic retrieval of the PaperMC server
-      # -> "mirror.gcr.io": Downloading of the Trivy security scanner
       # -> "piston-data.mojang.com": Downloading of the Mojang server
       # -> "api.minecraftservices.com": Downloading Yggdrasil public key for Reobfuscation
       - name: Harden runner
@@ -50,10 +49,9 @@ jobs:
             objects.githubusercontent.com:443
             raw.githubusercontent.com:443
             *.docker.io:443
-            production.cloudflare.docker.com:443
+            *.docker.com:443
             dl-cdn.alpinelinux.org:443
             cdn.fwupd.org:443
-            mirror.gcr.io:443
             api.papermc.io:443
             piston-data.mojang.com:443
             api.minecraftservices.com:443
@@ -77,8 +75,8 @@ jobs:
         with:
           source: .
           workdir: src/main/docker/
-          targets: dev
-          load: true # Export to Docker - Required for tests in later steps
+          targets: test
+          load: true # Export to Docker - Required for later steps
           set: |
             *.cache-from=type=gha,timeout=20s
             *.cache-to=type=gha,mode=max,timeout=20s
@@ -86,12 +84,14 @@ jobs:
       - name: Test
         run: src/test/docker/test.sh
 
-      - name: Run Trivy vulnerability scanner
-        uses: aquasecurity/trivy-action@6c175e9c4083a92bbca2f9724c8a5e33bc2d97a5 # 0.30.0
+      - name: Docker Scout
+        uses: docker/scout-action@381b657c498a4d287752e7f2cfb2b41823f566d9 # v1.17.1
         with:
-          image-ref: 'djaytan/papermc-server:dev'
-          format: sarif
-          output: results.sarif
+          command: compare, cves
+          image: 'djaytan/papermc-server:test'
+          to-latest: true
+          organization: djaytan
+          sarif-file: results.sarif
 
       - name: Upload to GitHub's code scanning dashboard
         uses: github/codeql-action/upload-sarif@60168efe1c415ce0f5521ea06d5c2062adbeed1b # v3.28.17
@@ -103,7 +103,7 @@ jobs:
           # because 1 configuration present on refs/heads/main was not found".
           # The warning occurs when different workflows use different categories for SARIF files on the same branch.
           #
-          # Using a single, consistent category (e.g., 'trivy') ensures all uploads are correctly associated.
+          # Using a single, consistent category (e.g., 'global') ensures all uploads are correctly associated.
           #
           # Additional details: https://docs.github.com/en/code-security/code-scanning/integrating-with-code-scanning/sarif-support-for-code-scanning#uploading-more-than-one-sarif-file-for-a-commit
-          category: trivy
+          category: global
