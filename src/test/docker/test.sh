@@ -19,7 +19,7 @@ docker run --rm -d --name "$CONTAINER_NAME" \
   --memory=8GB \
   -p 25565:25565 \
   -e EULA=true \
-  'djaytan/papermc-server:dev'
+  'djaytan/papermc-server:test'
 
 cleanup() {
     echo '🛑 Automatically stopping and removing the PaperMC server container...'
