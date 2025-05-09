@@ -1,15 +1,15 @@
-# Security Best Practices
+# Production-Grade Deployment
 
-This guide provides practical instructions for optimizing the OCI image, with an emphasis on ensuring both compatibility and security.
+This guide offers practical steps to optimize the OCI image for production use, focusing on compatibility, performance, and security.
 
 ## Recommended Usage
 
-For production-grade deployments, it is recommended to use a command similar to this one:
+For production-grade deployments, the following command provides a more secure and efficient way to run the server:
 
 ```bash
 $ docker run -d -it \
     --name papermc-server \
-    --restart=on-failure:10 \
+    --restart=on-failure:3 \
     --cap-drop all \
     --security-opt no-new-privileges \
     --cpus=4 \
@@ -19,7 +19,7 @@ $ docker run -d -it \
     'djaytan/papermc-server:latest'
 ```
 
-or by relying on a Docker Compose file similar to the one below:
+Alternatively, you can use a Docker Compose configuration like the one below:
 
 ```yaml
 services:
@@ -39,8 +39,8 @@ services:
       - ALL
 ```
 
-These settings offer sensible defaults, but you may need to adjust them based on your server's unique requirements. This documentation explains the rationale
-behind these recommendations and guides you on how to tailor them to fit your needs.
+These examples offer secure and sensible defaults. However, you should adjust resource limits and other options based on your server’s hardware and expected
+usage. The rest of this documentation explains the reasoning behind these recommendations and provides guidance on customizing the setup to your specific needs.
 
 ## OWASP - Docker Security Cheat Sheet
 
@@ -82,9 +82,9 @@ which typically advises enforcing constraints on memory and CPU.
 
 Below are the recommendations for this container:
 
-* `memory` (maximum memory): At least **6 GB to 10 GB**, depending on the expected load. For detailed guidance, refer
+* 🧠 `memory` (maximum memory): At least **6 GB to 10 GB**, depending on the expected load. For detailed guidance, refer
   to [PaperMC’s memory recommendations](https://docs.papermc.io/paper/aikars-flags/#recommended-memory).
-* `cpu` (CPU allocation): Allocate **2 to 4 cores** as a baseline. More cores can improve performance, especially with a larger player base or heavier
+* 🖥️ `cpu` (CPU allocation): Allocate **2 to 4 cores** as a baseline. More cores can improve performance, especially with a larger player base or heavier
   workloads. Actual requirements will vary based on the number of players, active plugins, world complexity, and other performance factors.
 
 Resource limits are especially important in multi-tenant environments or orchestrated systems like Kubernetes, where resource isolation, predictability, and

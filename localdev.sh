@@ -13,9 +13,6 @@ echo '✅  Image built successfully.'
 
 echo '▶️ Starting the localdev PaperMC server...'
 
-# Apply security best practices based on OWASP recommendations:
-# https://cheatsheetseries.owasp.org/cheatsheets/Docker_Security_Cheat_Sheet.html
-#
 # Simulate a production-like environment by enforcing strict security policies:
 # - Drop all Linux capabilities (PaperMC does not require any).
 # - Disable privilege escalation within the container.
