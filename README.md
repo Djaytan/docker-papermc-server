@@ -62,8 +62,7 @@ The image is under active development, with the following enhancements planned:
   * **Enable/Disable Aikar's flags**: Aikar's researches ([link](https://aikar.co/2018/07/02/tuning-the-jvm-g1gc-garbage-collector-flags-for-minecraft/)) and [PaperMC recommendations](https://docs.papermc.io/paper/aikars-flags/)
   * **Configurable TimeZone**
   * **Support JMX**: Java Management Extensions enabling for remote management and monitoring (e.g., with [VisualVM](https://visualvm.github.io/), [JMC](https://openjdk.org/projects/jmc/), ...).
-* 📦 **Docker Compose**
-* ☸️ **Kubernetes & Helm chart**
+* ☸️ **Helm chart (Kubernetes)**
 
 The below features may be implemented too, but are not a priority:
 
