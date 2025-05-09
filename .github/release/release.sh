@@ -1,5 +1,4 @@
 #!/usr/bin/env sh
-# TODO: rename folder "release"
 
 set -eu
 
