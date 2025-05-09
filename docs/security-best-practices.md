@@ -12,9 +12,6 @@ $ docker run -d -it \
     --restart=on-failure:10 \
     --cap-drop all \
     --security-opt no-new-privileges \
-    --ulimit nofile=16384 \
-    --ulimit nproc=4096 \
-    --ulimit core=0 \
     --cpus=4 \
     --memory=8GB \
     -p 25565:25565 \
@@ -40,12 +37,6 @@ services:
     privileged: false
     cap_drop:
       - ALL
-    ulimits:
-      nofile:
-        soft: 16384
-        hard: 16384
-      nproc: 4096
-      core: 0
 ```
 
 These settings offer sensible defaults, but you may need to adjust them based on your server's unique requirements. This documentation explains the rationale
@@ -87,40 +78,14 @@ Additionally, disabling privilege escalation tools like `su` and `sudo` is recom
 
 Setting appropriate resource limits is essential to ensure the container behaves reliably, securely, and within predictable boundaries. This aligns with [OWASP
 Docker Security Cheat Sheet – Rule #7](https://cheatsheetseries.owasp.org/cheatsheets/Docker_Security_Cheat_Sheet.html#rule-7-limit-resources-memory-cpu-file-descriptors-processes-restarts),
-which advises enforcing constraints on memory, CPU, file descriptors, and processes.
+which typically advises enforcing constraints on memory and CPU.
 
-Container resource limits fall into two main categories:
-
-### Process-Level Limits (`ulimit`)
-
-These limits apply at process level inside the container and are enforced via the Linux `ulimit` mechanism (i.e., `RLIMIT_*`). The following values are
-recommended:
-
-* `nofile` (maximum number of open files): `16384`
-* `nproc` (maximum number of processes): `4096`
-* `core` (core dump size): `0`
-
-These settings are generous and suitable for most workloads. You may consider tightening them further based on actual usage, after proper testing and
-monitoring.
-
-While a high `nproc` limit is typically safe, be aware that it can occasionally trigger unexpected
-behavior depending on the container runtime or host configuration. For further details, see
-the [Docker documentation on `nproc` usage](https://docs.docker.com/reference/cli/docker/container/run/#for-nproc-usage).
-
-Setting `core` to `0` disables core dumps, which can consume significant disk space and potentially expose sensitive information. This is especially important
-in production environments where security and data confidentiality are critical.
-
-### System Resource Limits (Cgroups)
-
-System-level resource limits control the overall consumption of CPU and memory by the container. These constraints are enforced by the Linux kernel using
-control groups (cgroups), ensuring that containers operate within defined boundaries and do not exhaust host resources.
-
-#### Recommended Settings
+Below are the recommendations for this container:
 
 * `memory` (maximum memory): At least **6 GB to 10 GB**, depending on the expected load. For detailed guidance, refer
   to [PaperMC’s memory recommendations](https://docs.papermc.io/paper/aikars-flags/#recommended-memory).
-* `cpu` (CPU allocation): Allocate **2 to 4 cores** as a baseline. Actual needs may vary depending on the number of players, active plugins, world complexity,
-  and other workload characteristics.
+* `cpu` (CPU allocation): Allocate **2 to 4 cores** as a baseline. More cores can improve performance, especially with a larger player base or heavier
+  workloads. Actual requirements will vary based on the number of players, active plugins, world complexity, and other performance factors.
 
-Cgroup limits are especially important in multi-tenant environments or orchestrated systems like Kubernetes, where resource isolation, predictability, and
+Resource limits are especially important in multi-tenant environments or orchestrated systems like Kubernetes, where resource isolation, predictability, and
 fairness across containers are critical for system stability.
