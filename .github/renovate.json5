@@ -3,17 +3,17 @@
   extends: [
     'config:best-practices',
     'schedule:monthly',
-    'security:openssf-scorecard'
+    'security:openssf-scorecard',
   ],
   configMigration: true,
   labels: [
-    't:dependencies'
+    't:dependencies',
   ],
   lockFileMaintenance: {
     enabled: true,
     extends: [
-      'schedule:monthly'
-    ]
+      'schedule:monthly',
+    ],
   },
   osvVulnerabilityAlerts: true,
   prConcurrentLimit: 50,
@@ -22,48 +22,29 @@
   vulnerabilityAlerts: {
     enabled: true,
     labels: [
-      't:security'
-    ]
+      't:security',
+    ],
   },
-
-  // Registering PaperMC datasource
   customDatasources: {
-    // cf. https://docs.renovatebot.com/modules/datasource/custom/
     papermc: {
-      // This datasource only contains one package (i.e. paper), thus not requiring {{packageName}} in template
       defaultRegistryUrlTemplate: 'https://api.papermc.io/v2/projects/paper/',
-
-      // JSONata template: https://docs.jsonata.org/overview.html
-      // JSONata Exerciser for testing purposes: https://try.jsonata.org/9sendQHs_
       transformTemplates: [
-        '{"releases": [$.versions.{"version": $[]}], "sourceUrl": "https://github.com/PaperMC/Paper", "homepage": "https://papermc.io/"}'
-      ]
-    }
+        '{"releases": [$.versions.{"version": $[]}], "sourceUrl": "https://github.com/PaperMC/Paper", "homepage": "https://papermc.io/"}',
+      ],
+    },
   },
   customManagers: [
     {
-      // cf. https://docs.renovatebot.com/modules/manager/regex/
       customType: 'regex',
-
-      // i.e. the "papermc" custom datasource previously defined
       datasourceTemplate: 'custom.papermc',
-
-      // Required
-      // Useless for the datasource since mono-package
-      // Useful as name reference in commits/PRs/... (e.g. "chore(deps): update dependency papermc to v1.21.4")
       packageNameTemplate: 'papermc',
-
-      // PaperMC/Minecraft has SemVer-like versioning
       versioningTemplate: 'semver',
-
-      // Matchers
-      fileMatch: [
-        '(^|\\/)docker-bake\\.hcl$'
+      managerFilePatterns: [
+        '/(^|\\/)docker-bake\\.hcl$/',
       ],
       matchStrings: [
-        // cf. https://regex101.com/r/SLgTRk
-        '# renovate: datasource=papermc\\s+variable "MINECRAFT_VERSION" {\\s+default = "(?<currentValue>.+?)"\\s+}'
-      ]
-    }
-  ]
+        '# renovate: datasource=papermc\\s+variable "MINECRAFT_VERSION" {\\s+default = "(?<currentValue>.+?)"\\s+}',
+      ],
+    },
+  ],
 }
