@@ -83,10 +83,10 @@ jobs:
         with:
           node-version: lts/jod
           cache: npm
-          cache-dependency-path: .github/semantic-release/package-lock.json
+          cache-dependency-path: .github/release/package-lock.json
 
       - name: Install semantic-release CLI
-        working-directory: .github/semantic-release/
+        working-directory: .github/release/
         run: npm clean-install
 
       - name: Login to Docker Hub
@@ -97,7 +97,6 @@ jobs:
 
       # Setup of QEMU x Buildx
       # Required for multi-arch builds (typically for ARM architecture support)
-      # TODO: rely on native ARM64 native node instead of QEMU: https://docs.docker.com/build/ci/github-actions/multi-platform/
       - name: Set up QEMU
         uses: docker/setup-qemu-action@29109295f81e9208d7d86ff1c6c12d2833863392 # v3.6.0
 
@@ -113,7 +112,7 @@ jobs:
           ROOT_PROJECT_DIR: ${{ github.workspace }}
           REVISION: ${{ github.sha }}
           SOURCE_DATE_EPOCH: ${{ env.GIT_COMMIT_TIMESTAMP }} # Reproducible build: https://reproducible-builds.org/docs/source-date-epoch/
-        working-directory: .github/semantic-release/
+        working-directory: .github/release/
         run: npx --no-install semantic-release
 
   maintenance-validate:
@@ -184,10 +183,10 @@ jobs:
         with:
           node-version: lts/jod
           cache: npm
-          cache-dependency-path: .github/semantic-release/package-lock.json
+          cache-dependency-path: .github/release/package-lock.json
 
       - name: Install semver CLI
-        working-directory: .github/semantic-release/
+        working-directory: .github/release/
         run: npm clean-install
 
       - name: Login to Docker Hub
@@ -209,7 +208,7 @@ jobs:
         run: echo "GIT_COMMIT_TIMESTAMP=$(git log -1 --pretty=%ct)" >> $GITHUB_ENV
 
       - name: Retrieve latest SemVer tag
-        working-directory: .github/semantic-release/
+        working-directory: .github/release/
         run: |
           # Retrieve all SemVer tags starting with 'v' and extract the latest version by sorting tags first
           LATEST_VERSION=$(npx --no-install semver $(git tag --list 'v*.*.*') | tail -n 1)
@@ -226,5 +225,5 @@ jobs:
           ROOT_PROJECT_DIR: ${{ github.workspace }}
           REVISION: ${{ github.sha }}
           SOURCE_DATE_EPOCH: ${{ env.GIT_COMMIT_TIMESTAMP }} # Reproducible build: https://reproducible-builds.org/docs/source-date-epoch/
-        working-directory: .github/semantic-release/
+        working-directory: .github/release/
         run: ./release.sh "$LATEST_VERSION"
