@@ -39,40 +39,36 @@ $ docker run -d -it \
 
 ## ✨ Features
 
-* **[Alpine](https://hub.docker.com/_/alpine)-based image**
-* **Lightweight**: ~360 MB
-* **Minimalist**: Includes only essential dependencies to reduce image size and surface area
-* **UID-agnostic**: Supports running the server with a custom/arbitrary UID (typically required when running container
+* 🏔️ **[Alpine](https://hub.docker.com/_/alpine)-based image**
+* 🪶 **Lightweight**: ~360 MB
+* 🧘 **Minimalist**: Includes only essential dependencies to reduce image size and surface area
+* 👤 **UID-agnostic**: Supports running the server with a custom/arbitrary UID (typically required when running container
   in [OpenShift](https://www.redhat.com/fr/technologies/cloud-computing/openshift))
-* **Rootless**: Runs as a non-root user by default if no UID is specified
-* **Multi-architecture support**: Built for `amd64` & `arm64` _(additional architectures available on request)_
-* **JRE 21**, based on [Eclipse Temurin](https://hub.docker.com/_/eclipse-temurin)
+* 🔐 **Rootless**: Runs as a non-root user by default if no UID is specified
+* 🧬 **Multi-architecture support**: Built for `amd64` & `arm64` _(additional architectures available on request)_
+* ☕ **JRE 21**, based on [Eclipse Temurin](https://hub.docker.com/_/eclipse-temurin)
   * Custom-built using `jlink` to minimize size
   * Includes all standard Java modules to ensure broad compatibility with plugins
-* **Frequent security scans**: By relying on [Trivy](https://trivy.dev/latest/) and [Docker Scout](https://docs.docker.com/scout/)
-* **Auto-update**: Scheduled bi-monthly rebuilds to incorporate upstream JDK/PaperMC updates and security patches
+* 🛡️ **Frequent security scans**: By relying on [Trivy](https://trivy.dev/latest/) and [Docker Scout](https://docs.docker.com/scout/)
+* 🔄 **Auto-update**: Scheduled bi-monthly rebuilds to incorporate upstream JDK/PaperMC updates and security patches
 
-### 🛠️ Planned Features
+## 🛠️ Planned Features
 
 The image is under active development, with the following enhancements planned:
 
-* **Healthcheck integration**: Built-in Docker `HEALTHCHECK` instruction for better container observability.
-* **Unified configuration interface**: Centralized PaperMC tuning via a config file, with optional environment variable overrides (which will be the main difference with [itzg's solution](https://docker-minecraft-server.readthedocs.io/en/latest/configuration/interpolating/)).
-* **Customizable server startup options**: Ability to set JVM options and server properties via environment variables.
-* **Enable/Disable Aikar's flags**: Aikar's researches ([link](https://aikar.co/2018/07/02/tuning-the-jvm-g1gc-garbage-collector-flags-for-minecraft/)) and [PaperMC recommendations](https://docs.papermc.io/paper/aikars-flags/)
-* **Configurable TimeZone**
-* **GraalVM variant**
-* **Read-only filesystem**
-* **Docker Compose**
-* **Kubernetes**
-* **Helm chart**
+* 🩺 **Healthcheck integration**: Built-in Docker `HEALTHCHECK` instruction for better container observability.
+* ⚙️ **Unified configuration interface**: Centralized PaperMC tuning via a config file, with optional environment variable overrides (which will be the main difference with [itzg's solution](https://docker-minecraft-server.readthedocs.io/en/latest/configuration/interpolating/)).
+  * **Customizable server startup options**: Ability to set JVM options and server properties via environment variables.
+  * **Enable/Disable Aikar's flags**: Aikar's researches ([link](https://aikar.co/2018/07/02/tuning-the-jvm-g1gc-garbage-collector-flags-for-minecraft/)) and [PaperMC recommendations](https://docs.papermc.io/paper/aikars-flags/)
+  * **Configurable TimeZone**
+  * **Support JMX**: Java Management Extensions enabling for remote management and monitoring (e.g., with [VisualVM](https://visualvm.github.io/), [JMC](https://openjdk.org/projects/jmc/), ...).
+* 📦 **Docker Compose**
+* ☸️ **Kubernetes & Helm chart**
 
 The below features may be implemented too, but are not a priority:
 
-* **Support JMX**: Java Management Extensions enabling for remote management and monitoring (e.g., with [VisualVM](https://visualvm.github.io/), [JMC](https://openjdk.org/projects/jmc/), ...) => [spark](https://docs.papermc.io/paper/profiling/) may be preferred.
-* **Documentation**: Comprehensive documentation for all features and configurations with [AsciiDoc](https://asciidoc.org/).
-* **Share examples**
-* **OpenJ9 variant**
+* 📚 **Documentation**: Comprehensive documentation for all features, configurations and examples with [AsciiDoc](https://asciidoc.org/).
+* 🔒 **Read-only filesystem**
 
 ## 🌍 Contributing
 
