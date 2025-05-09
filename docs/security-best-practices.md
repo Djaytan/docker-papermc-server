@@ -19,7 +19,33 @@ $ docker run -d -it \
     --memory=8GB \
     -p 25565:25565 \
     -e EULA=true \
-    'djaytan/papermc-server:1.21.4'
+    'djaytan/papermc-server:latest'
+```
+
+or by relying on a Docker Compose file similar to the one below:
+
+```yaml
+services:
+  papermc-server:
+    image: djaytan/papermc-server:latest
+    ports:
+      - '25565:25565'
+    environment:
+      EULA: 'true'
+    mem_limit: 8GB
+    cpus: 4
+    restart: on-failure:3
+    stdin_open: true
+    tty: true
+    privileged: false
+    cap_drop:
+      - ALL
+    ulimits:
+      nofile:
+        soft: 16384
+        hard: 16384
+      nproc: 4096
+      core: 0
 ```
 
 These settings offer sensible defaults, but you may need to adjust them based on your server's unique requirements. This documentation explains the rationale
