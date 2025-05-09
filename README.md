@@ -42,7 +42,7 @@ $ docker run -d -it \
 ## ✨ Features & Highlights
 
 * 🏔️ **[Alpine](https://hub.docker.com/_/alpine)-based image**
-* 🪶 **Lightweight**: ~360 MB
+* 🪶 **Lightweight**: ~120 MB
 * 🧘 **Minimalist**: Includes only essential dependencies to reduce image size and surface area
 * 👤 **UID-agnostic**: Supports running the server with a custom/arbitrary UID (typically required when running container
   in [OpenShift](https://www.redhat.com/fr/technologies/cloud-computing/openshift))
