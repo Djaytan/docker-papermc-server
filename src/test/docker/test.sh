@@ -15,16 +15,9 @@ echo '▶️ Starting the PaperMC server in background...'
 # Simulate a production-like environment by enforcing strict security policies:
 # - Drop all Linux capabilities (PaperMC does not require any).
 # - Disable privilege escalation within the container.
-# - Set ulimits:
-#     - `nofile` (open files): 16384 — sufficient for typical Java-based Minecraft servers.
-#     - `nproc` (processes): 4096 — a safe and generous limit for JVM workloads.
-#     - `core`: 0 — disables core dumps to preserve disk space and avoid leaking sensitive information.
 docker run --rm -d --name "$CONTAINER_NAME" \
   --cap-drop all \
   --security-opt no-new-privileges \
-  --ulimit nofile=16384 \
-  --ulimit nproc=4096 \
-  --ulimit core=0 \
   --cpus=4 \
   --memory=8GB \
   -p 25565:25565 \
