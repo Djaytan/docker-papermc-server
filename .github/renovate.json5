@@ -58,7 +58,7 @@
 
       // Matchers
       managerFilePatterns: [
-        '(^|\\/)docker-bake\\.hcl$'
+        '/(^|\\/)docker-bake\\.hcl$/'
       ],
       matchStrings: [
         // cf. https://regex101.com/r/SLgTRk
