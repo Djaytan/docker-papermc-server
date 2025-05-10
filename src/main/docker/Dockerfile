@@ -17,6 +17,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
+# See https://docs.docker.com/build/metadata/attestations/sbom/#arguments
 ARG BUILDKIT_SBOM_SCAN_STAGE=true
 
 FROM docker.io/eclipse-temurin:21-jdk-alpine@sha256:2f2f553ce09d25e2d2f0f521ab94cd73f70c9b21327a29149c23a2b63b8e29a0 AS jre-build
@@ -31,6 +32,18 @@ RUN ${JAVA_HOME}/bin/jlink \
     --no-man-pages \
     --no-header-files \
     --output /jre
+
+# Use the official itzg/mc-monitor OCI image as a source for the mc-monitor binary.
+# This approach ensures:
+# - Compatibility with multi-arch builds (amd64, arm64) since the image is multi-platform.
+# - Simplified setup: avoids manual download/extraction logic and dependency handling.
+# - Automatic updates via Renovate (based on the image tag and digest).
+# The image is pinned by digest for reproducibility and supply-chain security,
+# while still allowing Renovate to track and update it as needed.
+#
+# The mc-monitor CLI is used for monitoring and health-checks purposes.
+# See https://github.com/itzg/mc-monitor
+FROM itzg/mc-monitor:0.15.5@sha256:301d416d2636be3461046f783853a45e095d974014751fea9b9c875ba782e1bf AS mc-monitor
 
 FROM docker.io/alpine:3.21.3@sha256:a8560b36e8b8210634f77d9f7f9efd7ffa463e380b75e2e74aff4511df3ef88c AS papermc-server-build
 
@@ -67,6 +80,8 @@ COPY --from=jre-build /jre ${JAVA_HOME}
 # - gettext: is required for envsubst: https://pkgs.alpinelinux.org/package/edge/main/x86_64/gettext
 # - libudev-zero: is the Alpine-equivalent of libudev, which is required by PaperMC: https://pkgs.alpinelinux.org/package/edge/community/x86/libudev-zero
 RUN apk add --no-cache gettext libudev-zero
+
+COPY --from=mc-monitor --chmod=550 /mc-monitor /usr/local/bin/mc-monitor
 
 # Need to be turned to "true" manually to confirm agreement with Minecraft EULA (https://aka.ms/MinecraftEULA).
 ENV EULA=false
@@ -106,4 +121,5 @@ EXPOSE 25565
 
 ENTRYPOINT ["./start.sh"]
 
-# TODO: healthcheck
+HEALTHCHECK --interval=5s --timeout=3s --start-period=30s \
+  CMD ["mc-monitor", "status"]
