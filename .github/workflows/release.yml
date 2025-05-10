@@ -125,6 +125,7 @@ jobs:
 
     permissions:
       contents: read
+      pull-requests: write # Required to write comments to the PR about security scans results
       security-events: write # Required to upload found security gaps
 
     secrets:
