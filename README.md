@@ -58,21 +58,7 @@ $ docker run -d -it \
 * 🔄 **Scheduled auto-updates** – Bi-monthly rebuilds to incorporate upstream security patches and new PaperMC builds. Other updates are tracked and
   semi-automatically managed via Renovate.
 
-## 🛠️ Planned Features
-
-The image is under active development, with the following enhancements planned:
-
-* ⚙️ **Unified configuration interface**: Centralized PaperMC tuning via a config file, with optional environment variable overrides (which will be the main difference with [itzg's solution](https://docker-minecraft-server.readthedocs.io/en/latest/configuration/interpolating/)).
-  * **Customizable server startup options**: Ability to set JVM options and server properties via environment variables.
-  * **Enable/Disable Aikar's flags**: Aikar's researches ([link](https://aikar.co/2018/07/02/tuning-the-jvm-g1gc-garbage-collector-flags-for-minecraft/)) and [PaperMC recommendations](https://docs.papermc.io/paper/aikars-flags/)
-  * **Configurable TimeZone**
-  * **Support JMX**: Java Management Extensions enabling for remote management and monitoring (e.g., with [VisualVM](https://visualvm.github.io/), [JMC](https://openjdk.org/projects/jmc/), ...).
-* ☸️ **Helm chart (Kubernetes)**
-
-The below features may be implemented too, but are not a priority:
-
-* 📚 **Documentation**: Comprehensive documentation for all features, configurations and examples with [AsciiDoc](https://asciidoc.org/).
-* 🔒 **Read-only filesystem**
+A list of additional planned features can be found [here](docs/planned-features.md).
 
 ## 🌍 Contributing
 
