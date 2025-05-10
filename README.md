@@ -51,6 +51,8 @@ $ docker run -d -it \
 * ☕ **JRE 21**, based on [Eclipse Temurin](https://hub.docker.com/_/eclipse-temurin)
   * Custom-built using `jlink` to minimize size
   * Includes all standard Java modules to ensure broad compatibility with plugins
+* 🩺 **Healthcheck integration**: Enhances resilience and high availability by continuously monitoring server health
+  with [`mc-monitor`](https://github.com/itzg/mc-monitor)
 * 🛡️ **Frequent security scans**: By relying on [Docker Scout](https://docs.docker.com/scout/)
 * 🔄 **Scheduled auto-updates**: Bi-monthly rebuilds to incorporate upstream security patches and PaperMC updates
 
@@ -58,7 +60,6 @@ $ docker run -d -it \
 
 The image is under active development, with the following enhancements planned:
 
-* 🩺 **Healthcheck integration**: Built-in Docker `HEALTHCHECK` instruction for better container observability.
 * ⚙️ **Unified configuration interface**: Centralized PaperMC tuning via a config file, with optional environment variable overrides (which will be the main difference with [itzg's solution](https://docker-minecraft-server.readthedocs.io/en/latest/configuration/interpolating/)).
   * **Customizable server startup options**: Ability to set JVM options and server properties via environment variables.
   * **Enable/Disable Aikar's flags**: Aikar's researches ([link](https://aikar.co/2018/07/02/tuning-the-jvm-g1gc-garbage-collector-flags-for-minecraft/)) and [PaperMC recommendations](https://docs.papermc.io/paper/aikars-flags/)
