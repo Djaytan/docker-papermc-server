@@ -39,7 +39,7 @@ $ docker run -d -it \
 > [!TIP]
 > For production-grade deployments, it is recommended to follow [our dedicated guide](docs/production-grade-deployment.md).
 
-## ✨ Features & Highlights
+## ✨ Features
 
 * 🏔️ **[Alpine](https://hub.docker.com/_/alpine)-based image**
 * 🪶 **Lightweight**: ~120 MB
