@@ -42,19 +42,21 @@ $ docker run -d -it \
 ## ✨ Features
 
 * 🏔️ **[Alpine](https://hub.docker.com/_/alpine)-based image**
-* 🪶 **Lightweight**: ~120 MB
-* 🧘 **Minimalist**: Includes only essential dependencies to reduce image size and surface area
-* 👤 **UID-agnostic**: Supports running the server with a custom/arbitrary UID (typically required when running container
+* 🪶 **Lightweight** – ~120 MB
+* 🧘 **Minimalist** – Includes only essential dependencies to reduce image size and surface area
+* 👤 **UID-agnostic** – Supports running the server with a custom/arbitrary UID (typically required when running container
   in [OpenShift](https://www.redhat.com/fr/technologies/cloud-computing/openshift))
-* 🔐 **Rootless by default**: Runs as a non-root user when no custom UID is specified
-* 🧬 **Multi-architecture support**: Built for `linux/amd64` & `linux/arm64` _(additional OSs/architectures available on request)_
-* ☕ **JRE 21**, based on [Eclipse Temurin](https://hub.docker.com/_/eclipse-temurin)
+* 🔐 **Rootless by default** – Runs as a non-root user when no custom UID is specified
+* 🧬 **Multi-architecture support** – Built for `linux/amd64` & `linux/arm64` _(additional OSs/architectures available on request)_
+* ☕ **JRE 21** – Based on [Eclipse Temurin](https://hub.docker.com/_/eclipse-temurin)
   * Custom-built using `jlink` to minimize size
-  * Includes all standard Java modules to ensure broad compatibility with plugins
-* 🩺 **Healthcheck integration**: Enhances resilience and high availability by continuously monitoring server health
+  * Includes standard Java modules for broad plugin compatibility
+* 🩺 **Healthcheck integration** – Enhances resilience and high availability by continuously monitoring server health
   with [`mc-monitor`](https://github.com/itzg/mc-monitor)
-* 🛡️ **Frequent security scans**: By relying on [Docker Scout](https://docs.docker.com/scout/)
-* 🔄 **Scheduled auto-updates**: Bi-monthly rebuilds to incorporate upstream security patches and PaperMC updates
+* 🔍 **Frequent quality & security scans** – Powered by [SonarQube Cloud](https://sonarcloud.io/summary/new_code?id=Djaytan_docker-papermc-server)
+  and [Docker Scout](https://docs.docker.com/scout/)
+* 🔄 **Scheduled auto-updates** – Bi-monthly rebuilds to incorporate upstream security patches and new PaperMC builds. Other updates are tracked and
+  semi-automatically managed via Renovate.
 
 ## 🛠️ Planned Features
 
