@@ -37,20 +37,6 @@ RUN ${JAVA_HOME}/bin/jlink \
 
 
 
-# Use the official itzg/mc-monitor OCI image as a source for the mc-monitor binary.
-# This approach ensures:
-# - Compatibility with multi-arch builds (amd64, arm64) since the image is multi-platform.
-# - Simplified setup: avoids manual download/extraction logic and dependency handling.
-# - Automatic updates via Renovate (based on the image tag and digest).
-# The image is pinned by digest for reproducibility and supply-chain security,
-# while still allowing Renovate to track and update it as needed.
-#
-# The mc-monitor CLI is used for monitoring and health-checks purposes.
-# See https://github.com/itzg/mc-monitor
-FROM itzg/mc-monitor:0.15.5@sha256:301d416d2636be3461046f783853a45e095d974014751fea9b9c875ba782e1bf AS mc-monitor-build
-
-
-
 # Download the PaperMC server JAR file corresponding to the specified Minecraft version.
 FROM docker.io/alpine:3.21.3@sha256:a8560b36e8b8210634f77d9f7f9efd7ffa463e380b75e2e74aff4511df3ef88c AS papermc-server-build
 
@@ -69,6 +55,20 @@ RUN apk add --no-cache ca-certificates curl jq
 
 COPY --chmod=500 get-papermc-server.sh .
 RUN ./get-papermc-server.sh "$MINECRAFT_VERSION"
+
+
+
+# Use the official itzg/mc-monitor OCI image as a source for the mc-monitor binary.
+# This approach ensures:
+# - Compatibility with multi-arch builds (amd64, arm64) since the image is multi-platform.
+# - Simplified setup: avoids manual download/extraction logic and dependency handling.
+# - Automatic updates via Renovate (based on the image tag and digest).
+# The image is pinned by digest for reproducibility and supply-chain security,
+# while still allowing Renovate to track and update it as needed.
+#
+# The mc-monitor CLI is used for monitoring and health-checks purposes.
+# See https://github.com/itzg/mc-monitor
+FROM itzg/mc-monitor:0.15.5@sha256:301d416d2636be3461046f783853a45e095d974014751fea9b9c875ba782e1bf AS mc-monitor-build
 
 
 
