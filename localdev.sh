@@ -4,12 +4,7 @@ set -eu
 
 SCRIPT_DIR=$(cd "$(dirname "$0")" > /dev/null 2>&1 && pwd -P)
 
-cd "${SCRIPT_DIR}/src/main/docker"
-
-echo '🏗️ Building the DEV image...'
-docker buildx bake dev --print
-docker buildx bake --progress=plain dev
-echo '✅  Image built successfully.'
+sh "${SCRIPT_DIR}"/src/main/docker/build-dev.sh
 
 echo '▶️ Starting the localdev PaperMC server...'
 
