@@ -68,7 +68,12 @@ RUN ./get-papermc-server.sh "$MINECRAFT_VERSION"
 #
 # The mc-monitor CLI is used for monitoring and health-checks purposes.
 # See https://github.com/itzg/mc-monitor
-FROM itzg/mc-monitor:0.15.5@sha256:301d416d2636be3461046f783853a45e095d974014751fea9b9c875ba782e1bf AS mc-monitor-build
+FROM docker.io/itzg/mc-monitor:0.15.5@sha256:301d416d2636be3461046f783853a45e095d974014751fea9b9c875ba782e1bf AS mc-monitor-build
+
+
+
+# Use the CUE lang to handle configuration validation and generation.
+FROM docker.io/cuelang/cue:0.12.1@sha256:1c68bd10c1a09fad8431330c7375603dd8c5d7904251f21604b397b21de91259 AS cuelang-build
 
 
 
@@ -124,6 +129,9 @@ EXPOSE 25565
 
 # mc-monitor setup for health-checks.
 COPY --from=mc-monitor-build --chmod=550 /mc-monitor /usr/local/bin/mc-monitor
+
+# CUE setup for configuration validation and generation.
+COPY --from=cuelang-build --chmod=550 /usr/bin/cue /usr/local/bin/cue
 
 # Switch to rooless mode by default.
 #
