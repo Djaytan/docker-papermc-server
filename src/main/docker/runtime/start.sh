@@ -69,6 +69,18 @@ TMP="$(envsubst '$EULA' < eula.txt)"
 echo "${TMP}" > eula.txt
 echo 'File eula.txt processed'
 
+# Generate bukkit.yml configuration file
+cue export bukkit.cue --out yaml --outfile bukkit.yml
+
+cd "${SCRIPT_DIR}/config"
+
+# Generate Spigot and PaperMC configuration files
+for cue_file in *.cue; do
+  cue export "$cue_file" --out yaml --outfile "${cue_file%.cue}.yml"
+done
+
+cd "${SCRIPT_DIR}"
+
 echo 'PaperMC server ready to start!'
 
 exec java $JVM_ARGUMENTS -jar "${SCRIPT_DIR}"/papermc-server-*.jar $SERVER_ARGS
