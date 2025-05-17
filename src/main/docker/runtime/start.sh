@@ -63,30 +63,40 @@ cd "${SCRIPT_DIR}"
 
 echo 'Preparing PaperMC server configuration files...'
 
-# TODO: alternative? https://docs.papermc.io/paper/reference/system-properties/#commojangeulaagree
 TMP="$(envsubst '$EULA' < eula.txt)"
 echo "${TMP}" > eula.txt
 echo 'File eula.txt processed'
 
-# TODO: simplify with CUE packages?
+# TODO: support help.yml
+# TODO: support ops.json
+# TODO: support whitelist.json
 
 ENVVAR="$(env | grep -E '^(BUKKIT|SPIGOT|PAPER)_' | tr '\n' ',' | head -c -1)"
 
-# Generate bukkit.yml configuration file
-cue vet bukkit.cue --concrete --inject "${ENVVAR}"
-cue export bukkit.cue --inject "${ENVVAR}" --out yaml --outfile bukkit.yml
+generateConfig() {
+  config_file="$1"
+  cue_file="${config_file%.yml}.cue"
 
-cd "${SCRIPT_DIR}/config"
-
-# Generate Spigot and PaperMC configuration files
-for cue_file in *.cue; do
+  # Validate user-provided configuration property values
   cue vet "$cue_file" --concrete
-  cue export "$cue_file" --out yaml --outfile "${cue_file%.cue}.yml"
-done
+
+  # Generate the configuration file
+  cue export "$cue_file" --inject "${ENVVAR}" --out yaml --outfile "$config_file"
+}
+
+# Bukkit
+generateConfig 'bukkit.yml'
+generateConfig 'config/commands.yml'
+generateConfig 'config/permissions.yml'
+
+# Spigot
+generateConfig 'config/spigot.yml'
+
+# Paper
+generateConfig 'config/paper-global.yml'
+generateConfig 'config/paper-world-defaults.yml'
 
 # TODO: clean-up CUE files
-
-cd "${SCRIPT_DIR}"
 
 echo 'PaperMC server ready to start!'
 
