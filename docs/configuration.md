@@ -37,3 +37,16 @@ _**WIP: More configuration options will be supported in future releases.**_
 ❌ = Not yet supported
 
 > 💡 Missing a configuration property? [Open an issue](https://github.com/Djaytan/docker-papermc-server/issues).
+
+### Unmodifiable Properties
+
+Some properties are intentionally not customizable. These fall into two categories:
+
+* **System-managed**: Handled internally and not meant to be user-configured (e.g., `settings.permissions-file` in Bukkit).
+* **Reserved metadata**: Used for internal purposes and not intended for modification (e.g., PaperMC’s `_version` property).
+
+| Category | Property Name               | Fixed Value              |
+|:--------:|-----------------------------|--------------------------|
+|  Bukkit  | `settings.permissions-file` | `config/permissions.yml` |
+|  Bukkit  | `settings.world-container`  | `worlds`                 |
+|  Paper   | `_version`                  | _Generated_              |
