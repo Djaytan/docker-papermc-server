@@ -6,7 +6,6 @@ SCRIPT_DIR=$(cd "$(dirname "$0")" > /dev/null 2>&1 && pwd -P)
 
 ## Directories
 CONFIG_DIR="${SCRIPT_DIR}/config"
-WORLD_DIR="${SCRIPT_DIR}/worlds"
 
 ## JVM arguments
 # server.properties: https://minecraft.wiki/w/Server.properties
@@ -55,7 +54,6 @@ JVM_ARGUMENTS="${AIKAR_FLAGS} ${PAPER_FLAGS}"
 SERVER_ARGS="
   --spigot-settings ${CONFIG_DIR}/spigot.yml
   --commands-settings ${CONFIG_DIR}/commands.yml
-  --world-dir ${WORLD_DIR}
   --log-strip-color
   --nogui
 "
@@ -84,6 +82,8 @@ for cue_file in *.cue; do
   cue vet "$cue_file" --concrete
   cue export "$cue_file" --out yaml --outfile "${cue_file%.cue}.yml"
 done
+
+# TODO: clean-up CUE files
 
 cd "${SCRIPT_DIR}"
 
