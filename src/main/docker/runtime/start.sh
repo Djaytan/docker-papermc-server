@@ -63,6 +63,7 @@ cd "${SCRIPT_DIR}"
 
 echo 'Preparing PaperMC server configuration files...'
 
+# TODO: alternative? https://docs.papermc.io/paper/reference/system-properties/#commojangeulaagree
 TMP="$(envsubst '$EULA' < eula.txt)"
 echo "${TMP}" > eula.txt
 echo 'File eula.txt processed'
