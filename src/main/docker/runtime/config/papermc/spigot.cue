@@ -1,5 +1,5 @@
 // This is the main configuration file for Spigot.
-// Specifications: https://www.spigotmc.org/wiki/spigot-configuration/
+// Specifications: https://docs.papermc.io/paper/reference/spigot-configuration/
 
 // TODO: make values customizable
 
