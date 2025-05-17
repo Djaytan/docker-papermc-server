@@ -2,7 +2,6 @@
 // Specifications: https://docs.papermc.io/paper/reference/bukkit-configuration/
 
 // TODO: make stronger types (e.g., specifying boundaries for integers, etc.)
-// TODO: document immutable/internal properties which can't be changed
 
 settings: {
 	"allow-end":           *true | bool              @tag(BUKKIT_SETTINGS_ALLOW_END, type=bool)
