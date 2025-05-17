@@ -5,8 +5,6 @@ advanced setups.
 
 📘 Configuration reference: [PaperMC Docs](https://docs.papermc.io/paper/reference/configuration/).
 
----
-
 ## Environment Variable Mapping
 
 To override a configuration property using an environment variable, apply the following rules:
@@ -22,8 +20,6 @@ To override a configuration property using an environment variable, apply the fo
 
 Environment variables are ideal for simple setups. For larger or more complex ones, configuration files (once supported) will provide better structure and
 flexibility.
-
----
 
 ## Supported Properties
 
