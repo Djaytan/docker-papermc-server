@@ -10,8 +10,4 @@ The image is under active development, with the following enhancements planned:
   * **World specific configs**: https://docs.papermc.io/paper/reference/world-configuration/
   * **Presets**: with a recommended one pre-tuning the server (Aikar flags, Spark plugin preference, ...)
 * ☸️ **Helm chart (Kubernetes)**
-
-The below features may be implemented too, but are not a priority:
-
 * 📚 **Documentation**: Comprehensive documentation for all features, configurations and examples with [AsciiDoc](https://asciidoc.org/).
-* 🔒 **Read-only filesystem**
