@@ -69,13 +69,19 @@ TMP="$(envsubst '$EULA' < eula.txt)"
 echo "${TMP}" > eula.txt
 echo 'File eula.txt processed'
 
+# TODO: simplify with CUE packages?
+
+ENVVAR="$(env | grep -E '^(BUKKIT|SPIGOT|PAPER)_' | tr '\n' ',' | head -c -1)"
+
 # Generate bukkit.yml configuration file
-cue export bukkit.cue --out yaml --outfile bukkit.yml
+cue vet bukkit.cue --concrete --inject "${ENVVAR}"
+cue export bukkit.cue --inject "${ENVVAR}" --out yaml --outfile bukkit.yml
 
 cd "${SCRIPT_DIR}/config"
 
 # Generate Spigot and PaperMC configuration files
 for cue_file in *.cue; do
+  cue vet "$cue_file" --concrete
   cue export "$cue_file" --out yaml --outfile "${cue_file%.cue}.yml"
 done
 
