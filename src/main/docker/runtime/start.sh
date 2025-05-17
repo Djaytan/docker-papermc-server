@@ -96,7 +96,8 @@ generateConfig 'config/spigot.yml'
 generateConfig 'config/paper-global.yml'
 generateConfig 'config/paper-world-defaults.yml'
 
-# TODO: clean-up CUE files
+# Clean-up CUE files after config generation
+find . -type f -name '*.cue' -exec rm -f {} +
 
 echo 'PaperMC server ready to start!'
 
