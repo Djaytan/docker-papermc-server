@@ -6,18 +6,19 @@
 settings: {
 	"allow-end":           *true | bool              @tag(BUKKIT_SETTINGS_ALLOW_END, type=bool)
 	"warn-on-overload":    *true | bool              @tag(BUKKIT_SETTINGS_WARN_ON_OVERLOAD, type=bool)
-	"permissions-file":    "config/permissions.yml"  // Immutable
+	"permissions-file":    "config/permissions.yml"  // System-managed property
 	"update-folder":       *"update" | string        @tag(BUKKIT_SETTINGS_UPDATE_FOLDER, type=string)
-	"plugin-profiling":    *false | bool             @tag(BUKKIT_SETTINGS_PLUGIN_PROFILING, type=bool)
+	"plugin-profiling":    false                     // Disabled on PaperMC
 	"connection-throttle": *4000 | int               @tag(BUKKIT_SETTINGS_CONNECTION_THROTTLE, type=int)
 	"query-plugins":       *true | bool              @tag(BUKKIT_SETTINGS_QUERY_PLUGINS, type=bool)
 	"deprecated-verbose":  *"default" | string       @tag(BUKKIT_SETTINGS_DEPRECATED_VERBOSE, type=string)
 	"shutdown-message":    *"Server closed" | string @tag(BUKKIT_SETTINGS_SHUTDOWN_MESSAGE, type=string)
 	"minimum-api":         *"none" | string          @tag(BUKKIT_SETTINGS_MINIMUM_API, type=string)
 	"use-map-color-cache": *true | bool              @tag(BUKKIT_SETTINGS_USE_MAP_COLOR_CACHE, type=bool)
-	"world-container":     "worlds"                  // Immutable
+	"world-container":     "worlds"                  // System-managed property
 }
 
+// TODO: drop support in favor of Paper world config
 "spawn-limits": {
 	monsters:                     *70 | int @tag(BUKKIT_SPAWN_LIMITS_MONSTERS, type=int)
 	animals:                      *10 | int @tag(BUKKIT_SPAWN_LIMITS_ANIMALS, type=int)
@@ -28,17 +29,18 @@ settings: {
 	ambient:                      *15 | int @tag(BUKKIT_SPAWN_LIMITS_AMBIENT, type=int)
 }
 
+// TODO: constrain properties (e.g. gc capped to 20 ticks by PaperMC) + document constraints
 "chunk-gc": {
 	"period-in-ticks": *600 | int @tag(BUKKIT_CHUNK_GC_PERIOD_IN_TICKS, type=int)
 }
 
 "ticks-per": {
-	"animal-spawns":                     *400 | int  @tag(BUKKIT_TICKS_PER_ANIMAL_SPAWNS, type=int)
-	"monster-spawns":                    *1 | int    @tag(BUKKIT_TICKS_PER_MONSTER_SPAWNS, type=int)
-	"water-spawns":                      *1 | int    @tag(BUKKIT_TICKS_PER_WATER_SPAWNS, type=int)
-	"water-ambient-spawns":              *1 | int    @tag(BUKKIT_TICKS_PER_WATER_AMBIENT_SPAWNS, type=int)
-	"water-underground-creature-spawns": *1 | int    @tag(BUKKIT_TICKS_PER_WATER_UNDERGROUND_CREATURE_SPAWNS, type=int)
-	"axolotl-spawns":                    *1 | int    @tag(BUKKIT_TICKS_PER_AXOLOTL_SPAWNS, type=int)
-	"ambient-spawns":                    *1 | int    @tag(BUKKIT_TICKS_PER_AMBIENT_SPAWNS, type=int)
-	autosave:                            *6000 | int @tag(BUKKIT_TICKS_PER_AUTOSAVE, type=int)
+	"animal-spawns":                     -1
+	"monster-spawns":                    -1
+	"water-spawns":                      -1
+	"water-ambient-spawns":              -1
+	"water-underground-creature-spawns": -1
+	"axolotl-spawns":                    -1
+	"ambient-spawns":                    -1
+	autosave:                            -1
 }
