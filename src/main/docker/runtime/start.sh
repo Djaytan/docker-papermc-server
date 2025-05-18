@@ -70,6 +70,7 @@ echo 'File eula.txt processed'
 # TODO: support help.yml
 # TODO: support ops.json
 # TODO: support whitelist.json
+# TODO: disable permissions.yml?
 
 ENVVAR="$(env | grep -E '^(BUKKIT|SPIGOT|PAPER)_' | tr '\n' ',' | head -c -1)"
 

@@ -37,7 +37,7 @@ anticheat: {
 "baby-zombie-movement-speed": 0.5
 
 chunks: {
-	"auto-save-interval":     "default"
+	"auto-save-interval":     *6000 | int
 	"delay-chunk-unloads-by": "10s"
 	"entity-per-chunk-save-limit": {
 		arrow:          -1
@@ -203,13 +203,13 @@ entities: {
 			water_creature:             -1
 		}
 		"ticks-per-spawn": {
-			ambient:                    -1
-			axolotls:                   -1
-			creature:                   -1
-			monster:                    -1
-			underground_water_creature: -1
-			water_ambient:              -1
-			water_creature:             -1
+			ambient:                    1
+			axolotls:                   1
+			creature:                   400
+			monster:                    1
+			underground_water_creature: 1
+			water_ambient:              1
+			water_creature:             1
 		}
 		"wandering-trader": {
 			"spawn-chance-failure-increment": 25
