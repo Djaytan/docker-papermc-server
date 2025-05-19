@@ -45,18 +45,22 @@ through override configuration files once that support is implemented.
 
 The following properties are currently unsupported:
 
-| 📄 Configuration File | ⚙️ Property Name           |
-|:----------------------|:---------------------------|
-| `paper-global.yml`    | `packet-limiter.overrides` |
+| 📄 Configuration File      | ⚙️ Property Name                                  |
+|:---------------------------|:--------------------------------------------------|
+| `paper-global.yml`         | `packet-limiter.overrides`                        |
+| `paper-world-defaults.yml` | `anticheat.anti-xray.hidden-blocks`               |
+| `paper-world-defaults.yml` | `anticheat.anti-xray.replacement-blocks`          |
+| `paper-world-defaults.yml` | `entities.behavior.door-breaking-difficulty`      |
+| `paper-world-defaults.yml` | `entities.spawning.filtered-entity-tag-nbt-paths` |
 
 ## 📊 Supported Properties
 
-|  🗂️ Category  | 🎯 Supported |
-|:--------------:|:------------:|
-|     Bukkit     |  🟡 Partial  |
-|     Spigot     |  ❌ Not yet   |
-| Paper (Global) | ✅ Supported  |
-| Paper (World)  |  ❌ Not yet   |
+|      🗂️ Category      | 🎯 Supported |
+|:----------------------:|:------------:|
+|         Bukkit         |  🟡 Partial  |
+|         Spigot         |  ❌ Not yet   |
+|     Paper (Global)     | ✅ Supported  |
+| Paper (World Defaults) | ✅ Supported  |
 
 ✅ = Fully supported<br/>
 🟡 = Partial support (some properties available)<br/>

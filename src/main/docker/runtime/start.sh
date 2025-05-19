@@ -73,6 +73,7 @@ echo '🧾 File eula.txt processed'
 # TODO: disable permissions.yml?
 # TODO: support custom Spark plugin version
 # TODO: Ensuire Timings v2 is disabled by default
+# TODO: add tests verifying properties are well customized as expected
 
 generateConfig() {
   config_file="$1"

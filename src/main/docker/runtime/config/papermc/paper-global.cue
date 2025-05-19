@@ -6,7 +6,7 @@
 // All CUE structs are open to allow for additional fields, ensuring forward compatibility with future PaperMC configurations.
 // Any new fields added in future PaperMC versions can be safely added without breaking the existing configuration.
 
-// TODO: support environment variables
+// TODO: ellipsis are unecessary
 
 "_version": 29 // Not customizable - Internal value only
 
