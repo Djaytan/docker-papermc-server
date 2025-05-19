@@ -61,11 +61,11 @@ SERVER_ARGS="
 
 cd "${SCRIPT_DIR}"
 
-echo 'Preparing PaperMC server configuration files...'
+echo '⚙️ Preparing PaperMC server configuration files...'
 
 TMP="$(envsubst '$EULA' < eula.txt)"
 echo "${TMP}" > eula.txt
-echo 'File eula.txt processed'
+echo '🧾 File eula.txt processed'
 
 # TODO: support help.yml
 # TODO: support ops.json
@@ -80,7 +80,7 @@ generateConfig() {
   envvar="$(env | grep -E "^${envvar_prefix}" | tr '\n' ',' | head -c -1)"
   cue_file="${config_file%.yml}.cue"
 
-  echo "Generating configuration file \"${config_file}\"..."
+  echo "📝 Generating configuration file \"${config_file}\"..."
 
   # Validate user-provided configuration property values
   cue vet "$cue_file" --concrete
