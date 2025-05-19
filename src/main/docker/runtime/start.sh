@@ -74,30 +74,32 @@ echo 'File eula.txt processed'
 # TODO: support custom Spark plugin version
 # TODO: Ensuire Timings v2 is disabled by default
 
-ENVVAR="$(env | grep -E '^(BUKKIT|SPIGOT|PAPER)_' | tr '\n' ',' | head -c -1)"
-
 generateConfig() {
   config_file="$1"
+  envvar_prefix="$2"
+  envvar="$(env | grep -E "^${envvar_prefix}" | tr '\n' ',' | head -c -1)"
   cue_file="${config_file%.yml}.cue"
+
+  echo "Generating configuration file \"${config_file}\"..."
 
   # Validate user-provided configuration property values
   cue vet "$cue_file" --concrete
 
   # Generate the configuration file
-  cue export "$cue_file" --inject "${ENVVAR}" --out yaml --outfile "$config_file"
+  cue export "$cue_file" --inject "${envvar}" --out yaml --outfile "$config_file"
 }
 
 # Bukkit
-generateConfig 'bukkit.yml'
-generateConfig 'config/commands.yml'
-generateConfig 'config/permissions.yml'
+generateConfig 'bukkit.yml' 'BUKKIT_GLOBAL_'
+generateConfig 'config/commands.yml' 'BUKKIT_COMMANDS_'
+generateConfig 'config/permissions.yml' 'BUKKIT_PERMISSIONS_'
 
 # Spigot
-generateConfig 'config/spigot.yml'
+generateConfig 'config/spigot.yml' 'SPIGOT_'
 
 # Paper
-generateConfig 'config/paper-global.yml'
-generateConfig 'config/paper-world-defaults.yml'
+generateConfig 'config/paper-global.yml' 'PAPER_GLOBAL_'
+generateConfig 'config/paper-world-defaults.yml' 'PAPER_WORLD_DEFAULTS_'
 
 # Clean-up CUE files after config generation
 find . -type f -name '*.cue' -exec rm -f {} +

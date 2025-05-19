@@ -15,7 +15,7 @@ To override a configuration property using an environment variable, apply the fo
 
 | 🔖 Prefix               | 📄 Mapped Configuration File |
 |:------------------------|:-----------------------------|
-| `BUKKIT_`               | `bukkit.yml`                 |
+| `BUKKIT_GLOBAL_`        | `bukkit.yml`                 |
 | `BUKKIT_COMMANDS_`      | `commands.yml`               |
 | `BUKKIT_PERMISSIONS_`   | `permissions.yml`            |
 | `BUKKIT_HELP_`          | `help.yml`                   |
@@ -23,7 +23,7 @@ To override a configuration property using an environment variable, apply the fo
 | `PAPER_GLOBAL_`         | `paper-global.yml`           |
 | `PAPER_WORLD_DEFAULTS_` | `paper-world-defaults.yml`   |
 
-🧪 **Example:** The `bukkit.yml` property `settings.allow-end` becomes `BUKKIT_SETTINGS_ALLOW_END`.
+🧪 **Example:** The `bukkit.yml` property `settings.allow-end` becomes `BUKKIT_GLOBAL_SETTINGS_ALLOW_END`.
 
 Environment variables are suitable for simple setups. Configuration files (once supported) will enable customization of properties that cannot be set via
 environment variables (see details below) and will also simplify managing more complex configurations.
