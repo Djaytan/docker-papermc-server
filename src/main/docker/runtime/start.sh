@@ -71,6 +71,8 @@ echo 'File eula.txt processed'
 # TODO: support ops.json
 # TODO: support whitelist.json
 # TODO: disable permissions.yml?
+# TODO: support custom Spark plugin version
+# TODO: Ensuire Timings v2 is disabled by default
 
 ENVVAR="$(env | grep -E '^(BUKKIT|SPIGOT|PAPER)_' | tr '\n' ',' | head -c -1)"
 
