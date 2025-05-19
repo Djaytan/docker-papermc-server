@@ -94,6 +94,9 @@ Certain properties are **intentionally not customizable**. These fall into two c
 * 🚫 **Disabled** – Unsupported by PaperMC or explicitly disabled to encourage use of modern Paper alternatives. These are often deprecated, removed, or
   overridden (e.g., `settings.plugin-profiling` in `bukkit.yml`).
 
+If you have a valid use case for customizing an unmodifiable property, please [open an issue](https://github.com/Djaytan/docker-papermc-server/issues) and
+describe your motivation or technical need. Your feedback helps guide future improvements.
+
 ### 🛠️ System-managed Properties
 
 | 🗂️ Category | ⚙️ Property Name            | 📌 Fixed Value           |
