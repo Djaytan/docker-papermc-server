@@ -11,7 +11,7 @@
 [![Docker Pulls](https://img.shields.io/docker/pulls/djaytan/papermc-server.svg?logo=docker)](https://hub.docker.com/r/djaytan/papermc-server/)
 [![Docker Stars](https://img.shields.io/docker/stars/djaytan/papermc-server.svg?logo=docker)](https://hub.docker.com/r/djaytan/papermc-server/)
 
-General-purpose, OCI-compliant PaperMC server with fine-grained customization capabilities.
+A general-purpose, OCI-compliant PaperMC server with streamlined and fine-grained customization options.
 
 Available in [Docker Hub](https://hub.docker.com/r/djaytan/papermc-server).
 
@@ -48,7 +48,7 @@ $ docker run -d -it \
 * 🏔️ **[Alpine](https://hub.docker.com/_/alpine)-based image**
 * 🪶 **Lightweight** – ~120 MB
 * 🧘 **Minimalist** – Includes only essential dependencies to reduce image size and surface area
-* 🧩 **Customizable** – Fine-grained configuration options for server properties **_(WIP)_**
+* 🧩 **Customizable** – Streamlined and fine-grained configuration options **_(WIP)_**
 * 👤 **UID-agnostic** – Supports running the server with a custom/arbitrary UID (typically required when running container
   in [OpenShift](https://www.redhat.com/fr/technologies/cloud-computing/openshift))
 * 🔐 **Rootless by default** – Runs as a non-root user when no custom UID is specified
