@@ -87,6 +87,7 @@ generateConfig() {
   cue vet "$cue_file" --concrete
 
   # Generate the configuration file
+  # TODO: prevent conflicts with user provided properties by shading properties in root one (e.g., bukkit:, spigot:, etc.)
   cue export "$cue_file" --inject "${envvar}" --out yaml --outfile "$config_file"
 }
 
