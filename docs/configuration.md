@@ -45,20 +45,26 @@ through override configuration files once that support is implemented.
 
 The following properties are currently unsupported:
 
-| 📄 Configuration File      | ⚙️ Property Name                                  |
-|:---------------------------|:--------------------------------------------------|
-| `paper-global.yml`         | `packet-limiter.overrides`                        |
-| `paper-world-defaults.yml` | `anticheat.anti-xray.hidden-blocks`               |
-| `paper-world-defaults.yml` | `anticheat.anti-xray.replacement-blocks`          |
-| `paper-world-defaults.yml` | `entities.behavior.door-breaking-difficulty`      |
-| `paper-world-defaults.yml` | `entities.spawning.filtered-entity-tag-nbt-paths` |
+| 📄 Configuration File      | ⚙️ Property Name                                                      |
+|:---------------------------|:----------------------------------------------------------------------|
+| `bukkit.yml`               | `worlds`                                                              |
+| `spigot.yml`               | `commands.replace-commands`                                           |
+| `spigot.yml`               | `commands.spam-exclusions`                                            |
+| `spigot.yml`               | `advancements.disabled`                                               |
+| `spigot.yml`               | `world-settings.<world>` (only `world-settings.default` is supported) |
+| `spigot.yml`               | `stats.forced-stats`                                                  |
+| `paper-global.yml`         | `packet-limiter.overrides`                                            |
+| `paper-world-defaults.yml` | `anticheat.anti-xray.hidden-blocks`                                   |
+| `paper-world-defaults.yml` | `anticheat.anti-xray.replacement-blocks`                              |
+| `paper-world-defaults.yml` | `entities.behavior.door-breaking-difficulty`                          |
+| `paper-world-defaults.yml` | `entities.spawning.filtered-entity-tag-nbt-paths`                     |
 
 ## 📊 Supported Properties
 
 |      🗂️ Category      | 🎯 Supported |
 |:----------------------:|:------------:|
 |         Bukkit         |  🟡 Partial  |
-|         Spigot         |  ❌ Not yet   |
+|         Spigot         | ✅ Supported  |
 |     Paper (Global)     | ✅ Supported  |
 | Paper (World Defaults) | ✅ Supported  |
 
@@ -103,11 +109,14 @@ describe your motivation or technical need. Your feedback helps guide future imp
 
 ### 🛠️ System-managed Properties
 
-| 🗂️ Category | ⚙️ Property Name            | 📌 Fixed Value           |
-|:-------------|:----------------------------|:-------------------------|
-| Bukkit       | `settings.permissions-file` | `config/permissions.yml` |
-| Bukkit       | `settings.world-container`  | `worlds`                 |
-| Paper        | `_version`                  | _Generated_              |
+| 🗂️ Category | ⚙️ Property Name             | 📌 Fixed Value           | 🔍 Notes                                                                                                                    |
+|:-------------|:-----------------------------|:-------------------------|-----------------------------------------------------------------------------------------------------------------------------|
+| Bukkit       | `settings.permissions-file`  | `config/permissions.yml` |                                                                                                                             |
+| Bukkit       | `settings.world-container`   | `worlds`                 |                                                                                                                             |
+| Spigot       | `config-version`             | _Generated_              | Metadata.                                                                                                                   |
+| Spigot       | `settings.restart-on-crash`  | `false`                  | Instead, only rely on [Docker restart policies](https://docs.docker.com/engine/containers/start-containers-automatically/). |
+| Spigot       | `settings.restart-on-script` | `disabled` (Dummy value) | Same as above.                                                                                                              |
+| Paper        | `_version`                   | _Generated_              | Metadata.                                                                                                                   |
 
 ### 🚫 Disabled Properties
 
