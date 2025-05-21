@@ -49,6 +49,7 @@ The following properties are currently unsupported:
 |:---------------------------|:----------------------------------------------------------------------|
 | `bukkit.yml`               | `worlds`                                                              |
 | `permissions.yml`          | _ALL_                                                                 |
+| `commands.yml`             | _ALL_                                                                 |
 | `help.yml`                 | _ALL_                                                                 |
 | `spigot.yml`               | `commands.replace-commands`                                           |
 | `spigot.yml`               | `commands.spam-exclusions`                                            |
