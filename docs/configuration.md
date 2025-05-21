@@ -48,6 +48,7 @@ The following properties are currently unsupported:
 | 📄 Configuration File      | ⚙️ Property Name                                                      |
 |:---------------------------|:----------------------------------------------------------------------|
 | `bukkit.yml`               | `worlds`                                                              |
+| `permissions.yml`          | _ALL_                                                                 |
 | `spigot.yml`               | `commands.replace-commands`                                           |
 | `spigot.yml`               | `commands.spam-exclusions`                                            |
 | `spigot.yml`               | `advancements.disabled`                                               |
