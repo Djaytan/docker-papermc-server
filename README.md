@@ -11,7 +11,7 @@
 [![Docker Pulls](https://img.shields.io/docker/pulls/djaytan/papermc-server.svg?logo=docker)](https://hub.docker.com/r/djaytan/papermc-server/)
 [![Docker Stars](https://img.shields.io/docker/stars/djaytan/papermc-server.svg?logo=docker)](https://hub.docker.com/r/djaytan/papermc-server/)
 
-General-purpose, OCI-compliant PaperMC server with fine-grained customization capabilities.
+A general-purpose, OCI-compliant PaperMC server with streamlined and fine-grained customization options.
 
 Available in [Docker Hub](https://hub.docker.com/r/djaytan/papermc-server).
 
@@ -37,13 +37,18 @@ $ docker run -d -it \
 > Setting the `EULA` environment variable to `true` implies that you have read and accepted the [Minecraft EULA](https://www.minecraft.net/en-us/eula).
 
 > [!TIP]
-> For production-grade deployments, it is recommended to follow [our dedicated guide](docs/production-grade-deployment.md).
+> You can customize the server using **environment variables**.
+> Learn more in the [configuration guide](docs/configuration.md).
+>
+> For production-grade deployments, we recommend following
+> [our dedicated setup guide](docs/production-grade-deployment.md).
 
-## ✨ Features
+## ✨ Highlights
 
 * 🏔️ **[Alpine](https://hub.docker.com/_/alpine)-based image**
 * 🪶 **Lightweight** – ~120 MB
 * 🧘 **Minimalist** – Includes only essential dependencies to reduce image size and surface area
+* 🧩 **Customizable** – Streamlined and fine-grained configuration options **_(WIP)_**
 * 👤 **UID-agnostic** – Supports running the server with a custom/arbitrary UID (typically required when running container
   in [OpenShift](https://www.redhat.com/fr/technologies/cloud-computing/openshift))
 * 🔐 **Rootless by default** – Runs as a non-root user when no custom UID is specified
@@ -52,7 +57,6 @@ $ docker run -d -it \
   * Custom-built using `jlink` to minimize size
   * Includes standard Java modules for broad plugin compatibility
 * 🩺 **Healthcheck integration** – Enhances resilience and high availability by continuously monitoring server health
-  with [`mc-monitor`](https://github.com/itzg/mc-monitor)
 * 🔍 **Frequent quality & security scans** – Powered by [SonarQube Cloud](https://sonarcloud.io/summary/new_code?id=Djaytan_docker-papermc-server)
   and [Docker Scout](https://docs.docker.com/scout/)
 * 🔄 **Scheduled auto-updates** – Bi-monthly rebuilds to incorporate upstream security patches and new PaperMC builds. Other updates are tracked and
