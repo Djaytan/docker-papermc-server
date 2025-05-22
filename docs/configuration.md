@@ -80,7 +80,7 @@ The following properties are currently unsupported:
 ### ✏️ Overridden Defaults
 
 To encourage the use of modern Paper features over legacy Bukkit and Spigot alternatives, some configuration properties are assigned **custom default values**.
-These defaults intentionally aligned with Bukkit's and Spigot's behavior to ensure a smoother transition.
+These defaults intentionally aligned with Bukkit's and Spigot's ones to ensure a smoother transition.
 
 Although they differ from the upstream Paper defaults, all values remain **fully user-configurable**, unless stated otherwise.
 
@@ -98,6 +98,13 @@ Although they differ from the upstream Paper defaults, all values remain **fully
 | `entities.spawning.ticks-per-spawn.underground_water_creature` | `1`               | Same as above.                                                                   |
 | `entities.spawning.ticks-per-spawn.water_ambient`              | `1`               | Same as above.                                                                   |
 | `entities.spawning.ticks-per-spawn.water_creature`             | `1`               | Same as above.                                                                   |
+| `entities.spawning.spawn-limits.ambient`                       | `15`              | `-1` now defers to [the Vanilla behavior](https://minecraft.wiki/w/Spawn_limit). |
+| `entities.spawning.spawn-limits.axolotls`                      | `5`               | Same as above.                                                                   |
+| `entities.spawning.spawn-limits.creature`                      | `10`              | Same as above.                                                                   |
+| `entities.spawning.spawn-limits.monster`                       | `70`              | Same as above.                                                                   |
+| `entities.spawning.spawn-limits.underground_water_creature`    | `5`               | Same as above.                                                                   |
+| `entities.spawning.spawn-limits.water_ambient`                 | `20`              | Same as above.                                                                   |
+| `entities.spawning.spawn-limits.water_creature`                | `5`               | Same as above.                                                                   |
 
 ## 🔒 Unmodifiable Properties
 
