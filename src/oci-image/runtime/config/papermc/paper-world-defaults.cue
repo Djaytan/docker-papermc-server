@@ -229,13 +229,13 @@ entities: {
 			}
 		}
 		"spawn-limits": {
-			ambient:                    *-1 | int @tag(PAPER_WORLD_DEFAULTS_ENTITIES_SPAWNING_SPAWN_LIMITS_AMBIENT, type=int)
-			axolotls:                   *-1 | int @tag(PAPER_WORLD_DEFAULTS_ENTITIES_SPAWNING_SPAWN_LIMITS_AXOLOTLS, type=int)
-			creature:                   *-1 | int @tag(PAPER_WORLD_DEFAULTS_ENTITIES_SPAWNING_SPAWN_LIMITS_CREATURE, type=int)
-			monster:                    *-1 | int @tag(PAPER_WORLD_DEFAULTS_ENTITIES_SPAWNING_SPAWN_LIMITS_MONSTER, type=int)
-			underground_water_creature: *-1 | int @tag(PAPER_WORLD_DEFAULTS_ENTITIES_SPAWNING_SPAWN_LIMITS_UNDERGROUND_WATER_CREATURE, type=int)
-			water_ambient:              *-1 | int @tag(PAPER_WORLD_DEFAULTS_ENTITIES_SPAWNING_SPAWN_LIMITS_WATER_AMBIENT, type=int)
-			water_creature:             *-1 | int @tag(PAPER_WORLD_DEFAULTS_ENTITIES_SPAWNING_SPAWN_LIMITS_WATER_CREATURE, type=int)
+			ambient:                    *15 | int @tag(PAPER_WORLD_DEFAULTS_ENTITIES_SPAWNING_SPAWN_LIMITS_AMBIENT, type=int)
+			axolotls:                   *5 | int  @tag(PAPER_WORLD_DEFAULTS_ENTITIES_SPAWNING_SPAWN_LIMITS_AXOLOTLS, type=int)
+			creature:                   *10 | int @tag(PAPER_WORLD_DEFAULTS_ENTITIES_SPAWNING_SPAWN_LIMITS_CREATURE, type=int)
+			monster:                    *70 | int @tag(PAPER_WORLD_DEFAULTS_ENTITIES_SPAWNING_SPAWN_LIMITS_MONSTER, type=int)
+			underground_water_creature: *5 | int  @tag(PAPER_WORLD_DEFAULTS_ENTITIES_SPAWNING_SPAWN_LIMITS_UNDERGROUND_WATER_CREATURE, type=int)
+			water_ambient:              *20 | int @tag(PAPER_WORLD_DEFAULTS_ENTITIES_SPAWNING_SPAWN_LIMITS_WATER_AMBIENT, type=int)
+			water_creature:             *5 | int  @tag(PAPER_WORLD_DEFAULTS_ENTITIES_SPAWNING_SPAWN_LIMITS_WATER_CREATURE, type=int)
 		}
 		"ticks-per-spawn": {
 			ambient:                    *1 | int   @tag(PAPER_WORLD_DEFAULTS_ENTITIES_SPAWNING_TICKS_PER_SPAWN_AMBIENT, type=int)

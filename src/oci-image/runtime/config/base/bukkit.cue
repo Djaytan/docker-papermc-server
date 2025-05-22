@@ -19,15 +19,15 @@ settings: {
 	"world-container":     "worlds"                  // System-managed property
 }
 
-// TODO: drop support in favor of Paper world config
+// These properties are overridden by PaperMC
 "spawn-limits": {
-	monsters:                     *70 | int @tag(BUKKIT_GLOBAL_SPAWN_LIMITS_MONSTERS, type=int)
-	animals:                      *10 | int @tag(BUKKIT_GLOBAL_SPAWN_LIMITS_ANIMALS, type=int)
-	"water-animals":              *5 | int  @tag(BUKKIT_GLOBAL_SPAWN_LIMITS_WATER_ANIMALS, type=int)
-	"water-ambient":              *20 | int @tag(BUKKIT_GLOBAL_SPAWN_LIMITS_WATER_AMBIENT, type=int)
-	"water-underground-creature": *5 | int  @tag(BUKKIT_GLOBAL_SPAWN_LIMITS_WATER_UNDERGROUND_CREATURE, type=int)
-	axolotls:                     *5 | int  @tag(BUKKIT_GLOBAL_SPAWN_LIMITS_AXOLOTLS, type=int)
-	ambient:                      *15 | int @tag(BUKKIT_GLOBAL_SPAWN_LIMITS_AMBIENT, type=int)
+	monsters:                     -1
+	animals:                      -1
+	"water-animals":              -1
+	"water-ambient":              -1
+	"water-underground-creature": -1
+	axolotls:                     -1
+	ambient:                      -1
 }
 
 // TODO: constrain properties (e.g. gc capped to 20 ticks by PaperMC) + document constraints
@@ -35,6 +35,7 @@ settings: {
 	"period-in-ticks": *600 | int @tag(BUKKIT_GLOBAL_CHUNK_GC_PERIOD_IN_TICKS, type=int)
 }
 
+// These properties are overridden by PaperMC
 "ticks-per": {
 	"animal-spawns":                     -1
 	"monster-spawns":                    -1
