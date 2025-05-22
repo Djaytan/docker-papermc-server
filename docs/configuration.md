@@ -134,6 +134,7 @@ describe your motivation or technical need. Your feedback helps guide future imp
 |:-------------|:----------------------------|:----------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Bukkit       | `settings.plugin-profiling` | Use the [Spark Profiler](https://docs.papermc.io/paper/profiling/#spark).                                                                                       |
 | Bukkit       | `aliases`                   | Define aliases in `commands.yml` instead.                                                                                                                       |
+| Bukkit       | `spawn-limits.*`            | Use Paper's [entities.spawning.spawn-limits](https://docs.papermc.io/paper/reference/world-configuration/#entities_spawning_spawn_limits_ambient) config.       |
 | Bukkit       | `ticks-per.*-spawns`        | Use Paper's [entities.spawning.ticks-per-spawn](https://docs.papermc.io/paper/reference/world-configuration/#entities_spawning_ticks_per_spawn_ambient) config. |
 | Bukkit       | `ticks-per.autosave`        | Use Paper's [chunks.auto-save-interval](https://docs.papermc.io/paper/reference/world-configuration/#chunks_auto_save_interval) config.                         |
 
