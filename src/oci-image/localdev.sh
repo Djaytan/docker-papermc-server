@@ -4,7 +4,7 @@ set -eu
 
 SCRIPT_DIR=$(cd "$(dirname "$0")" > /dev/null 2>&1 && pwd -P)
 
-sh "${SCRIPT_DIR}"/src/main/docker/build-dev.sh
+sh "${SCRIPT_DIR}"/build-dev.sh
 
 echo '🚀 Starting the localdev PaperMC server...'
 

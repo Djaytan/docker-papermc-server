@@ -2,6 +2,7 @@
 // Specifications: https://docs.papermc.io/paper/reference/bukkit-configuration/
 
 // TODO: make stronger types (e.g., specifying boundaries for integers, etc.)
+// TODO: try to define a kind of "var" field containing envvars, and try dynamic mapping?
 
 settings: {
 	"allow-end":           *true | bool              @tag(BUKKIT_GLOBAL_SETTINGS_ALLOW_END, type=bool)
