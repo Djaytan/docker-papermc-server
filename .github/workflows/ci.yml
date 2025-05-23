@@ -1,5 +1,9 @@
 name: CI
 
+# TODO: setup CUE linter for file formatting
+# TODO: setup YAML linter?
+# TODO: test CUE files
+
 on:
   workflow_dispatch: { }
   push:

@@ -72,12 +72,14 @@ echo '🧾 File eula.txt processed'
 # TODO: support whitelist.json
 # TODO: disable permissions.yml?
 # TODO: support custom Spark plugin version
-# TODO: Ensuire Timings v2 is disabled by default
+# TODO: Ensure Timings v2 is disabled by default
 # TODO: add tests verifying properties are well customized as expected
 
 generateConfig() {
   config_file="$1"
   envvar_prefix="$2"
+  expression="$3"
+
   envvar="$(env | grep -E "^${envvar_prefix}" | tr '\n' ',' | head -c -1)"
   cue_file="${config_file%.yml}.cue"
 
@@ -87,21 +89,20 @@ generateConfig() {
   cue vet "$cue_file" --concrete
 
   # Generate the configuration file
-  # TODO: prevent conflicts with user provided properties by shading properties in root one (e.g., bukkit:, spigot:, etc.)
-  cue export "$cue_file" --inject "${envvar}" --out yaml --outfile "$config_file"
+  cue export "$cue_file" --inject "${envvar}" -e "${expression}" --out yaml --outfile "$config_file"
 }
 
 # Bukkit
-generateConfig 'bukkit.yml' 'BUKKIT_GLOBAL_'
-generateConfig 'config/commands.yml' 'BUKKIT_COMMANDS_'
-generateConfig 'config/permissions.yml' 'BUKKIT_PERMISSIONS_'
+generateConfig 'bukkit.yml' 'BUKKIT_GLOBAL_' 'bukkit'
+generateConfig 'config/commands.yml' 'BUKKIT_COMMANDS_' 'bukkit.commands'
+generateConfig 'config/permissions.yml' 'BUKKIT_PERMISSIONS_' 'bukkit.permissions'
 
 # Spigot
-generateConfig 'config/spigot.yml' 'SPIGOT_'
+generateConfig 'config/spigot.yml' 'SPIGOT_' 'spigot'
 
 # Paper
-generateConfig 'config/paper-global.yml' 'PAPER_GLOBAL_'
-generateConfig 'config/paper-world-defaults.yml' 'PAPER_WORLD_DEFAULTS_'
+generateConfig 'config/paper-global.yml' 'PAPER_GLOBAL_' 'paper'
+generateConfig 'config/paper-world-defaults.yml' 'PAPER_WORLD_DEFAULTS_' 'paper["worlds-defaults"]'
 
 # Clean-up CUE files after config generation
 find . -type f -name '*.cue' -exec rm -f {} +
