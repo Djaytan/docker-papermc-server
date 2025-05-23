@@ -88,23 +88,24 @@ Although they differ from the upstream Paper defaults, all values remain **fully
 
 > 🔒 Properties that are explicitly disabled or restricted are listed in the next section.
 
-| ⚙️ Paper Property Name                                         | 🎛️ Default Value | 🔍 Notes                                                                         |
-|:---------------------------------------------------------------|:------------------|----------------------------------------------------------------------------------|
-| `chunks.auto-save-interval`                                    | `6000`            | `"default"` is invalid; use `-1` to disable auto-save entirely.                  |
-| `entities.spawning.ticks-per-spawn.ambient`                    | `1`               | `-1` now defers to [the Vanilla behavior](https://minecraft.wiki/w/Spawn_limit). |
-| `entities.spawning.ticks-per-spawn.axolotls`                   | `1`               | Same as above.                                                                   |
-| `entities.spawning.ticks-per-spawn.creature`                   | `400`             | Same as above.                                                                   |
-| `entities.spawning.ticks-per-spawn.monster`                    | `1`               | Same as above.                                                                   |
-| `entities.spawning.ticks-per-spawn.underground_water_creature` | `1`               | Same as above.                                                                   |
-| `entities.spawning.ticks-per-spawn.water_ambient`              | `1`               | Same as above.                                                                   |
-| `entities.spawning.ticks-per-spawn.water_creature`             | `1`               | Same as above.                                                                   |
-| `entities.spawning.spawn-limits.ambient`                       | `15`              | `-1` now defers to [the Vanilla behavior](https://minecraft.wiki/w/Spawn_limit). |
-| `entities.spawning.spawn-limits.axolotls`                      | `5`               | Same as above.                                                                   |
-| `entities.spawning.spawn-limits.creature`                      | `10`              | Same as above.                                                                   |
-| `entities.spawning.spawn-limits.monster`                       | `70`              | Same as above.                                                                   |
-| `entities.spawning.spawn-limits.underground_water_creature`    | `5`               | Same as above.                                                                   |
-| `entities.spawning.spawn-limits.water_ambient`                 | `20`              | Same as above.                                                                   |
-| `entities.spawning.spawn-limits.water_creature`                | `5`               | Same as above.                                                                   |
+| 📄 Configuration File      | ⚙️ Property Name                                               | 🎛️ Default Value | 🔍 Notes                                                                                                                                  |
+|----------------------------|:---------------------------------------------------------------|:------------------|-------------------------------------------------------------------------------------------------------------------------------------------|
+| `commands.yml`             | `aliases`                                                      | _Empty array_     | Removing example alias. Example and syntax are documented [here](https://docs.papermc.io/paper/reference/bukkit-commands-configuration/). |
+| `paper-world-defaults.yml` | `chunks.auto-save-interval`                                    | `6000`            | `"default"` is invalid; use `-1` to disable auto-save entirely.                                                                           |
+| `paper-world-defaults.yml` | `entities.spawning.ticks-per-spawn.ambient`                    | `1`               | `-1` now defers to [the Vanilla behavior](https://minecraft.wiki/w/Spawn_limit).                                                          |
+| `paper-world-defaults.yml` | `entities.spawning.ticks-per-spawn.axolotls`                   | `1`               | Same as above.                                                                                                                            |
+| `paper-world-defaults.yml` | `entities.spawning.ticks-per-spawn.creature`                   | `400`             | Same as above.                                                                                                                            |
+| `paper-world-defaults.yml` | `entities.spawning.ticks-per-spawn.monster`                    | `1`               | Same as above.                                                                                                                            |
+| `paper-world-defaults.yml` | `entities.spawning.ticks-per-spawn.underground_water_creature` | `1`               | Same as above.                                                                                                                            |
+| `paper-world-defaults.yml` | `entities.spawning.ticks-per-spawn.water_ambient`              | `1`               | Same as above.                                                                                                                            |
+| `paper-world-defaults.yml` | `entities.spawning.ticks-per-spawn.water_creature`             | `1`               | Same as above.                                                                                                                            |
+| `paper-world-defaults.yml` | `entities.spawning.spawn-limits.ambient`                       | `15`              | `-1` now defers to [the Vanilla behavior](https://minecraft.wiki/w/Spawn_limit).                                                          |
+| `paper-world-defaults.yml` | `entities.spawning.spawn-limits.axolotls`                      | `5`               | Same as above.                                                                                                                            |
+| `paper-world-defaults.yml` | `entities.spawning.spawn-limits.creature`                      | `10`              | Same as above.                                                                                                                            |
+| `paper-world-defaults.yml` | `entities.spawning.spawn-limits.monster`                       | `70`              | Same as above.                                                                                                                            |
+| `paper-world-defaults.yml` | `entities.spawning.spawn-limits.underground_water_creature`    | `5`               | Same as above.                                                                                                                            |
+| `paper-world-defaults.yml` | `entities.spawning.spawn-limits.water_ambient`                 | `20`              | Same as above.                                                                                                                            |
+| `paper-world-defaults.yml` | `entities.spawning.spawn-limits.water_creature`                | `5`               | Same as above.                                                                                                                            |
 
 ## 🔒 Unmodifiable Properties
 
@@ -140,5 +141,5 @@ describe your motivation or technical need. Your feedback helps guide future imp
 
 ## ❌ Unsupported Properties
 
-Paper world-specific override properties (`<world_folder>/paper-world.yml`) are not supported, consistent with all other world-specific data. These data are
+Paper world-specific override properties (`<world_folder>/paper-world.yml`) are not supported, consistent with most other world-specific data. These data are
 fully under your control, so you are responsible for managing them.
