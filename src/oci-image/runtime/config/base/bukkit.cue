@@ -1,7 +1,6 @@
 // This is the main configuration file for Bukkit.
 // Specifications: https://docs.papermc.io/paper/reference/bukkit-configuration/
 
-// TODO: make stronger types (e.g., specifying boundaries for integers, etc.)
 // TODO: try to define a kind of "var" field containing envvars, and try dynamic mapping?
 
 settings: {
@@ -30,7 +29,6 @@ settings: {
 	ambient:                      -1
 }
 
-// TODO: constrain properties (e.g. gc capped to 20 ticks by PaperMC) + document constraints
 "chunk-gc": {
 	"period-in-ticks": *600 | int @tag(BUKKIT_GLOBAL_CHUNK_GC_PERIOD_IN_TICKS, type=int)
 }
