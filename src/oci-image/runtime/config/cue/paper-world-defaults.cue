@@ -140,11 +140,11 @@ paper: {
 						"per-player": *false | bool @tag(PAPER_WORLD_DEFAULTS_ENTITIES_BEHAVIOR_PILLAGER_PATROLS_START_PER_PLAYER, type=bool)
 					}
 				}
-				"player-insomnia-start-ticks":      *72000 | int                   @tag(PAPER_WORLD_DEFAULTS_ENTITIES_BEHAVIOR_PLAYER_INSOMNIA_START_TICKS, type=int)
-				"should-remove-dragon":             *false | bool                  @tag(PAPER_WORLD_DEFAULTS_ENTITIES_BEHAVIOR_SHOULD_REMOVE_DRAGON, type=bool)
-				"spawner-nerfed-mobs-should-jump":  *false | bool                  @tag(PAPER_WORLD_DEFAULTS_ENTITIES_BEHAVIOR_SPAWNER_NERFED_MOBS_SHOULD_JUMP, type=bool)
-				"zombie-villager-infection-chance": *"default" | "default" | float @tag(PAPER_WORLD_DEFAULTS_ENTITIES_BEHAVIOR_ZOMBIE_VILLAGER_INFECTION_CHANCE, type=number)
-				"zombies-target-turtle-eggs":       *true | bool                   @tag(PAPER_WORLD_DEFAULTS_ENTITIES_BEHAVIOR_ZOMBIES_TARGET_TURTLE_EGGS, type=bool)
+				"player-insomnia-start-ticks":      *72000 | int       @tag(PAPER_WORLD_DEFAULTS_ENTITIES_BEHAVIOR_PLAYER_INSOMNIA_START_TICKS, type=int)
+				"should-remove-dragon":             *false | bool      @tag(PAPER_WORLD_DEFAULTS_ENTITIES_BEHAVIOR_SHOULD_REMOVE_DRAGON, type=bool)
+				"spawner-nerfed-mobs-should-jump":  *false | bool      @tag(PAPER_WORLD_DEFAULTS_ENTITIES_BEHAVIOR_SPAWNER_NERFED_MOBS_SHOULD_JUMP, type=bool)
+				"zombie-villager-infection-chance": *"default" | float @tag(PAPER_WORLD_DEFAULTS_ENTITIES_BEHAVIOR_ZOMBIE_VILLAGER_INFECTION_CHANCE, type=number)
+				"zombies-target-turtle-eggs":       *true | bool       @tag(PAPER_WORLD_DEFAULTS_ENTITIES_BEHAVIOR_ZOMBIES_TARGET_TURTLE_EGGS, type=bool)
 			}
 			"entities-target-with-follow-range": *false | bool @tag(PAPER_WORLD_DEFAULTS_ENTITIES_ENTITIES_TARGET_WITH_FOLLOW_RANGE, type=bool)
 			markers: {
@@ -159,8 +159,8 @@ paper: {
 				"undead-immune-to-certain-effects": *true | bool @tag(PAPER_WORLD_DEFAULTS_ENTITIES_MOB_EFFECTS_UNDEAD_IMMUNE_TO_CERTAIN_EFFECTS, type=bool)
 			}
 			sniffer: {
-				"boosted-hatch-time": *"default" | "default" | int @tag(PAPER_WORLD_DEFAULTS_ENTITIES_SNIFFER_BOOSTED_HATCH_TIME, type=int)
-				"hatch-time":         *"default" | "default" | int @tag(PAPER_WORLD_DEFAULTS_ENTITIES_SNIFFER_HATCH_TIME, type=int)
+				"boosted-hatch-time": *"default" | int @tag(PAPER_WORLD_DEFAULTS_ENTITIES_SNIFFER_BOOSTED_HATCH_TIME, type=int)
+				"hatch-time":         *"default" | int @tag(PAPER_WORLD_DEFAULTS_ENTITIES_SNIFFER_HATCH_TIME, type=int)
 			}
 			spawning: {
 				"all-chunks-are-slime-chunks": *false | bool @tag(PAPER_WORLD_DEFAULTS_ENTITIES_SPAWNING_ALL_CHUNKS_ARE_SLIME_CHUNKS, type=bool)
@@ -170,8 +170,8 @@ paper: {
 						cobblestone: *300 | int @tag(PAPER_WORLD_DEFAULTS_ENTITIES_SPAWNING_ALT_ITEM_DESPAWN_RATE_ITEMS_COBBLESTONE, type=int)
 					}
 				}
-				"count-all-mobs-for-spawning": *false | bool                @tag(PAPER_WORLD_DEFAULTS_ENTITIES_SPAWNING_COUNT_ALL_MOBS_FOR_SPAWNING, type=bool)
-				"creative-arrow-despawn-rate": *"default" | "default" | int @tag(PAPER_WORLD_DEFAULTS_ENTITIES_SPAWNING_CREATIVE_ARROW_DESPAWN_RATE, type=int)
+				"count-all-mobs-for-spawning": *false | bool    @tag(PAPER_WORLD_DEFAULTS_ENTITIES_SPAWNING_COUNT_ALL_MOBS_FOR_SPAWNING, type=bool)
+				"creative-arrow-despawn-rate": *"default" | int @tag(PAPER_WORLD_DEFAULTS_ENTITIES_SPAWNING_CREATIVE_ARROW_DESPAWN_RATE, type=int)
 				"despawn-ranges": {
 					ambient: {
 						hard: *128 | int @tag(PAPER_WORLD_DEFAULTS_ENTITIES_SPAWNING_DESPAWN_RANGES_AMBIENT_HARD, type=int)
@@ -214,12 +214,12 @@ paper: {
 				"filter-bad-tile-entity-nbt-from-falling-blocks": *true | bool @tag(PAPER_WORLD_DEFAULTS_ENTITIES_SPAWNING_FILTER_BAD_TILE_ENTITY_NBT_FROM_FALLING_BLOCKS, type=bool)
 				// No mapping to any environment variable for this field since unsupported due to its complexity.
 				"filtered-entity-tag-nbt-paths": *["Pos", "Motion", "SleepingX", "SleepingY", "SleepingZ"] | [...string]
-				"iron-golems-can-spawn-in-air":        *false | bool                @tag(PAPER_WORLD_DEFAULTS_ENTITIES_SPAWNING_IRON_GOLEMS_CAN_SPAWN_IN_AIR, type=bool)
-				"monster-spawn-max-light-level":       *"default" | "default" | int @tag(PAPER_WORLD_DEFAULTS_ENTITIES_SPAWNING_MONSTER_SPAWN_MAX_LIGHT_LEVEL, type=int)
-				"non-player-arrow-despawn-rate":       *"default" | "default" | int @tag(PAPER_WORLD_DEFAULTS_ENTITIES_SPAWNING_NON_PLAYER_ARROW_DESPAWN_RATE, type=int)
-				"per-player-mob-spawns":               *true | bool                 @tag(PAPER_WORLD_DEFAULTS_ENTITIES_SPAWNING_PER_PLAYER_MOB_SPAWNS, type=bool)
-				"scan-for-legacy-ender-dragon":        *true | bool                 @tag(PAPER_WORLD_DEFAULTS_ENTITIES_SPAWNING_SCAN_FOR_LEGACY_ENDER_DRAGON, type=bool)
-				"skeleton-horse-thunder-spawn-chance": *0.01 | float                @tag(PAPER_WORLD_DEFAULTS_ENTITIES_SPAWNING_SKELETON_HORSE_THUNDER_SPAWN_CHANCE, type=number)
+				"iron-golems-can-spawn-in-air":        *false | bool    @tag(PAPER_WORLD_DEFAULTS_ENTITIES_SPAWNING_IRON_GOLEMS_CAN_SPAWN_IN_AIR, type=bool)
+				"monster-spawn-max-light-level":       *"default" | int @tag(PAPER_WORLD_DEFAULTS_ENTITIES_SPAWNING_MONSTER_SPAWN_MAX_LIGHT_LEVEL, type=int)
+				"non-player-arrow-despawn-rate":       *"default" | int @tag(PAPER_WORLD_DEFAULTS_ENTITIES_SPAWNING_NON_PLAYER_ARROW_DESPAWN_RATE, type=int)
+				"per-player-mob-spawns":               *true | bool     @tag(PAPER_WORLD_DEFAULTS_ENTITIES_SPAWNING_PER_PLAYER_MOB_SPAWNS, type=bool)
+				"scan-for-legacy-ender-dragon":        *true | bool     @tag(PAPER_WORLD_DEFAULTS_ENTITIES_SPAWNING_SCAN_FOR_LEGACY_ENDER_DRAGON, type=bool)
+				"skeleton-horse-thunder-spawn-chance": *0.01 | float    @tag(PAPER_WORLD_DEFAULTS_ENTITIES_SPAWNING_SKELETON_HORSE_THUNDER_SPAWN_CHANCE, type=number)
 				"slime-spawn-height": {
 					"slime-chunk": {
 						maximum: *40.0 | float @tag(PAPER_WORLD_DEFAULTS_ENTITIES_SPAWNING_SLIME_SPAWN_HEIGHT_SLIME_CHUNK_MAXIMUM, type=number)
@@ -255,18 +255,18 @@ paper: {
 					"spawn-minute-length":            *1200 | int  @tag(PAPER_WORLD_DEFAULTS_ENTITIES_SPAWNING_WANDERING_TRADER_SPAWN_MINUTE_LENGTH, type=int)
 				}
 				"wateranimal-spawn-height": {
-					maximum: *"default" | "default" | int @tag(PAPER_WORLD_DEFAULTS_ENTITIES_SPAWNING_WATERANIMAL_SPAWN_HEIGHT_MAXIMUM, type=int)
-					minimum: *"default" | "default" | int @tag(PAPER_WORLD_DEFAULTS_ENTITIES_SPAWNING_WATERANIMAL_SPAWN_HEIGHT_MINIMUM, type=int)
+					maximum: *"default" | int @tag(PAPER_WORLD_DEFAULTS_ENTITIES_SPAWNING_WATERANIMAL_SPAWN_HEIGHT_MAXIMUM, type=int)
+					minimum: *"default" | int @tag(PAPER_WORLD_DEFAULTS_ENTITIES_SPAWNING_WATERANIMAL_SPAWN_HEIGHT_MINIMUM, type=int)
 				}
 			}
 			"tracking-range-y": {
-				animal:  *"default" | "default" | int @tag(PAPER_WORLD_DEFAULTS_ENTITIES_TRACKING_RANGE_Y_ANIMAL, type=int)
-				display: *"default" | "default" | int @tag(PAPER_WORLD_DEFAULTS_ENTITIES_TRACKING_RANGE_Y_DISPLAY, type=int)
-				enabled: *false | bool                @tag(PAPER_WORLD_DEFAULTS_ENTITIES_TRACKING_RANGE_Y_ENABLED, type=bool)
-				misc:    *"default" | "default" | int @tag(PAPER_WORLD_DEFAULTS_ENTITIES_TRACKING_RANGE_Y_MISC, type=int)
-				monster: *"default" | "default" | int @tag(PAPER_WORLD_DEFAULTS_ENTITIES_TRACKING_RANGE_Y_MONSTER, type=int)
-				other:   *"default" | "default" | int @tag(PAPER_WORLD_DEFAULTS_ENTITIES_TRACKING_RANGE_Y_OTHER, type=int)
-				player:  *"default" | "default" | int @tag(PAPER_WORLD_DEFAULTS_ENTITIES_TRACKING_RANGE_Y_PLAYER, type=int)
+				animal:  *"default" | int @tag(PAPER_WORLD_DEFAULTS_ENTITIES_TRACKING_RANGE_Y_ANIMAL, type=int)
+				display: *"default" | int @tag(PAPER_WORLD_DEFAULTS_ENTITIES_TRACKING_RANGE_Y_DISPLAY, type=int)
+				enabled: *false | bool    @tag(PAPER_WORLD_DEFAULTS_ENTITIES_TRACKING_RANGE_Y_ENABLED, type=bool)
+				misc:    *"default" | int @tag(PAPER_WORLD_DEFAULTS_ENTITIES_TRACKING_RANGE_Y_MISC, type=int)
+				monster: *"default" | int @tag(PAPER_WORLD_DEFAULTS_ENTITIES_TRACKING_RANGE_Y_MONSTER, type=int)
+				other:   *"default" | int @tag(PAPER_WORLD_DEFAULTS_ENTITIES_TRACKING_RANGE_Y_OTHER, type=int)
+				player:  *"default" | int @tag(PAPER_WORLD_DEFAULTS_ENTITIES_TRACKING_RANGE_Y_PLAYER, type=int)
 			}
 		}
 
@@ -283,19 +283,19 @@ paper: {
 				}
 				enabled: *true | bool @tag(PAPER_WORLD_DEFAULTS_ENVIRONMENT_FROSTED_ICE_ENABLED, type=bool)
 			}
-			"generate-flat-bedrock":                   *false | bool                  @tag(PAPER_WORLD_DEFAULTS_ENVIRONMENT_GENERATE_FLAT_BEDROCK, type=bool)
-			"max-block-ticks":                         *65536 | int                   @tag(PAPER_WORLD_DEFAULTS_ENVIRONMENT_MAX_BLOCK_TICKS, type=int)
-			"max-fluid-ticks":                         *65536 | int                   @tag(PAPER_WORLD_DEFAULTS_ENVIRONMENT_MAX_FLUID_TICKS, type=int)
-			"nether-ceiling-void-damage-height":       *"disabled" | "disabled" | int @tag(PAPER_WORLD_DEFAULTS_ENVIRONMENT_NETHER_CEILING_VOID_DAMAGE_HEIGHT, type=int)
-			"optimize-explosions":                     *false | bool                  @tag(PAPER_WORLD_DEFAULTS_ENVIRONMENT_OPTIMIZE_EXPLOSIONS, type=bool)
-			"portal-create-radius":                    *16 | int                      @tag(PAPER_WORLD_DEFAULTS_ENVIRONMENT_PORTAL_CREATE_RADIUS, type=int)
-			"portal-search-radius":                    *128 | int                     @tag(PAPER_WORLD_DEFAULTS_ENVIRONMENT_PORTAL_SEARCH_RADIUS, type=int)
-			"portal-search-vanilla-dimension-scaling": *true | bool                   @tag(PAPER_WORLD_DEFAULTS_ENVIRONMENT_PORTAL_SEARCH_VANILLA_DIMENSION_SCALING, type=bool)
+			"generate-flat-bedrock":                   *false | bool     @tag(PAPER_WORLD_DEFAULTS_ENVIRONMENT_GENERATE_FLAT_BEDROCK, type=bool)
+			"max-block-ticks":                         *65536 | int      @tag(PAPER_WORLD_DEFAULTS_ENVIRONMENT_MAX_BLOCK_TICKS, type=int)
+			"max-fluid-ticks":                         *65536 | int      @tag(PAPER_WORLD_DEFAULTS_ENVIRONMENT_MAX_FLUID_TICKS, type=int)
+			"nether-ceiling-void-damage-height":       *"disabled" | int @tag(PAPER_WORLD_DEFAULTS_ENVIRONMENT_NETHER_CEILING_VOID_DAMAGE_HEIGHT, type=int)
+			"optimize-explosions":                     *false | bool     @tag(PAPER_WORLD_DEFAULTS_ENVIRONMENT_OPTIMIZE_EXPLOSIONS, type=bool)
+			"portal-create-radius":                    *16 | int         @tag(PAPER_WORLD_DEFAULTS_ENVIRONMENT_PORTAL_CREATE_RADIUS, type=int)
+			"portal-search-radius":                    *128 | int        @tag(PAPER_WORLD_DEFAULTS_ENVIRONMENT_PORTAL_SEARCH_RADIUS, type=int)
+			"portal-search-vanilla-dimension-scaling": *true | bool      @tag(PAPER_WORLD_DEFAULTS_ENVIRONMENT_PORTAL_SEARCH_VANILLA_DIMENSION_SCALING, type=bool)
 			"treasure-maps": {
 				enabled: *true | bool @tag(PAPER_WORLD_DEFAULTS_ENVIRONMENT_TREASURE_MAPS_ENABLED, type=bool)
 				"find-already-discovered": {
-					"loot-tables":    *"default" | "default" | bool @tag(PAPER_WORLD_DEFAULTS_ENVIRONMENT_TREASURE_MAPS_FIND_ALREADY_DISCOVERED_LOOT_TABLES, type=bool)
-					"villager-trade": *false | bool                 @tag(PAPER_WORLD_DEFAULTS_ENVIRONMENT_TREASURE_MAPS_FIND_ALREADY_DISCOVERED_VILLAGER_TRADE, type=bool)
+					"loot-tables":    *"default" | bool @tag(PAPER_WORLD_DEFAULTS_ENVIRONMENT_TREASURE_MAPS_FIND_ALREADY_DISCOVERED_LOOT_TABLES, type=bool)
+					"villager-trade": *false | bool     @tag(PAPER_WORLD_DEFAULTS_ENVIRONMENT_TREASURE_MAPS_FIND_ALREADY_DISCOVERED_VILLAGER_TRADE, type=bool)
 				}
 			}
 			"water-over-lava-flow-speed": *5 | int @tag(PAPER_WORLD_DEFAULTS_ENVIRONMENT_WATER_OVER_LAVA_FLOW_SPEED, type=int)
@@ -311,13 +311,13 @@ paper: {
 		}
 
 		fixes: {
-			"disable-unloaded-chunk-enderpearl-exploit": *true | bool                   @tag(PAPER_WORLD_DEFAULTS_FIXES_DISABLE_UNLOADED_CHUNK_ENDERPEARL_EXPLOIT, type=bool)
-			"falling-block-height-nerf":                 *"disabled" | "disabled" | int @tag(PAPER_WORLD_DEFAULTS_FIXES_FALLING_BLOCK_HEIGHT_NERF, type=int)
-			"fix-items-merging-through-walls":           *false | bool                  @tag(PAPER_WORLD_DEFAULTS_FIXES_FIX_ITEMS_MERGING_THROUGH_WALLS, type=bool)
-			"prevent-tnt-from-moving-in-water":          *false | bool                  @tag(PAPER_WORLD_DEFAULTS_FIXES_PREVENT_TNT_FROM_MOVING_IN_WATER, type=bool)
-			"remove-corrupt-tile-entities":              *false | bool                  @tag(PAPER_WORLD_DEFAULTS_FIXES_REMOVE_CORRUPT_TILE_ENTITIES, type=bool)
-			"split-overstacked-loot":                    *true | bool                   @tag(PAPER_WORLD_DEFAULTS_FIXES_SPLIT_OVERSTACKED_LOOT, type=bool)
-			"tnt-entity-height-nerf":                    *"disabled" | "disabled" | int @tag(PAPER_WORLD_DEFAULTS_FIXES_TNT_ENTITY_HEIGHT_NERF, type=int)
+			"disable-unloaded-chunk-enderpearl-exploit": *true | bool      @tag(PAPER_WORLD_DEFAULTS_FIXES_DISABLE_UNLOADED_CHUNK_ENDERPEARL_EXPLOIT, type=bool)
+			"falling-block-height-nerf":                 *"disabled" | int @tag(PAPER_WORLD_DEFAULTS_FIXES_FALLING_BLOCK_HEIGHT_NERF, type=int)
+			"fix-items-merging-through-walls":           *false | bool     @tag(PAPER_WORLD_DEFAULTS_FIXES_FIX_ITEMS_MERGING_THROUGH_WALLS, type=bool)
+			"prevent-tnt-from-moving-in-water":          *false | bool     @tag(PAPER_WORLD_DEFAULTS_FIXES_PREVENT_TNT_FROM_MOVING_IN_WATER, type=bool)
+			"remove-corrupt-tile-entities":              *false | bool     @tag(PAPER_WORLD_DEFAULTS_FIXES_REMOVE_CORRUPT_TILE_ENTITIES, type=bool)
+			"split-overstacked-loot":                    *true | bool      @tag(PAPER_WORLD_DEFAULTS_FIXES_SPLIT_OVERSTACKED_LOOT, type=bool)
+			"tnt-entity-height-nerf":                    *"disabled" | int @tag(PAPER_WORLD_DEFAULTS_FIXES_TNT_ENTITY_HEIGHT_NERF, type=int)
 		}
 
 		hopper: {
