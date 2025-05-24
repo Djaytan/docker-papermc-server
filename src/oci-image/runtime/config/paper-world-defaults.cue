@@ -13,6 +13,7 @@ package paper
 
 paper: {
 	"worlds-defaults": {
+		// TODO: support version 31
 		"_version": 30 // Not customizable - Internal value only
 
 		"allow-leashing-undead-horse": *false | bool @tag(PAPER_WORLD_DEFAULTS_ALLOW_LEASHING_UNDEAD_HORSE, type=bool)
