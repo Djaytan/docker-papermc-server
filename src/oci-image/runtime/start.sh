@@ -5,7 +5,9 @@ set -eu
 SCRIPT_DIR=$(cd "$(dirname "$0")" > /dev/null 2>&1 && pwd -P)
 
 ## Directories
+ROOT_DIR="${SCRIPT_DIR}"
 CONFIG_DIR="${SCRIPT_DIR}/config"
+CUE_DIR="${SCRIPT_DIR}/cue"
 
 ## JVM arguments
 # server.properties: https://minecraft.wiki/w/Server.properties
@@ -59,7 +61,7 @@ SERVER_ARGS="
 "
 # TODO: document internal directory layout (particularly important since non-standard)
 
-cd "${SCRIPT_DIR}"
+cd "${ROOT_DIR}"
 
 echo '⚙️ Preparing PaperMC server configuration files...'
 
@@ -75,41 +77,29 @@ echo '🧾 File eula.txt processed'
 # TODO: Ensure Timings v2 is disabled by default
 # TODO: add tests verifying properties are well customized as expected
 
-generateConfig() {
-  config_name="$1"
-  target_path="$2"
-  envvar_prefix="$3"
-  expression="$4"
+mkdir "${CONFIG_DIR}"
 
-  envvar="$(env | grep -E "^${envvar_prefix}" | tr '\n' ',' | head -c -1)"
-  cue_file="cue/${config_name}.cue"
-  yaml_file="${config_name}.yml"
+cd "${CUE_DIR}"
 
-  echo "📝 Generating configuration file \"${yaml_file}\"..."
+# Validate configuration values
+cue vet --concrete
 
-  # Validate user-provided configuration property values
-  cue vet "$cue_file" --concrete
+# Generate the configuration files
+ENVVAR="$(env | grep -E '^(BUKKIT_|SPIGOT_|PAPER_)' | tr '\n' ',' | head -c -1)"
 
-  # Generate the configuration file
-  cue export "$cue_file" --inject "${envvar}" -e "${expression}" --out yaml --outfile "${target_path}/${yaml_file}"
-}
-
-mkdir config/
-
-# Bukkit
-generateConfig 'bukkit' '.' 'BUKKIT_GLOBAL_' 'bukkit'
-generateConfig 'commands' 'config' 'BUKKIT_COMMANDS_' 'bukkit.commands'
-generateConfig 'permissions' 'config' 'BUKKIT_PERMISSIONS_' 'bukkit.permissions'
-
-# Spigot
-generateConfig 'spigot' 'config' 'SPIGOT_' 'spigot'
-
-# Paper
-generateConfig 'paper-global' 'config' 'PAPER_GLOBAL_' 'paper'
-generateConfig 'paper-world-defaults' 'config' 'PAPER_WORLD_DEFAULTS_' 'paper["worlds-defaults"]'
+echo "📝 Generating configuration files..."
+# TODO: fix bug where permissions and commands properties are included in bukkit.yml
+cue export --inject "${ENVVAR}" -e 'bukkit' --out yaml --outfile "${ROOT_DIR}/bukkit.yml"
+cue export --inject "${ENVVAR}" -e 'bukkit.commands' --out yaml --outfile "${CONFIG_DIR}/commands.yml"
+cue export --inject "${ENVVAR}" -e 'bukkit.permissions' --out yaml --outfile "${CONFIG_DIR}/permissions.yml"
+cue export --inject "${ENVVAR}" -e 'spigot' --out yaml --outfile "${CONFIG_DIR}/spigot.yml"
+cue export --inject "${ENVVAR}" -e 'paper' --out yaml --outfile "${CONFIG_DIR}/paper-global.yml"
+cue export --inject "${ENVVAR}" -e 'paper["worlds-defaults"]' --out yaml --outfile "${CONFIG_DIR}/paper-world-defaults.yml"
 
 # Clean-up CUE files after config generation
-rm -rf cue/
+rm -rf "${CUE_DIR}"
+
+cd "${ROOT_DIR}"
 
 echo 'PaperMC server ready to start!'
 

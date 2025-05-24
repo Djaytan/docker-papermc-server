@@ -9,6 +9,8 @@
 // Any new fields added in future PaperMC versions can be safely added without breaking the existing configuration.
 // CUE structs are open by default. More info: https://cuelang.org/docs/tour/types/closed/
 
+package paper
+
 paper: {
 	"worlds-defaults": {
 		"_version": 30 // Not customizable - Internal value only

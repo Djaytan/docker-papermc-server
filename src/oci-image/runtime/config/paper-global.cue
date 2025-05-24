@@ -8,6 +8,8 @@
 
 // TODO: ellipsis are unecessary
 
+package paper
+
 paper: {
 	"_version": 29 // Not customizable - Internal value only
 
