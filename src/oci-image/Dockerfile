@@ -117,18 +117,18 @@ RUN apk add --no-cache gettext libudev-zero
 # Ideally, configs would be read-only to enforce immutability, but this is a trade-off for cleaner logs.
 COPY --chmod=770 runtime/config/eula.txt ./
 COPY --chmod=770 runtime/config/server.properties ./
-COPY --chmod=770 runtime/config/bukkit.cue ./
-COPY --chmod=770 runtime/config/commands.cue config/
-COPY --chmod=770 runtime/config/permissions.cue config/
-COPY --chmod=770 runtime/config/spigot.cue config/
-COPY --chmod=770 runtime/config/paper-global.cue config/
-COPY --chmod=770 runtime/config/paper-world-defaults.cue config/
+COPY --chmod=770 runtime/config/bukkit.cue cue/
+COPY --chmod=770 runtime/config/commands.cue cue/
+COPY --chmod=770 runtime/config/permissions.cue cue/
+COPY --chmod=770 runtime/config/spigot.cue cue/
+COPY --chmod=770 runtime/config/paper-global.cue cue/
+COPY --chmod=770 runtime/config/paper-world-defaults.cue cue/
 
 # Copy the server startup script.
 COPY --chmod=550 runtime/start.sh ./
 
 # Adjust permissions.
-RUN chmod 770 /opt/papermc /opt/papermc/config
+RUN chmod 770 /opt/papermc /opt/papermc/cue/
 
 # Minecraft port.
 EXPOSE 25565

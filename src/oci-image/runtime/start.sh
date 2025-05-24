@@ -76,36 +76,40 @@ echo '🧾 File eula.txt processed'
 # TODO: add tests verifying properties are well customized as expected
 
 generateConfig() {
-  config_file="$1"
-  envvar_prefix="$2"
-  expression="$3"
+  config_name="$1"
+  target_path="$2"
+  envvar_prefix="$3"
+  expression="$4"
 
   envvar="$(env | grep -E "^${envvar_prefix}" | tr '\n' ',' | head -c -1)"
-  cue_file="${config_file%.yml}.cue"
+  cue_file="cue/${config_name}.cue"
+  yaml_file="${config_name}.yml"
 
-  echo "📝 Generating configuration file \"${config_file}\"..."
+  echo "📝 Generating configuration file \"${yaml_file}\"..."
 
   # Validate user-provided configuration property values
   cue vet "$cue_file" --concrete
 
   # Generate the configuration file
-  cue export "$cue_file" --inject "${envvar}" -e "${expression}" --out yaml --outfile "$config_file"
+  cue export "$cue_file" --inject "${envvar}" -e "${expression}" --out yaml --outfile "${target_path}/${yaml_file}"
 }
 
+mkdir config/
+
 # Bukkit
-generateConfig 'bukkit.yml' 'BUKKIT_GLOBAL_' 'bukkit'
-generateConfig 'config/commands.yml' 'BUKKIT_COMMANDS_' 'bukkit.commands'
-generateConfig 'config/permissions.yml' 'BUKKIT_PERMISSIONS_' 'bukkit.permissions'
+generateConfig 'bukkit' '.' 'BUKKIT_GLOBAL_' 'bukkit'
+generateConfig 'commands' 'config' 'BUKKIT_COMMANDS_' 'bukkit.commands'
+generateConfig 'permissions' 'config' 'BUKKIT_PERMISSIONS_' 'bukkit.permissions'
 
 # Spigot
-generateConfig 'config/spigot.yml' 'SPIGOT_' 'spigot'
+generateConfig 'spigot' 'config' 'SPIGOT_' 'spigot'
 
 # Paper
-generateConfig 'config/paper-global.yml' 'PAPER_GLOBAL_' 'paper'
-generateConfig 'config/paper-world-defaults.yml' 'PAPER_WORLD_DEFAULTS_' 'paper["worlds-defaults"]'
+generateConfig 'paper-global' 'config' 'PAPER_GLOBAL_' 'paper'
+generateConfig 'paper-world-defaults' 'config' 'PAPER_WORLD_DEFAULTS_' 'paper["worlds-defaults"]'
 
 # Clean-up CUE files after config generation
-find . -type f -name '*.cue' -exec rm -f {} +
+rm -rf cue/
 
 echo 'PaperMC server ready to start!'
 
