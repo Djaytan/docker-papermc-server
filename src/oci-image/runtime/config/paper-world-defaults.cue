@@ -4,10 +4,6 @@
 // the world-specific config files located in each world folder.
 //
 // Specifications: https://docs.papermc.io/paper/reference/world-configuration/
-//
-// All CUE structs are open to allow for additional fields, ensuring forward compatibility with future PaperMC configurations.
-// Any new fields added in future PaperMC versions can be safely added without breaking the existing configuration.
-// CUE structs are open by default. More info: https://cuelang.org/docs/tour/types/closed/
 
 package paper
 
