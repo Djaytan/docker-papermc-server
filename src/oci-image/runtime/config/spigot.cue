@@ -1,6 +1,8 @@
 // This is the main configuration file for Spigot.
 // Specifications: https://docs.papermc.io/paper/reference/spigot-configuration/
 
+package paper
+
 spigot: {
 	"config-version": 12 // Not customizable - Internal value only
 

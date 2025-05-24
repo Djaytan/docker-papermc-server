@@ -1,5 +1,7 @@
 // Specifications: https://docs.papermc.io/paper/reference/bukkit-commands-configuration/
 
+package paper
+
 bukkit: {
 	commands: {
 		"command-block-overrides": []
