@@ -8,18 +8,18 @@ package paper
 bukkit: {
 	global: {
 		settings: {
-			"allow-end":           *true | bool              @tag(BUKKIT_GLOBAL_SETTINGS_ALLOW_END, type=bool)
-			"warn-on-overload":    *true | bool              @tag(BUKKIT_GLOBAL_SETTINGS_WARN_ON_OVERLOAD, type=bool)
-			"permissions-file":    "config/permissions.yml"  // System-managed property
-			"update-folder":       *"update" | string        @tag(BUKKIT_GLOBAL_SETTINGS_UPDATE_FOLDER, type=string)
-			"plugin-profiling":    false                     // Disabled on PaperMC
-			"connection-throttle": *4000 | int               @tag(BUKKIT_GLOBAL_SETTINGS_CONNECTION_THROTTLE, type=int)
-			"query-plugins":       *true | bool              @tag(BUKKIT_GLOBAL_SETTINGS_QUERY_PLUGINS, type=bool)
-			"deprecated-verbose":  *"default" | string       @tag(BUKKIT_GLOBAL_SETTINGS_DEPRECATED_VERBOSE, type=string)
-			"shutdown-message":    *"Server closed" | string @tag(BUKKIT_GLOBAL_SETTINGS_SHUTDOWN_MESSAGE, type=string)
-			"minimum-api":         *"none" | string          @tag(BUKKIT_GLOBAL_SETTINGS_MINIMUM_API, type=string)
-			"use-map-color-cache": *true | bool              @tag(BUKKIT_GLOBAL_SETTINGS_USE_MAP_COLOR_CACHE, type=bool)
-			"world-container":     "worlds"                  // System-managed property
+			"allow-end":           *true | _                @tag(BUKKIT_GLOBAL_SETTINGS_ALLOW_END)
+			"warn-on-overload":    *true | _                @tag(BUKKIT_GLOBAL_SETTINGS_WARN_ON_OVERLOAD)
+			"permissions-file":    "config/permissions.yml" // System-managed property
+			"update-folder":       *"update" | _            @tag(BUKKIT_GLOBAL_SETTINGS_UPDATE_FOLDER)
+			"plugin-profiling":    false                    // Disabled on PaperMC
+			"connection-throttle": *4000 | _                @tag(BUKKIT_GLOBAL_SETTINGS_CONNECTION_THROTTLE)
+			"query-plugins":       *true | _                @tag(BUKKIT_GLOBAL_SETTINGS_QUERY_PLUGINS)
+			"deprecated-verbose":  *"default" | _           @tag(BUKKIT_GLOBAL_SETTINGS_DEPRECATED_VERBOSE)
+			"shutdown-message":    *"Server closed" | _     @tag(BUKKIT_GLOBAL_SETTINGS_SHUTDOWN_MESSAGE)
+			"minimum-api":         *"none" | _              @tag(BUKKIT_GLOBAL_SETTINGS_MINIMUM_API)
+			"use-map-color-cache": *true | _                @tag(BUKKIT_GLOBAL_SETTINGS_USE_MAP_COLOR_CACHE)
+			"world-container":     "worlds"                 // System-managed property
 		}
 
 		// These properties are overridden by PaperMC
@@ -34,7 +34,7 @@ bukkit: {
 		}
 
 		"chunk-gc": {
-			"period-in-ticks": *600 | int @tag(BUKKIT_GLOBAL_CHUNK_GC_PERIOD_IN_TICKS, type=int)
+			"period-in-ticks": *600 | _ @tag(BUKKIT_GLOBAL_CHUNK_GC_PERIOD_IN_TICKS)
 		}
 
 		// These properties are overridden by PaperMC
