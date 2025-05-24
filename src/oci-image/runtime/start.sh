@@ -88,12 +88,11 @@ cue vet --concrete
 ENVVAR="$(env | grep -E '^(BUKKIT_|SPIGOT_|PAPER_)' | tr '\n' ',' | head -c -1)"
 
 echo "📝 Generating configuration files..."
-# TODO: fix bug where permissions and commands properties are included in bukkit.yml
-cue export --inject "${ENVVAR}" -e 'bukkit' --out yaml --outfile "${ROOT_DIR}/bukkit.yml"
+cue export --inject "${ENVVAR}" -e 'bukkit.global' --out yaml --outfile "${ROOT_DIR}/bukkit.yml"
 cue export --inject "${ENVVAR}" -e 'bukkit.commands' --out yaml --outfile "${CONFIG_DIR}/commands.yml"
 cue export --inject "${ENVVAR}" -e 'bukkit.permissions' --out yaml --outfile "${CONFIG_DIR}/permissions.yml"
 cue export --inject "${ENVVAR}" -e 'spigot' --out yaml --outfile "${CONFIG_DIR}/spigot.yml"
-cue export --inject "${ENVVAR}" -e 'paper' --out yaml --outfile "${CONFIG_DIR}/paper-global.yml"
+cue export --inject "${ENVVAR}" -e 'paper.global' --out yaml --outfile "${CONFIG_DIR}/paper-global.yml"
 cue export --inject "${ENVVAR}" -e 'paper["worlds-defaults"]' --out yaml --outfile "${CONFIG_DIR}/paper-world-defaults.yml"
 
 # Clean-up CUE files after config generation
