@@ -18,6 +18,7 @@ docker run --rm -it \
   --memory=8GB \
   -p 25565:25565 \
   -e EULA=true \
+  -e BUKKIT_GLOBAL_SETTINGS_ALLOW_END=false \
   'djaytan/papermc-server:dev'
 
 echo '🛑 The localdev PaperMC server has been stopped and removed.'
