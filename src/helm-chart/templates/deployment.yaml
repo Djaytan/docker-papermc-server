@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.name }}
+  namespace: {{ .Values.namespace }}
+spec:
+  selector:
+    matchLabels:
+      app: {{ .Values.name }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.name }}
+    spec:
+      automountServiceAccountToken: false
+      securityContext:
+        runAsGroup: 0
+        runAsUser: 2
+      containers:
+        - name: {{ .Values.name }}
+          image: {{ .Values.container.image }}
+          imagePullPolicy: Never
+          stdin: true
+          tty: true
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop: [ "ALL" ]
+          resources:
+            requests:
+              ephemeral-storage: {{ .Values.container.resources.requests.ephemeralStorage }}
+              cpu: {{ .Values.container.resources.requests.cpu }}
+              memory: {{ .Values.container.resources.requests.memory }}
+            limits:
+              ephemeral-storage: {{ .Values.container.resources.limits.ephemeralStorage }}
+              cpu: {{ .Values.container.resources.limits.cpu }}
+              memory: {{ .Values.container.resources.limits.memory }}
+          ports:
+            - containerPort: {{ .Values.container.port }}
+          env:
+            - name: EULA
+              value: 'true'

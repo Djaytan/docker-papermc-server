@@ -1,0 +1,9 @@
+apiVersion: v2
+name: papermc-server
+description: A Helm chart for deploying a PaperMC server
+version: 0.0.1
+maintainers:
+  - name: Djaytan
+    email: jsépa
+  - name: Jean-Baptiste REVEL
+    email: jean-baptiste.revel@epitech.eu
