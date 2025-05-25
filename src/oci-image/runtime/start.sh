@@ -7,7 +7,7 @@ SCRIPT_DIR=$(cd "$(dirname "$0")" > /dev/null 2>&1 && pwd -P)
 ## Directories
 ROOT_DIR="${SCRIPT_DIR}"
 CONFIG_DIR="${SCRIPT_DIR}/config"
-CUE_DIR="${SCRIPT_DIR}/cue"
+CUE_DIR="${CONFIG_DIR}/cue"
 
 ## JVM arguments
 # server.properties: https://minecraft.wiki/w/Server.properties
@@ -76,8 +76,6 @@ echo '🧾 File eula.txt processed'
 # TODO: support custom Spark plugin version
 # TODO: Ensure Timings v2 is disabled by default
 # TODO: add tests verifying properties are well customized as expected
-
-mkdir "${CONFIG_DIR}"
 
 cd "${CUE_DIR}"
 

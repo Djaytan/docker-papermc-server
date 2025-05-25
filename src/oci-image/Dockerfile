@@ -111,17 +111,15 @@ COPY --from=papermc-server-build --chmod=550 /build/papermc-server-*.jar ./
 # - libudev-zero: is the Alpine-equivalent of libudev, which is required by PaperMC: https://pkgs.alpinelinux.org/package/edge/community/x86/libudev-zero
 RUN apk add --no-cache gettext libudev-zero
 
-# Copy the configuration files.
-# PaperMC attempts to update these files at runtime, which requires write access.
+# Copy the configuration files and startup script.
+# PaperMC attempts to update the config files at runtime, which requires write access.
 # While not strictly necessary, making them writable prevents annoying warnings in the logs.
 # Ideally, configs would be read-only to enforce immutability, but this is a trade-off for cleaner logs.
-COPY --chmod=770 runtime/config/ ./
-
-# Copy the server startup script.
-COPY --chmod=550 runtime/start.sh ./
+COPY --chmod=770 runtime/ ./
 
 # Adjust permissions.
-RUN chmod 770 /opt/papermc /opt/papermc/cue/
+RUN chmod 770 /opt/papermc && \
+    chmod 550 /opt/papermc/start.sh
 
 # Minecraft port.
 EXPOSE 25565
