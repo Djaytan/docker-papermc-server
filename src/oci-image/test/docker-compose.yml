@@ -1,0 +1,16 @@
+services:
+  # Simulate a production-like environment by enforcing strict security policies:
+  # - Drop all Linux capabilities (PaperMC alone does not require any).
+  # - Disable privilege escalation within the container.
+  papermc-server:
+    image: djaytan/papermc-server:test
+    container_name: test-papermc-server
+    pull_policy: never # The image is built locally, so we don't want to pull it from a registry.
+    ports:
+      - "25565:25565"
+    environment:
+      EULA: 'true'
+    cap_drop:
+      - ALL
+    privileged: false
+    mem_limit: 8GB # No CPU limit to maximize test performances.
