@@ -19,7 +19,6 @@ spec:
       containers:
         - name: {{ include "papermc-server.name" . }}
           image: {{ .Values.container.image }}
-          imagePullPolicy: Never
           stdin: true
           tty: true
           securityContext:
