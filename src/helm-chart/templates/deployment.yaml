@@ -1,23 +1,23 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ .Values.name }}
+  name: {{ include "papermc-server.name" . }}
   namespace: {{ .Values.namespace }}
 spec:
   selector:
     matchLabels:
-      app: {{ .Values.name }}
+      app: {{ include "papermc-server.name" . }}
   template:
     metadata:
       labels:
-        app: {{ .Values.name }}
+        app: {{ include "papermc-server.name" . }}
     spec:
       automountServiceAccountToken: false
       securityContext:
         runAsGroup: 0
         runAsUser: 2
       containers:
-        - name: {{ .Values.name }}
+        - name: {{ include "papermc-server.name" . }}
           image: {{ .Values.container.image }}
           imagePullPolicy: Never
           stdin: true
