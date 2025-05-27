@@ -36,7 +36,7 @@ spec:
               cpu: {{ .Values.container.resources.limits.cpu }}
               memory: {{ .Values.container.resources.limits.memory }}
           ports:
-            - containerPort: {{ .Values.container.port }}
+            - containerPort: 25565
           env:
             - name: EULA
               value: 'true'

@@ -3,7 +3,6 @@ namespace: default
 
 container:
   image: djaytan/papermc-server:dev
-  port: 25565
   resources:
     requests:
       ephemeralStorage: 10Gi
@@ -16,6 +15,4 @@ container:
 
 service:
   ports:
-    port: 25565
-    targetPort: 25565
     nodePort: 30000
