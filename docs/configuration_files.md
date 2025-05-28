@@ -1,6 +1,7 @@
 # Configuration Files
 
-Configuration files offer a powerful and flexible way to customize your PaperMC server beyond the limitations of environment variables.
+Configuration files offer a powerful and flexible way to customize your PaperMC server beyond the limitations
+of [environment variables](environment-variables.md).
 They provide a more maintainable and future-proof approach to configuring advanced options and world-specific settings.
 
 ## 🌟 Benefits
