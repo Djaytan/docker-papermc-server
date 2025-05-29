@@ -4,5 +4,11 @@
 package paper
 
 bukkit: {
-	permissions: {}
+	permissions: {
+		[string]: {
+			default: *"op" | "isop" | "operator" | "isoperator" | "admin" | "isadmin" | "!op" | "notop" | "!operator" | "notoperator" | "!admin" | "notadmin" | "true" | "false"
+			children: *[] | {[string]: string} | [...string]
+			description: *"" | string
+		}
+	}
 }
