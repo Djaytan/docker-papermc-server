@@ -20,7 +20,7 @@ All configuration files must be placed in:
 
 You are free to choose any file names that suit your organization.
 
-## 📄 Format
+## 📝 Format
 
 Configuration files must use the **YAML** format.
 Both `.yml` and `.yaml` extensions are supported.
