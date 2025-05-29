@@ -37,7 +37,7 @@ $ docker run -d -it \
 > Setting the `EULA` environment variable to `true` implies that you have read and accepted the [Minecraft EULA](https://www.minecraft.net/en-us/eula).
 
 > [!TIP]
-> You can customize the server using **environment variables**.
+> You can customize the server using **environment variables** or **configuration files**.
 > Learn more in the [configuration guide](docs/configuration.md).
 >
 > For production-grade deployments, we recommend following

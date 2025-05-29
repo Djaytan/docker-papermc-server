@@ -1,68 +1,58 @@
 # Configuration
 
-PaperMC configuration properties can be customized via **environment variables**. Support for dedicated configuration files will be added in the future for more
-advanced setups.
+PaperMC server behavior can be tailored to fit a variety of needs. This image supports two complementary methods for applying configuration changes efficiently.
 
-📘 Configuration reference: [PaperMC Docs](https://docs.papermc.io/paper/reference/configuration/).
+## 🛠️ Configuration Methods
 
-## 🔧 Environment Variable Mapping
+You can configure the server using either method independently, or combine them for greater flexibility.
 
-To override a configuration property using an environment variable, apply the following rules:
+### 🌿 [Environment Variables](environment-variables.md)
 
-1. Replace **dots (`.`)** and **dashes (`-`)** with **underscores (`_`)**.
-2. Convert the entire property path to **UPPERCASE**.
-3. Prepend a prefix based on the configuration file the property belongs to:
+Perfect for **quick overrides** and **container-friendly setups**. Environment variables let you adjust configuration properties **without modifying or mounting
+files**.
 
-| 🔖 Prefix               | 📄 Mapped Configuration File |
-|:------------------------|:-----------------------------|
-| `BUKKIT_GLOBAL_`        | `bukkit.yml`                 |
-| `BUKKIT_COMMANDS_`      | `commands.yml`               |
-| `BUKKIT_PERMISSIONS_`   | `permissions.yml`            |
-| `BUKKIT_HELP_`          | `help.yml`                   |
-| `SPIGOT_`               | `spigot.yml`                 |
-| `PAPER_GLOBAL_`         | `paper-global.yml`           |
-| `PAPER_WORLD_DEFAULTS_` | `paper-world-defaults.yml`   |
+### 📄 [Configuration Files](configuration-files.md)
 
-🧪 **Example:** The `bukkit.yml` property `settings.allow-end` becomes `BUKKIT_GLOBAL_SETTINGS_ALLOW_END`.
+Provide **full control** and **forward compatibility** by allowing you to supply complete or partial configuration files for precise customization.
 
-Environment variables are suitable for simple setups. Configuration files (once supported) will enable customization of properties that cannot be set via
-environment variables (see details below) and will also simplify managing more complex configurations.
+### ⚠️ Important Limitation
 
-### ⚠️ Limitations
+Each configuration property can be defined **only once** across your entire setup — either as an environment variable **or** within configuration files.
 
-#### ⏳ Manual Mapping
+This means:
 
-The mapping is maintained manually, so newly introduced properties may not be available immediately after PaperMC updates, and changes to default values may not
-be reflected right away. Some properties might also be accidentally overlooked.<br/>
-If you notice any missing properties or outdated defaults, please [open an issue](https://github.com/Djaytan/docker-papermc-server/issues).
+* If you set a property as an environment variable, it **cannot appear** anywhere in the configuration files.
+* Likewise, even within configuration files, a single property **must not be defined multiple times**.
 
-Automatic mapping may be implemented in the future.
+Attempting to define the same property more than once, by any method, will cause the server to throw an error.
 
-#### ❌ Unsupported Mappings
+While both configuration methods can coexist, this strict uniqueness rule ensures clear, consistent, and conflict-free behavior.
 
-Some properties cannot currently be mapped to environment variables due to their complexity. However, users will be able to customize these values in the future
-through override configuration files once that support is implemented.
+💡 If this restriction impacts your use case, please consider [opening an issue](https://github.com/Djaytan/docker-papermc-server/issues).
+We are eager to help find a solution!
 
-The following properties are currently unsupported:
+## 🔧 Customizable Properties
 
-| 📄 Configuration File      | ⚙️ Property Name                                                      |
-|:---------------------------|:----------------------------------------------------------------------|
-| `bukkit.yml`               | `worlds`                                                              |
-| `permissions.yml`          | _ALL_                                                                 |
-| `commands.yml`             | _ALL_                                                                 |
-| `help.yml`                 | _ALL_                                                                 |
-| `spigot.yml`               | `commands.replace-commands`                                           |
-| `spigot.yml`               | `commands.spam-exclusions`                                            |
-| `spigot.yml`               | `advancements.disabled`                                               |
-| `spigot.yml`               | `world-settings.<world>` (only `world-settings.default` is supported) |
-| `spigot.yml`               | `stats.forced-stats`                                                  |
-| `paper-global.yml`         | `packet-limiter.overrides`                                            |
-| `paper-world-defaults.yml` | `anticheat.anti-xray.hidden-blocks`                                   |
-| `paper-world-defaults.yml` | `anticheat.anti-xray.replacement-blocks`                              |
-| `paper-world-defaults.yml` | `entities.behavior.door-breaking-difficulty`                          |
-| `paper-world-defaults.yml` | `entities.spawning.filtered-entity-tag-nbt-paths`                     |
+Currently, this image supports customization of **PaperMC configuration properties** only. This includes all settings defined in supported configuration files
+such as `paper-global.yml`, `bukkit.yml`, and `spigot.yml`.
 
-## 📊 Supported Properties
+More customization options are planned for future releases, including:
+
+* `server.properties` settings
+* JVM arguments
+* Aikar's flags
+* TimeZone configuration
+* Presets
+* World-specific configs (see [PaperMC World Configuration](https://docs.papermc.io/paper/reference/world-configuration/))
+* ... and more!
+
+Stay tuned for upcoming updates as we continue expanding the customization capabilities.
+
+### PaperMC Properties
+
+📘 For a complete reference, visit the [PaperMC Configuration Documentation](https://docs.papermc.io/paper/reference/configuration/).
+
+#### 📊 Supported Properties
 
 |      🗂️ Category      | 🎯 Supported |
 |:----------------------:|:------------:|
@@ -77,10 +67,10 @@ The following properties are currently unsupported:
 
 > 💡 More configuration options will be supported in future releases.
 
-### ✏️ Overridden Defaults
+#### ✏️ Overridden Defaults
 
-To encourage the use of modern Paper features over legacy Bukkit and Spigot alternatives, some configuration properties are assigned **custom default values**.
-These defaults intentionally aligned with Bukkit's and Spigot's ones to ensure a smoother transition.
+To promote the use of modern Paper features over legacy Bukkit/Spigot ones, this image assigns custom default values to some properties. These are intentionally
+aligned with Bukkit/Spigot defaults to preserve familiar behavior.
 
 Although they differ from the upstream Paper defaults, all values remain **fully user-configurable**, unless stated otherwise.
 
@@ -107,29 +97,28 @@ Although they differ from the upstream Paper defaults, all values remain **fully
 | `paper-world-defaults.yml` | `entities.spawning.spawn-limits.water_ambient`                 | `20`              | Same as above.                                                                                                                            |
 | `paper-world-defaults.yml` | `entities.spawning.spawn-limits.water_creature`                | `5`               | Same as above.                                                                                                                            |
 
-## 🔒 Unmodifiable Properties
+### 🔒 Unmodifiable Properties
 
-Certain properties are **intentionally not customizable**. These fall into two categories:
+Some properties are **intentionally not customizable**:
 
 * 🛠️ **System-managed** – Handled internally and not meant to be user-configured (e.g., `settings.permissions-file` in `bukkit.yml`).
-* 🚫 **Disabled** – Unsupported by PaperMC or explicitly disabled to encourage use of modern Paper alternatives. These are often deprecated, removed, or
-  overridden (e.g., `settings.plugin-profiling` in `bukkit.yml`).
+* 🚫 **Disabled** – Deprecated or discouraged settings, often replaced by Paper alternatives (e.g., `settings.plugin-profiling` in `bukkit.yml`).
 
 If you have a valid use case for customizing an unmodifiable property, please [open an issue](https://github.com/Djaytan/docker-papermc-server/issues) and
 describe your motivation or technical need. Your feedback helps guide future improvements.
 
-### 🛠️ System-managed Properties
+#### 🛠️ System-managed Properties
 
 | 🗂️ Category | ⚙️ Property Name             | 📌 Fixed Value           | 🔍 Notes                                                                                                                    |
 |:-------------|:-----------------------------|:-------------------------|-----------------------------------------------------------------------------------------------------------------------------|
-| Bukkit       | `settings.permissions-file`  | `config/permissions.yml` |                                                                                                                             |
-| Bukkit       | `settings.world-container`   | `worlds`                 |                                                                                                                             |
+| Bukkit       | `settings.permissions-file`  | `config/permissions.yml` | System-managed.                                                                                                             |
+| Bukkit       | `settings.world-container`   | `worlds`                 | System-managed.                                                                                                             |
 | Spigot       | `config-version`             | _Generated_              | Metadata.                                                                                                                   |
 | Spigot       | `settings.restart-on-crash`  | `false`                  | Instead, only rely on [Docker restart policies](https://docs.docker.com/engine/containers/start-containers-automatically/). |
 | Spigot       | `settings.restart-on-script` | `disabled` (Dummy value) | Same as above.                                                                                                              |
 | Paper        | `_version`                   | _Generated_              | Metadata.                                                                                                                   |
 
-### 🚫 Disabled Properties
+#### 🚫 Disabled Properties
 
 | 🗂️ Category | ⚙️ Property Name            | 💡 Alternative                                                                                                                                                  |
 |:-------------|:----------------------------|:----------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -139,7 +128,10 @@ describe your motivation or technical need. Your feedback helps guide future imp
 | Bukkit       | `ticks-per.*-spawns`        | Use Paper's [entities.spawning.ticks-per-spawn](https://docs.papermc.io/paper/reference/world-configuration/#entities_spawning_ticks_per_spawn_ambient) config. |
 | Bukkit       | `ticks-per.autosave`        | Use Paper's [chunks.auto-save-interval](https://docs.papermc.io/paper/reference/world-configuration/#chunks_auto_save_interval) config.                         |
 
-## ❌ Unsupported Properties
+### ❌ Unsupported Properties
 
-Paper world-specific override properties (`<world_folder>/paper-world.yml`) are not supported, consistent with most other world-specific data. These data are
-fully under your control, so you are responsible for managing them.
+World-specific override properties (`<world_folder>/paper-world.yml`) are **currently not supported**, in line with the handling of most world-specific data.
+
+These files remain under your control — you are responsible for managing their content and updates.
+
+Support for them may be added in the future.
