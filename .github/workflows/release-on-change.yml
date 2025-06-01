@@ -6,8 +6,8 @@ name: Release - On Change
 on:
   workflow_dispatch: {}
   push:
-    # next, next-major, beta & alpha branches are not supported (never used so far & adjustments required).
-    branches: [ main, '+.x' ]
+    # next, next-major branches are not supported (never used so far & adjustments required).
+    branches: [ main, '+.x', beta, alpha ]
 
 # https://docs.github.com/en/actions/writing-workflows/workflow-syntax-for-github-actions#concurrency
 concurrency:
