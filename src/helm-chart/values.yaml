@@ -1,5 +1,6 @@
 name: papermc-server
 namespace: default
+eula: false
 
 container:
   image: djaytan/papermc-server:dev

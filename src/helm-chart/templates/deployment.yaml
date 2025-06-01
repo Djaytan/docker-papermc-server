@@ -44,4 +44,4 @@ spec:
             - containerPort: 25565
           env:
             - name: EULA
-              value: 'true'
+              value: {{ .Values.eula }}
