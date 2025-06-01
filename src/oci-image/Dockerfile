@@ -38,7 +38,7 @@ RUN ${JAVA_HOME}/bin/jlink \
 
 
 # Download the PaperMC server JAR file corresponding to the specified Minecraft version.
-FROM docker.io/alpine:3.21.3@sha256:a8560b36e8b8210634f77d9f7f9efd7ffa463e380b75e2e74aff4511df3ef88c AS papermc-server-build
+FROM docker.io/alpine:3.22.0@sha256:8a1f59ffb675680d47db6337b49d22281a139e9d709335b492be023728e11715 AS papermc-server-build
 
 ARG MINECRAFT_VERSION
 
@@ -80,7 +80,7 @@ FROM docker.io/cuelang/cue:0.12.1@sha256:1c68bd10c1a09fad8431330c7375603dd8c5d79
 # ===================================
 #        >>> FINAL STAGE <<<
 # ===================================
-FROM docker.io/alpine:3.21.3@sha256:a8560b36e8b8210634f77d9f7f9efd7ffa463e380b75e2e74aff4511df3ef88c
+FROM docker.io/alpine:3.22.0@sha256:8a1f59ffb675680d47db6337b49d22281a139e9d709335b492be023728e11715
 
 # ===================================
 #             JRE setup
