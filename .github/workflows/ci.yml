@@ -90,7 +90,7 @@ jobs:
         run: src/oci-image/test/test.sh
 
       - name: Docker Scout
-        uses: docker/scout-action@381b657c498a4d287752e7f2cfb2b41823f566d9 # v1.17.1
+        uses: docker/scout-action@aceeb83b88f2ae54376891227858dda7af647183 # v1.18.1
         if: github.event.pull_request.head.repo.fork == false
         with:
           command: compare, cves
