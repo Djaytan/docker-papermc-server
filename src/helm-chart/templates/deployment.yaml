@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "papermc-server.name" . }}
+  namespace: {{ .Values.namespace }}
+spec:
+  selector:
+    matchLabels:
+      app: {{ include "papermc-server.name" . }}
+  template:
+    metadata:
+      labels:
+        app: {{ include "papermc-server.name" . }}
+    spec:
+      automountServiceAccountToken: false
+      securityContext:
+        runAsGroup: 0
+        runAsUser: 2
+      containers:
+        - name: {{ include "papermc-server.name" . }}
+          image: {{ .Values.container.image }}
+          stdin: true
+          tty: true
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop: [ "ALL" ]
+          {{- with .Values.container.resources }}
+          resources:
+            {{- with .requests }}
+            requests:
+              ephemeral-storage: {{ .ephemeralStorage }}
+              cpu: {{ .cpu }}
+              memory: {{ .memory }}
+            {{- end }}
+            {{- with .limits }}
+            limits:
+              ephemeral-storage: {{ .ephemeralStorage }}
+              cpu: {{ .cpu }}
+              memory: {{ .memory }}
+            {{- end }}
+          {{-end}}
+          ports:
+            - containerPort: 25565
+          env:
+            - name: EULA
+              value: {{ .Values.eula }}

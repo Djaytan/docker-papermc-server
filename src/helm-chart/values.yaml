@@ -1,0 +1,19 @@
+name: papermc-server
+namespace: default
+eula: false
+
+container:
+  image: djaytan/papermc-server:dev
+  resources:
+    requests:
+      ephemeralStorage: 10Gi
+      cpu: "4"
+      memory: 8Gi
+    limits:
+      ephemeralStorage: 10Gi
+      cpu: "4"
+      memory: 8Gi
+
+service:
+  ports:
+    nodePort: 30000
