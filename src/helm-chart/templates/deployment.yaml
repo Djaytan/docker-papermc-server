@@ -24,7 +24,7 @@ spec:
           securityContext:
             allowPrivilegeEscalation: false
             capabilities:
-              drop: [ "ALL" ]
+              drop: [ 'ALL' ]
           {{- with .Values.container.resources }}
           resources:
             {{- with .requests }}
@@ -39,9 +39,9 @@ spec:
               cpu: {{ .cpu }}
               memory: {{ .memory }}
             {{- end }}
-          {{-end}}
+          {{- end }}
           ports:
             - containerPort: 25565
           env:
             - name: EULA
-              value: {{ .Values.eula }}
+              value: {{ .Values.eula | squote }}
