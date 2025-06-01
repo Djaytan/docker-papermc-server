@@ -25,6 +25,8 @@ concurrency:
   # Never cancel an ongoing release to prevent harmful interruptions
   cancel-in-progress: false
 
+permissions: {}
+
 jobs:
   # TODO: convert reusable workflow to reusable action
   validate:
