@@ -2,7 +2,7 @@
 
 set -eu
 
-SCRIPT_DIR=$(cd "$(dirname "$0")" > /dev/null 2>&1 && pwd -P)
+SCRIPT_DIR=$(dirname "$0")
 
 DOCKER_COMPOSE_FILE="${SCRIPT_DIR}/../docker-compose.yml"
 CONTAINER_NAME='test-papermc-server'

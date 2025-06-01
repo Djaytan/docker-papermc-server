@@ -1,5 +1,5 @@
 #!/usr/bin/env sh
 
-SCRIPT_DIR=$(cd "$(dirname "$0")" > /dev/null 2>&1 && pwd -P)
+SCRIPT_DIR=$(dirname "$0")
 
 sh "${SCRIPT_DIR}/1-basic/run.sh"
