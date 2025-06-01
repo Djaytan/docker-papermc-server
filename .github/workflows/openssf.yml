@@ -1,10 +1,10 @@
 name: OpenSSF
 
 on:
-  workflow_dispatch: { }
+  workflow_dispatch: {}
   branch_protection_rule:
   push:
-    branches: [ main, '+.x', next, next-major, beta, alpha ]
+    branches: [ main, '+.x', beta, alpha ]
   schedule:
     - cron: '24 3 * * *' # At 03:24 UTC every day
 
