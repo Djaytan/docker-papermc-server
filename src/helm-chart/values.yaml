@@ -7,11 +7,11 @@ container:
   resources:
     requests:
       ephemeralStorage: 10Gi
-      cpu: "4"
+      cpu: 4
       memory: 8Gi
     limits:
       ephemeralStorage: 10Gi
-      cpu: "4"
+      cpu: 4
       memory: 8Gi
 
 service:

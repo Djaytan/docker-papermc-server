@@ -8,5 +8,4 @@ spec:
     app: {{ include "papermc-server.name" . }}
   ports:
     - port: 25565
-      targetPort: 25565
       nodePort: {{ .Values.service.ports.nodePort }}
