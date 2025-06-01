@@ -25,15 +25,21 @@ spec:
             allowPrivilegeEscalation: false
             capabilities:
               drop: [ "ALL" ]
+          {{- with .Values.container.resources }}
           resources:
+            {{- with .requests }}
             requests:
-              ephemeral-storage: {{ .Values.container.resources.requests.ephemeralStorage }}
-              cpu: {{ .Values.container.resources.requests.cpu }}
-              memory: {{ .Values.container.resources.requests.memory }}
+              ephemeral-storage: {{ .ephemeralStorage }}
+              cpu: {{ .cpu }}
+              memory: {{ .memory }}
+            {{- end }}
+            {{- with .limits }}
             limits:
-              ephemeral-storage: {{ .Values.container.resources.limits.ephemeralStorage }}
-              cpu: {{ .Values.container.resources.limits.cpu }}
-              memory: {{ .Values.container.resources.limits.memory }}
+              ephemeral-storage: {{ .ephemeralStorage }}
+              cpu: {{ .cpu }}
+              memory: {{ .memory }}
+            {{- end }}
+          {{-end}}
           ports:
             - containerPort: 25565
           env:
