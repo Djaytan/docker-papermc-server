@@ -28,7 +28,6 @@ concurrency:
 permissions: {}
 
 jobs:
-  # TODO: convert reusable workflow to reusable action
   validate:
     name: Validate
     uses: ./.github/workflows/ci.yml

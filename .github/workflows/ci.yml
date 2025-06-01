@@ -5,11 +5,11 @@ name: CI
 # TODO: test CUE files
 
 on:
-  workflow_dispatch: { }
+  workflow_dispatch: {}
   push:
-    branches: [ main, '+.x', next, next-major, beta, alpha ]
+    branches: [ main, '+.x', beta, alpha ]
   pull_request:
-    branches: [ main, '+.x', next, next-major, beta, alpha ]
+    branches: [ main, '+.x', beta, alpha ]
   schedule:
     - cron: '16 5 * * *' # Every day at 05:16 UTC
   # Typically for validating maintenance releases prior publishing them
@@ -18,7 +18,7 @@ on:
       DOCKERHUB_TOKEN:
         required: true
 
-permissions: { }
+permissions: {}
 
 jobs:
   build-and-test:
