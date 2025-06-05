@@ -45,13 +45,17 @@ spec:
           env:
             - name: EULA
               value: {{ .Values.eula | squote }}
+          {{- with .Values.healthChecks }}
           livenessProbe:
             exec:
               command: ["mc-monitor", "status"]
-            periodSeconds: 5
+            periodSeconds: {{ .checkInterval }}
             timeoutSeconds: 3
           startupProbe:
             exec:
               command: ["mc-monitor", "status"]
             initialDelaySeconds: 10
-            failureThreshold: 30
+            failureThreshold: {{ div .startupGracePeriod .checkInterval }}
+            periodSeconds: {{ .checkInterval }}
+            timeoutSeconds: 3
+          {{- end }}

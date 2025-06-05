@@ -17,3 +17,10 @@ container:
 service:
   ports:
     nodePort: 30000
+
+healthChecks:
+  # Liveness check frequency (in seconds)
+  checkInterval: 10
+  # Startup grace period (in seconds) before liveness probes kick in
+  # Must be a multiple of checkInterval
+  startupGracePeriod: 300  # default: 5 minutes
