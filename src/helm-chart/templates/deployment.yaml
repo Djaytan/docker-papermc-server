@@ -45,3 +45,13 @@ spec:
           env:
             - name: EULA
               value: {{ .Values.eula | squote }}
+          livenessProbe:
+            exec:
+              command: ["mc-monitor", "status"]
+            periodSeconds: 5
+            timeoutSeconds: 3
+          startupProbe:
+            exec:
+              command: ["mc-monitor", "status"]
+            initialDelaySeconds: 10
+            failureThreshold: 30
