@@ -73,6 +73,7 @@ jobs:
     steps:
       # Firewall rules:
       # -> "*.github.com": Standard interactions with GitHub
+      # -> "api.github.com": Required for GitHub Pages deployment
       - name: Harden runner
         uses: step-security/harden-runner@0634a2670c59f64b4a01f0f96f84700a4088b9f0 # v2.12.0
         with:
@@ -80,6 +81,7 @@ jobs:
           egress-policy: block
           allowed-endpoints: >
             github.com:443
+            api.github.com:443
 
       - name: Deploy to GitHub Pages
         id: deployment
