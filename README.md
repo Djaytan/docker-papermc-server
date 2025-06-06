@@ -50,7 +50,7 @@ $ docker run -d -it \
 * 🧘 **Minimalist** – Includes only essential dependencies to reduce image size and surface area
 * 🧩 **Customizable** – Streamlined and fine-grained configuration options **_(WIP)_**
 * 👤 **UID-agnostic** – Supports running the server with a custom/arbitrary UID (typically required when running container
-  in [OpenShift](https://www.redhat.com/fr/technologies/cloud-computing/openshift))
+  in [OpenShift](https://www.redhat.com/en/technologies/cloud-computing/openshift))
 * 🔐 **Rootless by default** – Runs as a non-root user when no custom UID is specified
 * 🧬 **Multi-architecture support** – Built for `linux/amd64` & `linux/arm64` _(additional OSs/architectures available on request)_
 * ☕ **JRE 21** – Based on [Eclipse Temurin](https://hub.docker.com/_/eclipse-temurin)
