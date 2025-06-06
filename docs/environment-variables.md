@@ -1,7 +1,7 @@
 # Environment Variables
 
 PaperMC configuration properties can be customized via **environment variables**, offering a quick and convenient way to tailor your server without modifying or
-mounting [configuration files](configuration_files.md).
+mounting [configuration files](configuration-files.md).
 
 ## 🔧 Mapping Rules
 
@@ -36,7 +36,7 @@ Environment variable support is currently **maintained manually**, which means:
 If you notice any missing properties or outdated defaults, please [open an issue](https://github.com/Djaytan/docker-papermc-server/issues) — community
 feedback is always appreciated.
 
-💡 For immediate support of newer properties, consider switching to [configuration files](configuration_files.md), which offer **forward compatibility** by
+💡 For immediate support of newer properties, consider switching to [configuration files](configuration-files.md), which offer **forward compatibility** by
 design.
 
 🔭 **Looking ahead:** automatic mapping may be introduced in the future to improve coverage and reduce maintenance effort.
@@ -45,7 +45,7 @@ design.
 
 Some properties are currently **too complex** to be mapped to environment variables—for example, those involving nested structures or world-specific entries.
 
-You can still configure these properties using [configuration files](configuration_files.md), which offer full flexibility without these limitations.
+You can still configure these properties using [configuration files](configuration-files.md), which offer full flexibility without these limitations.
 
 The following properties are currently unsupported:
 
