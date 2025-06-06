@@ -6,7 +6,7 @@ discussions, or any other method with the owners of this repository before makin
 Note that we have a [code of conduct](CODE_OF_CONDUCT.md), so please follow it in all your
 interactions with the project.
 
-## 🌱 How to contribute
+## 🌱 How to Contribute
 
 A contribution can be as simple as opening a discussion or reporting us an issue, an idea of
 enhancement or a code improvement.
@@ -35,7 +35,7 @@ If it's something new, open an issue using
 a [template](https://github.com/Djaytan/bukkit-slf4j/issues/new/choose).
 We'll use the issue to have a conversation about the problem you want to be fixed.
 
-### 🛠️ Pull requests
+### 🛠️ Pull Requests
 
 A [pull request](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/about-pull-requests)
 is a way to suggest changes in our repository.
@@ -63,3 +63,40 @@ Thus, the best place for asking support is
 under [discussions](https://github.com/Djaytan/bukkit-slf4j/discussions).
 
 Furthermore, rest assured that the community will try to find the best way to help you! ✨
+
+## 🔰 Getting Started
+
+These instructions will get you a copy of the project up and running on your local machine for
+development and testing purposes.
+
+### 📝 Prerequisites
+
+To work on this project, you need to have **Docker** and **Docker Compose** installed on your machine.
+
+The easiest way to get started is by installing [Docker Desktop](https://www.docker.com/products/docker-desktop), which includes both.
+
+### 🏗️ Building and Running the Project
+
+To build the project, use:
+
+```bash
+src/oci-image/build-dev.sh
+```
+
+For a more convenient option that also runs the OCI image, use:
+
+```bash
+src/oci-image/localdev.sh
+```
+
+### ⭕ Conventional Commits
+
+Using a standardized commit message format offers several benefits:
+
+* Improves the readability of commit history for both humans **and** machines
+* Enables automatic version bumping
+* Facilitates automatic creation and updating of release notes
+
+For these reasons, we follow the [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) specification.
+
+Detailed guidelines are available [here](CONVENTIONAL_COMMITS.md).
