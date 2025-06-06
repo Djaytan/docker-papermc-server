@@ -64,7 +64,7 @@ continued read and/or write access to files with group-level permissions (i.e., 
 writable (`o+r`, `o+rw`) modes.
 
 For more details about OpenShift’s Security Context Constraints (SCCs), refer to
-the [official documentation](https://docs.openshift.com/container-platform/latest/concepts/policy/security-context-constraints.html).
+the [official documentation](https://docs.redhat.com/en/documentation/openshift_container_platform/latest/html/authentication_and_authorization/managing-pod-security-policies).
 
 ## Linux Kernel Capabilities & Privileges
 
