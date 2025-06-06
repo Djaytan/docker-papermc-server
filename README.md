@@ -61,8 +61,7 @@ $ docker run -d -it \
   and [Docker Scout](https://docs.docker.com/scout/)
 * 🔄 **Scheduled auto-updates** – Bi-monthly rebuilds to incorporate upstream security patches and new PaperMC builds. Other updates are tracked and
   semi-automatically managed via Renovate.
-
-A list of additional planned features can be found [here](docs/planned-features.md).
+* ☸️ **Helm Chart** – Easily deploy the server to Kubernetes using [the reference Helm Chart](https://github.com/Djaytan/helm-papermc-server).
 
 ## 🌍 Contributing
 

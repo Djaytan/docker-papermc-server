@@ -79,7 +79,7 @@ jobs:
         uses: docker/bake-action@37816e747588cb137173af99ab33873600c46ea8 # v6.8.0
         with:
           source: .
-          workdir: src/oci-image/
+          workdir: src/
           targets: test
           load: true # Export to Docker - Required for later steps
           set: |
@@ -87,7 +87,7 @@ jobs:
             *.cache-to=type=gha,mode=max,timeout=20s
 
       - name: Test
-        run: src/oci-image/test/test.sh
+        run: src/test/test.sh
 
       - name: Docker Scout
         uses: docker/scout-action@aceeb83b88f2ae54376891227858dda7af647183 # v1.18.1
