@@ -20,7 +20,7 @@ Discussions are where we have conversations.
 
 If you'd like to help troubleshooting a PR you're working on, have a great new idea,
 or want to share something amazing you've experimented with our product,
-join us in [discussions](https://github.com/Djaytan/bukkit-slf4j/discussions).
+join us in [discussions](https://github.com/Djaytan/docker-papermc-server/discussions).
 
 ### 🐛 Issues
 
@@ -32,7 +32,7 @@ and you shouldn't begin to work on it.
 If you've found a bug, a weird behavior or an exploit,
 search open issues to see if someone else has reported the same thing.
 If it's something new, open an issue using
-a [template](https://github.com/Djaytan/bukkit-slf4j/issues/new/choose).
+a [template](https://github.com/Djaytan/docker-papermc-server/issues/new/choose).
 We'll use the issue to have a conversation about the problem you want to be fixed.
 
 ### 🛠️ Pull Requests
@@ -60,7 +60,7 @@ When considering contributing to the project through PRs, please follow these gu
 Asking questions is a way for you to be unblocked, and by doing so,
 this could help other people too if they are interested in the answer!
 Thus, the best place for asking support is
-under [discussions](https://github.com/Djaytan/bukkit-slf4j/discussions).
+under [discussions](https://github.com/Djaytan/docker-papermc-server/discussions).
 
 Furthermore, rest assured that the community will try to find the best way to help you! ✨
 
