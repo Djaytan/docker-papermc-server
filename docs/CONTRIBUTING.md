@@ -66,13 +66,13 @@ The easiest way to get started is by installing [Docker Desktop](https://www.doc
 To build the project, use:
 
 ```bash
-src/oci-image/build-dev.sh
+src/build-dev.sh
 ```
 
 For a more convenient option that also runs the OCI image, use:
 
 ```bash
-src/oci-image/localdev.sh
+src/localdev.sh
 ```
 
 ### ⭕ Conventional Commits

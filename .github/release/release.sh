@@ -10,7 +10,7 @@ if [ -z "$ROOT_PROJECT_DIR" ]; then
   exit 1
 fi
 
-cd "$ROOT_PROJECT_DIR/src/oci-image/"
+cd "$ROOT_PROJECT_DIR/src/"
 
 export REGISTRY='docker.io'
 export IMAGE_VERSION="$RELEASE_VERSION"
