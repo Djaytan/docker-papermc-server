@@ -38,10 +38,10 @@ $ docker run -d -it \
 
 > [!TIP]
 > You can customize the server using **environment variables** or **configuration files**.
-> Learn more in the [configuration guide](docs/configuration.md).
+> Learn more in the [configuration guide](docs/user-guide/configuration.md).
 >
 > For production-grade deployments, we recommend following
-> [our dedicated setup guide](docs/production-grade-deployment.md).
+> [our dedicated setup guide](docs/user-guide/production-grade-deployment.md).
 
 ## ✨ Highlights
 
