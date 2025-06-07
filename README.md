@@ -15,6 +15,8 @@ A general-purpose, OCI-compliant PaperMC server with streamlined and fine-graine
 
 Available in [Docker Hub](https://hub.docker.com/r/djaytan/papermc-server).
 
+<script src="https://asciinema.org/a/722424.js" id="asciicast-722424" async></script>
+
 </div>
 
 ## 📘 Usage
