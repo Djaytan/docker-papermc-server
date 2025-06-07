@@ -35,6 +35,7 @@ nav:
       - Environment Variables: environment-variables.md
       - Configuration Files: configuration-files.md
   - Production-Grade Deployment: production-grade-deployment.md
+  - License: license.md
 
 markdown_extensions:
   - admonition

@@ -47,6 +47,9 @@ jobs:
       - name: Install MkDocs Material
         run: pip install mkdocs-material
 
+      - name: Copy License
+        run: cp LICENSE.md docs/user-guide/docs/license.md
+
       - name: Build Site
         working-directory: docs/user-guide/
         run: mkdocs build --strict
