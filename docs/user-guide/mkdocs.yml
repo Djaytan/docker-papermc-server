@@ -1,3 +1,4 @@
+# yaml-language-server: $schema=https://squidfunk.github.io/mkdocs-material/schema.json
 site_name: Docker PaperMC Server
 site_description: A comprehensive guide for setting up and managing a PaperMC server using Docker.
 site_author: Djaytan
