@@ -2,6 +2,7 @@
 site_name: Docker PaperMC Server
 site_description: A comprehensive guide for setting up and managing a PaperMC server using Docker.
 site_author: Djaytan
+site_url: https://djaytan.github.io/docker-papermc-server/
 copyright: Copyright © 2025 Djaytan
 
 theme:
