@@ -2,6 +2,10 @@
 
 A general-purpose, OCI-compliant PaperMC server with streamlined and fine-grained customization options.
 
+## 💻 Demonstration (12 seconds)
+
+<script src="https://asciinema.org/a/722427.js" id="asciicast-722427" async></script>
+
 ## ✨ Highlights
 
 * 🏔️ **[Alpine](https://hub.docker.com/_/alpine)-based image**
