@@ -5,6 +5,8 @@ site_author: Djaytan
 site_url: https://djaytan.github.io/docker-papermc-server/
 copyright: Copyright © 2025 Djaytan
 
+docs_dir: src/
+
 theme:
   name: material
   locale: en
