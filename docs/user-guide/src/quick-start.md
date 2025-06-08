@@ -1,4 +1,4 @@
-# 📘 Usage
+# ⚡ Quick Start
 
 For a quick start, you can run the following command:
 

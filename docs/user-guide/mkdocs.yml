@@ -13,6 +13,13 @@ theme:
   name: material
   favicon: assets/logo.png
   logo: assets/logo-flat.png
+
+  features:
+    - navigation.instant
+    - navigation.instant.progress
+    - navigation.sections
+    - navigation.top
+
   palette:
     # Palette toggle for automatic mode
     - media: "(prefers-color-scheme)"
@@ -36,12 +43,13 @@ theme:
 
 nav:
   - Home: index.md
-  - Usage: usage.md
+  - Getting Started:
+    - Quick Start: quick-start.md
+    - Production-Grade Deployment: production-grade-deployment.md
   - Configuration:
       - General: configuration.md
       - Environment Variables: environment-variables.md
       - Configuration Files: configuration-files.md
-  - Production-Grade Deployment: production-grade-deployment.md
   - License: license.md
 
 markdown_extensions:
