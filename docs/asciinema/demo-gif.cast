@@ -1,4 +1,4 @@
-{"version": 2, "width": 80, "height": 18, "timestamp": 1749308065, "title": "Docker PaperMC Server - Demo", "env": {"SHELL": "/bin/bash", "TERM": "xterm-256color"}}
+{"version": 2, "width": 90, "height": 18, "timestamp": 1749308065, "title": "Docker PaperMC Server - Demo", "env": {"SHELL": "/bin/bash", "TERM": "xterm-256color"}}
 [0.000, "o", "$ "]
 [0.050, "o", "d"]
 [0.100, "o", "o"]
