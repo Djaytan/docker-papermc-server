@@ -40,6 +40,12 @@ $ docker run -d -it \
 > For detailed instructions on running the server, including configuration options and best practices, check out
 > the [user guide](https://djaytan.github.io/docker-papermc-server/).
 
+## 💻 Demonstration (12 seconds)
+
+<div align="center">
+  <a href="https://asciinema.org/a/722427?autoplay=1" target="_blank"><img src="https://github.com/Djaytan/docker-papermc-server/blob/main/docs/asciinema/demo.gif" alt="asciicast"></a>
+</div>
+
 ## ✨ Highlights
 
 * 🏔️ **[Alpine](https://hub.docker.com/_/alpine)-based image**
