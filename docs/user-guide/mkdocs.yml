@@ -3,13 +3,14 @@ site_name: Docker PaperMC Server
 site_description: A comprehensive guide for setting up and managing a PaperMC server using Docker.
 site_author: Djaytan
 site_url: https://djaytan.github.io/docker-papermc-server/
-copyright: Copyright © 2025 Djaytan
+copyright: >
+  Copyright © 2025 Djaytan –
+  <a href="#__consent">Change cookie settings</a>
 
 docs_dir: src/
 
 theme:
   name: material
-  locale: en
   favicon: assets/logo.png
   logo: assets/logo-flat.png
   palette:
@@ -47,6 +48,16 @@ markdown_extensions:
   - admonition
 
 extra:
+  consent:
+    title: Cookie consent
+    description: >-
+      We use cookies to recognize your repeated visits and preferences, as well
+      as to measure the effectiveness of our documentation and whether users
+      find what they're searching for. With your consent, you're helping us to
+      make our documentation better.
+  analytics:
+    provider: google
+    property: G-38B41053ZC
   social:
     - icon: fontawesome/brands/github
       link: https://github.com/Djaytan/docker-papermc-server
