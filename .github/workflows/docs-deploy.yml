@@ -31,6 +31,7 @@ jobs:
           egress-policy: block
           allowed-endpoints: >
             github.com:443
+            api.github.com:443
             pypi.org:443
             files.pythonhosted.org:443
 
@@ -53,6 +54,8 @@ jobs:
 
       - name: Build Site
         working-directory: docs/user-guide/
+        env:
+          MKDOCS_GIT_COMMITTERS_APIKEY: ${{ github.token }} # Avoid exceeding the GitHub API rate limits
         run: mkdocs build --strict
 
       - name: Upload artifact
