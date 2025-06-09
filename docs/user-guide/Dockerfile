@@ -3,6 +3,7 @@
 
 FROM docker.io/squidfunk/mkdocs-material:9.6.14@sha256:eb04b60c566a8862be6b553157c16a92fbbfc45d71b7e4e8593526aecca63f52
 
-# Add revisioning feature: https://squidfunk.github.io/mkdocs-material/setup/adding-a-git-repository/#revisioning
 RUN apk add --no-cache git && \
-    pip install mkdocs-git-revision-date-localized-plugin
+    pip install \
+      mkdocs-git-revision-date-localized-plugin \
+      mkdocs-git-committers-plugin-2

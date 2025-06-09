@@ -20,4 +20,8 @@ docker build -t squidfunk/mkdocs-material "${SCRIPT_DIR}"
 
 echo 'The preview is going to be available at http://localhost:8000/docker-papermc-server/'
 
-docker run --rm -it -p 8000:8000 --volume="${ROOT_PROJECT_DIR}:/docs" --workdir /docs/docs/user-guide --name mkdocs squidfunk/mkdocs-material "$@"
+docker run --rm -it -p 8000:8000 --name mkdocs \
+  --volume="${ROOT_PROJECT_DIR}:/docs" \
+  --workdir /docs/docs/user-guide \
+  -e MKDOCS_GIT_COMMITTERS_APIKEY="$(gh auth token)" \
+  squidfunk/mkdocs-material "$@"
