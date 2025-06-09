@@ -14,8 +14,10 @@ if [[ "$(uname)" =~ (CYGWIN.*)|(MINGW.*)|(MSYS.*) ]]; then
   SCRIPT_DIR="$(cygpath --windows "${SCRIPT_DIR}")"
 fi
 
+ROOT_PROJECT_DIR="${SCRIPT_DIR}/../.."
+
+docker build -t squidfunk/mkdocs-material "${SCRIPT_DIR}"
+
 echo 'The preview is going to be available at http://localhost:8000/docker-papermc-server/'
 
-docker run --rm -it -p 8000:8000 --volume="${SCRIPT_DIR}:/docs" \
-  squidfunk/mkdocs-material:9.6.14@sha256:eb04b60c566a8862be6b553157c16a92fbbfc45d71b7e4e8593526aecca63f52 \
-  "$@"
+docker run --rm -it -p 8000:8000 --volume="${ROOT_PROJECT_DIR}:/docs" --workdir /docs/docs/user-guide --name mkdocs squidfunk/mkdocs-material "$@"

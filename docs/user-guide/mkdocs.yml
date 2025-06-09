@@ -9,10 +9,19 @@ copyright: >
 
 docs_dir: src/
 
+repo_name: Djaytan/docker-papermc-server
+repo_url: https://github.com/Djaytan/docker-papermc-server
+edit_uri: edit/main/docs/user-guide/src/
+
 theme:
   name: material
   favicon: assets/logo.png
   logo: assets/logo-flat.png
+
+  icon:
+    repo: fontawesome/brands/github
+    edit: material/pencil
+    view: material/eye
 
   features:
     - navigation.instant
@@ -21,6 +30,8 @@ theme:
     - navigation.top
     - search.suggest
     - search.highlight
+    - content.action.view
+    - content.action.edit
 
   palette:
     # Palette toggle for automatic mode
@@ -56,6 +67,8 @@ nav:
 
 plugins:
   - search
+  - git-revision-date-localized:
+      enable_creation_date: true
 
 markdown_extensions:
   - admonition
