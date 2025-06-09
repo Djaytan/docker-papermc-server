@@ -36,6 +36,16 @@ Instead, open the site using one of the following URLs:
 * `http://localhost:8000/docker-papermc-server/`
 * `http://127.0.0.1:8000/docker-papermc-server/`
 
+## 🛠 Wrapper Script
+
+To run `mkdocs` commands manually, use the `mkdocs.sh` wrapper script. For example:
+
+```bash
+./mkdocs.sh build
+```
+
+That said, unless you have a specific reason, it’s recommended to use `localdev.sh`, as it handles everything needed for local development.
+
 ## ➕ Adding Dependencies
 
 When introducing new dependencies, make sure to update both the **local development environment** and the **CI build environment**, as they are managed
@@ -43,7 +53,7 @@ separately.
 
 ### 💻 Locally
 
-To update the local environment, open the `wrappers/mkdocs/Dockerfile` and modify the `RUN pip install ...` line to include any additional packages you need.
+To update the local environment, open the `Dockerfile` and modify the `RUN pip install ...` line to include any additional packages you need.
 
 ### 🤖 In CI
 
