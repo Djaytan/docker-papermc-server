@@ -52,7 +52,8 @@ $ docker run -d -it \
 * 🪶 **Lightweight** – ~125 MB
 * 🧘 **Minimalist** – Includes only essential dependencies to reduce image size and surface area.
 * 🧩 **Customizable** – Streamlined and fine-grained configuration options.
-* 📚 **Well-documented** – Comprehensive and structured documentation covering features, configuration, and usage.
+* 📚 **Well-documented** – Comprehensive and structured documentation covering features, configuration, and
+  usage ([link](https://djaytan.github.io/docker-papermc-server/)).
 * 👤 **UID-agnostic** – Supports running the server with a custom/arbitrary UID (typically required when running container
   in [OpenShift](https://www.redhat.com/en/technologies/cloud-computing/openshift)).
 * 🔐 **Rootless by default** – Runs as a non-root user when no custom UID is specified.

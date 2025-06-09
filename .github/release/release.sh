@@ -1,4 +1,5 @@
 #!/usr/bin/env sh
+# TODO: move in sources
 
 set -eu
 

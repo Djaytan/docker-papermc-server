@@ -22,14 +22,19 @@ esac
 
 ROOT_PROJECT_DIR="${SCRIPT_DIR}/../.."
 
-echo 'Building Docker image for MkDocs (can take a while - ~1 minutes)'
+echo 'Building Docker image for MkDocs (can take up to a minute)'
 docker build --progress quiet -t docker-papermc-server/mkdocs "${SCRIPT_DIR}"
+
+# Avoid exceeding the GitHub API rate limits
+GITHUB_TOKEN="${GITHUB_TOKEN:-$(gh auth token)}"
 
 echo
 echo 'Running MkDocs:'
+# Avoid permission issues by running the container with the current user ID and group ID
 docker run --rm -p 8000:8000 --name docker-papermc-server-mkdocs \
+  --user "$(id -u):$(id -g)" \
   --volume="${ROOT_PROJECT_DIR}:/run" \
   --workdir /run/docs/user-guide \
-  -e MKDOCS_GIT_COMMITTERS_APIKEY="$(gh auth token)" \
+  -e MKDOCS_GIT_COMMITTERS_APIKEY="${GITHUB_TOKEN}" \
   docker-papermc-server/mkdocs \
   "$@"
