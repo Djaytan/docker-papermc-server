@@ -47,7 +47,7 @@ jobs:
           python-version: 3.13
 
       - name: Install MkDocs Material
-        run: pip install --require-hashes --requirement docs/user-guide/requirements.txt
+        run: pip install --require-hashes --requirement docs/user-guide/requirements/requirements.txt
 
       - name: Copy License
         run: cp LICENSE.md docs/user-guide/src/license.md

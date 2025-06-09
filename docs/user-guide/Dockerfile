@@ -6,7 +6,7 @@ FROM docker.io/python:3.13.14-alpine@sha256:c610e4a94a0e8b888b4b225bfc0e6b59dee6
 
 WORKDIR /run
 
-COPY requirements.txt .
+COPY requirements/requirements.txt .
 
 RUN \
   ## Install MkDocs and its dependencies

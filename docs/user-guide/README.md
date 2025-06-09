@@ -57,5 +57,6 @@ To update the local environment, open the `Dockerfile` and modify the `RUN pip i
 
 ### 🤖 In CI
 
-Dependencies for the CI environment are declared in `requirements.in`. After editing this file to include the new packages, run the `requirements.sh` script.
-This will regenerate `requirements.txt`, which is the file actually used by the CI to install dependencies in a consistent and reproducible way.
+Dependencies for the CI environment are declared in `requirements/requirements.in`.
+After editing this file to include the new packages, run the `requirements/requirements.sh` script.
+This will regenerate `requirements/requirements.txt`, which is the file actually used by the CI to install dependencies in a consistent and reproducible way.
