@@ -22,10 +22,13 @@ case "$(uname)" in
     ;;
 esac
 
-docker build -t docker-papermc-server/pip-tools "${SCRIPT_DIR}"
+echo 'Building Docker image for pip-tools (should only take few seconds)'
+docker build --progress quiet -t docker-papermc-server/pip-tools "${SCRIPT_DIR}"
 
+echo
+echo 'Running pip-compile:'
 docker run --rm --name docker-papermc-server-pip-compile \
   --volume="${CURRENT_DIR}:/run" \
   --workdir /run \
   docker-papermc-server/pip-tools \
-  pip-compile --strip-extras --generate-hashes "$@"
+  pip-compile --strip-extras "$@"
