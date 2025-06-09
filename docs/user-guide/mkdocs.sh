@@ -3,7 +3,7 @@
 
 set -eu
 
-SCRIPT_DIR=$(cd "$(dirname "$0")" > /dev/null 2>&1 && pwd -P)
+SCRIPT_DIR="$(cd "$(dirname "$0")" > /dev/null 2>&1 && pwd -P)"
 
 # On Windows environments (Cygwin, MinGW, MSYS), Docker volume mounts require Windows-style paths.
 # However, automatic path conversion by MSYS can cause unexpected issues,
@@ -20,13 +20,16 @@ case "$(uname)" in
     ;;
 esac
 
-ROOT_PROJECT_DIR="${SCRIPT_DIR}/../../../.."
+ROOT_PROJECT_DIR="${SCRIPT_DIR}/../.."
 
-docker build -t docker-papermc-server/mkdocs "${SCRIPT_DIR}"
+echo 'Building Docker image for MkDocs (can take a while)'
+docker build --progress quiet -t docker-papermc-server/mkdocs "${SCRIPT_DIR}"
 
+echo
+echo 'Running MkDocs:'
 docker run --rm -p 8000:8000 --name docker-papermc-server-mkdocs \
-  --volume="${ROOT_PROJECT_DIR}:/docs" \
-  --workdir /docs/docs/user-guide \
+  --volume="${ROOT_PROJECT_DIR}:/run" \
+  --workdir /run/docs/user-guide \
   -e MKDOCS_GIT_COMMITTERS_APIKEY="$(gh auth token)" \
   docker-papermc-server/mkdocs \
   "$@"
