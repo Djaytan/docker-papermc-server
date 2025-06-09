@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
-# This script aims to wrap Markdown Material CLI through Docker in order to ensure portability across systems (Windows, Linux, Mac)
+# This script aims to wrap MkDocs Material CLI through Docker in order to ensure portability across systems (Windows, Linux, Mac)
+
+set -eu
 
 SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" &>/dev/null && pwd -P)
 
@@ -16,11 +18,11 @@ fi
 
 ROOT_PROJECT_DIR="${SCRIPT_DIR}/../.."
 
-docker build -t squidfunk/mkdocs-material "${SCRIPT_DIR}"
+docker build -t squidfunk/mkdocs-material -f Dockerfile.mkdocs "${SCRIPT_DIR}"
 
 echo 'The preview is going to be available at http://localhost:8000/docker-papermc-server/'
 
-docker run --rm -it -p 8000:8000 --name mkdocs \
+docker run --rm -p 8000:8000 --name mkdocs \
   --volume="${ROOT_PROJECT_DIR}:/docs" \
   --workdir /docs/docs/user-guide \
   -e MKDOCS_GIT_COMMITTERS_APIKEY="$(gh auth token)" \
