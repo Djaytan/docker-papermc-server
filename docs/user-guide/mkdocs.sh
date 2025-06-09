@@ -22,7 +22,7 @@ esac
 
 ROOT_PROJECT_DIR="${SCRIPT_DIR}/../.."
 
-echo 'Building Docker image for MkDocs (can take a while)'
+echo 'Building Docker image for MkDocs (can take a while - ~1 minutes)'
 docker build --progress quiet -t docker-papermc-server/mkdocs "${SCRIPT_DIR}"
 
 echo

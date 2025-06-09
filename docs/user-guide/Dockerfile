@@ -6,14 +6,17 @@ FROM docker.io/python:3.12.11-alpine@sha256:c610e4a94a0e8b888b4b225bfc0e6b59dee6
 
 WORKDIR /run
 
-# Install MkDocs
-RUN pip install mkdocs-material[recommended]
+COPY requirements.txt .
 
-# Install MkDocs Git-related features (e.g. revisions, collaborators, ...)
-RUN apk add --no-cache git && \
-    pip install \
-      mkdocs-git-revision-date-localized-plugin \
-      mkdocs-git-committers-plugin-2 && \
+RUN \
+  ## Install MkDocs and its dependencies
+    pip install --no-cache-dir --require-hashes --requirement requirements.txt \
+  && \
+    rm requirements.txt \
+  ## Setup prerequisites for MkDocs Git-related features (e.g. revisions, collaborators, ...)
+  && \
+    apk add --no-cache git \
+  && \
     git config --system --add safe.directory /run
 
 USER daemon
