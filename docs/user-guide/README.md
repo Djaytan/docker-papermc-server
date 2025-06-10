@@ -48,15 +48,12 @@ That said, unless you have a specific reason, it’s recommended to use `localde
 
 ## ➕ Adding Dependencies
 
-When introducing new dependencies, make sure to update both the **local development environment** and the **CI build environment**, as they are managed
-separately.
+### 🐍 Python Packages
 
-### 💻 Locally
-
-To update the local environment, open the `Dockerfile` and modify the `RUN pip install ...` line to include any additional packages you need.
-
-### 🤖 In CI
-
-Dependencies for the CI environment are declared in `requirements/requirements.in`.
+Python dependencies are declared in `requirements/requirements.in`.
 After editing this file to include the new packages, run the `requirements/requirements.sh` script.
-This will regenerate `requirements/requirements.txt`, which is the file actually used by the CI to install dependencies in a consistent and reproducible way.
+This will regenerate `requirements/requirements.txt`, which is the file actually used by both the localdev and CI environments to install dependencies in a consistent and reproducible way.
+
+### 🐧 Alpine Linux Packages
+
+To add Alpine system packages, modify the `Dockerfile` directly.
