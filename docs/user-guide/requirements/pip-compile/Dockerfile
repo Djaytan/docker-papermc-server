@@ -4,11 +4,18 @@
 # Note: impossible to rely on v3.13.14 (missing 'cache_clear' function error)
 FROM docker.io/python:3.12.11-alpine@sha256:c610e4a94a0e8b888b4b225bfc0e6b59dee607b1e61fb63ff3926083ff617216
 
-RUN addgroup -S pip && \
-    adduser --system --disabled-password --shell /sbin/nologin pip
+ARG UID
+ARG GID
 
-ENV PATH="${PATH}:/home/pip/.local/bin"
+# BusyBox command help: https://www.busybox.net/downloads/BusyBox.html
+RUN addgroup -S -g ${GID} pip &&  \
+    adduser -S -u ${UID} -G pip pip
 
 USER pip
 
+WORKDIR /home/pip/
+
+ENV PATH="${PATH}:/home/pip/.local/bin"
+
+# Long story short: install pip-tools in the user directory to avoid permission issues.
 RUN pip install --user pip-tools
