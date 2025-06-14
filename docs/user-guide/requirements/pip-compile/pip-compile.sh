@@ -31,7 +31,7 @@ rm "${CURRENT_DIR}"/requirements.txt
 echo
 echo 'Running pip-compile:'
 docker run --rm --name docker-papermc-server-pip-compile \
-  --volume="${CURRENT_DIR}:/run" \
+  --mount type=bind,source="${CURRENT_DIR}",target=/run \
   --workdir /run \
   docker-papermc-server/pip-tools \
   pip-compile --strip-extras "$@"
