@@ -33,7 +33,7 @@ echo 'Running MkDocs:'
 # Avoid permission issues by running the container with the current user ID and group ID
 docker run --rm -p 8000:8000 --name docker-papermc-server-mkdocs \
   --user "$(id -u):$(id -g)" \
-  --volume="${ROOT_PROJECT_DIR}:/run" \
+  --mount type=bind,source="${ROOT_PROJECT_DIR}",target=/run \
   --workdir /run/docs/user-guide \
   -e MKDOCS_GIT_COMMITTERS_APIKEY="${GITHUB_TOKEN}" \
   docker-papermc-server/mkdocs \
