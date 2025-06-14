@@ -23,11 +23,10 @@ case "$(uname)" in
 esac
 
 echo 'Building Docker image for pip-tools (should only take few seconds)'
-docker build --progress quiet \
-  --build-arg "UID=$(id -u)" \
-  --build-arg "GID=$(id -g)" \
-  -t docker-papermc-server/pip-tools \
-  "${SCRIPT_DIR}"
+docker build --progress quiet -t docker-papermc-server/pip-tools "${SCRIPT_DIR}"
+
+echo 'Cleaning up old requirements.txt file'
+rm "${CURRENT_DIR}"/requirements.txt
 
 echo
 echo 'Running pip-compile:'
