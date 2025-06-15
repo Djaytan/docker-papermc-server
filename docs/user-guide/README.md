@@ -36,15 +36,13 @@ Instead, open the site using one of the following URLs:
 * `http://localhost:8000/docker-papermc-server/`
 * `http://127.0.0.1:8000/docker-papermc-server/`
 
-## 🛠 Wrapper Script
+### 🛠️ Building the Site
 
-To run `mkdocs` commands manually, use the `mkdocs.sh` wrapper script. For example:
+If you want to generate the site files without starting the local development server, you can run:
 
 ```bash
-./mkdocs.sh build
+./build.sh
 ```
-
-That said, unless you have a specific reason, it’s recommended to use `localdev.sh`, as it handles everything needed for local development.
 
 ## ➕ Adding Dependencies
 
