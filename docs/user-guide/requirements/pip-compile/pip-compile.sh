@@ -25,9 +25,6 @@ esac
 echo 'Building Docker image for pip-tools (should only take few seconds)'
 docker build --progress quiet -t docker-papermc-server/pip-tools "${SCRIPT_DIR}"
 
-echo 'Cleaning up old requirements.txt file'
-rm "${CURRENT_DIR}"/requirements.txt
-
 echo
 echo 'Running pip-compile:'
 # Avoid permission issues by running the container with the current user ID and group ID.
