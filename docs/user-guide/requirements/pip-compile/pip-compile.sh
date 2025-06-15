@@ -30,7 +30,9 @@ rm "${CURRENT_DIR}"/requirements.txt
 
 echo
 echo 'Running pip-compile:'
+# Avoid permission issues by running the container with the current user ID and group ID.
 docker run --rm --name docker-papermc-server-pip-compile \
+  --user "$(id -u):$(id -g)" \
   --mount type=bind,source="${CURRENT_DIR}",target=/run \
   --workdir /run \
   docker-papermc-server/pip-tools \
