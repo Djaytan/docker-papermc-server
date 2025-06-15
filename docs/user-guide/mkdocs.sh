@@ -20,6 +20,7 @@ case "$(uname)" in
     ;;
 esac
 
+# Constraint: MkDocs' Git plugin requires access to the Git history.
 ROOT_PROJECT_DIR="${SCRIPT_DIR}/../.."
 
 echo 'Building Docker image for MkDocs (can take up to a minute)'
@@ -30,9 +31,7 @@ GITHUB_TOKEN="${GITHUB_TOKEN:-$(gh auth token)}"
 
 echo
 echo 'Running MkDocs:'
-# Avoid permission issues by running the container with the current user ID and group ID
 docker run --rm -p 8000:8000 --name docker-papermc-server-mkdocs \
-  --user "$(id -u):$(id -g)" \
   --mount type=bind,source="${ROOT_PROJECT_DIR}",target=/run \
   --workdir /run/docs/user-guide \
   -e MKDOCS_GIT_COMMITTERS_APIKEY="${GITHUB_TOKEN}" \
