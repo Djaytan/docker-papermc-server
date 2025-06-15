@@ -62,4 +62,4 @@ jobs:
         working-directory: docs/user-guide/
         env:
           GITHUB_TOKEN: ${{ github.token }} # Avoid exceeding the GitHub API rate limits
-        run: mkdir site && chmod 775 site && chmod +t site && ls -la site && ./build.sh
+        run: ./build.sh
