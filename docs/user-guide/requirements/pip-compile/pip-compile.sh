@@ -31,6 +31,5 @@ echo 'Running pip-compile:'
 docker run --rm --name docker-papermc-server-pip-compile \
   --user "$(id -u):$(id -g)" \
   --mount type=bind,source="${CURRENT_DIR}",target=/run \
-  --workdir /run \
   docker-papermc-server/pip-tools \
   pip-compile --strip-extras "$@"

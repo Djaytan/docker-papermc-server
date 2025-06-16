@@ -13,7 +13,12 @@ USER 1000:1000
 
 ENV HOME=/home/pip
 ENV PATH="${PATH}:${HOME}/.local/bin"
+ENV PIP_TOOLS_CACHE_DIR='/tmp/.cache/pip-tools'
 
 WORKDIR ${HOME}
 
 RUN pip install --user pip-tools
+
+VOLUME ["/run"]
+
+WORKDIR /run
