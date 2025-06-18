@@ -66,3 +66,8 @@ The directory structure is as follows:
     For example, you can mount volumes for dynamic data like world saves, while embedding configuration files and plugins directly into
     a custom OCI image based on this one.
     This hybrid approach offers both flexibility and reproducibility.
+
+!!! info "🗃️ Anonymous Volume"
+
+    If you don’t specify a volume mount for any of these directories, the image will create an anonymous volume for the `/data` folder.
+    This ensures your data persists across container restarts, but the volume won’t be easily accessible or manageable outside the container.
