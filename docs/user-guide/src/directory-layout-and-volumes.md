@@ -9,8 +9,8 @@ rely on every day.
 Here’s how this layout benefits you:
 
 - ⚙️ **Manage your server configurations your way.**<br/>
-  Most needs are met with default settings or environment variables. For advanced customization, simply mount override configuration files as explained
-  in [the dedicated section](configuration-files.md).
+  Most needs are met with default settings or [environment variables](environment-variables.md). For advanced customization, simply mount override configuration
+  files as explained in [the dedicated section](configuration-files.md).
 
 - 🌍 **Keep your worlds safe and separate.**<br/>
   World saves are stored independently, making imports, backups, and migrations simple.
@@ -29,27 +29,27 @@ This image provides a clean, well-structured directory layout. You can mount vol
 
 The directory structure is as follows:
 
-    /data
-    ├── config/      → Configuration overrides
-    ├── worlds/      → World saves (e.g., "world", "world_nether", "world_the_end", etc.)
-    └── plugins/     → PaperMC plugins (".jar" files and their data)
+     /config/          → Override configuration files
+     /data/            → Persistent server data
+        ├── worlds/      → Saved Minecraft worlds (e.g., "world", "world_nether", "world_the_end")
+        └── plugins/     → PaperMC plugins and their data (JAR files and plugin-specific folders)
 
 ### 📌 Directory Details
 
-- **`/data/`**<br/>
-  This is the root working directory — everything persistent or user-facing lives under it.<br/>
-  If you want to back up or inspect the full server state, this is the top-level directory to use.<br/>
-  However, for most use cases, it's better to mount its subdirectories (`config/`, `worlds/`, `plugins/`) individually and/or populate them statically by
-  building your own OCI image based on this one. This keeps things modular, maintainable, and easier to manage.
-
-- **`/data/config/`**<br/>
+- **`/config/`**<br/>
   Place configuration override files here.<br/>
   This is useful for advanced customization when environment variables aren't enough.<br/>
   For best results, define these files statically in your own custom OCI image based on this one.<br/>
   More details available [here](configuration-files.md).
 
+- **`/data/`**<br/>
+  This is the root working directory — everything persistent lives under it.<br/>
+  If you want to back up or inspect the full server state, this is the top-level directory to use.<br/>
+  However, for most use cases, it's better to mount its subdirectories (`worlds/`, `plugins/`) individually and/or populate them statically by
+  building your own OCI image based on this one. This keeps things modular, maintainable, and easier to manage.
+
 - **`/data/worlds/`**<br/>
-  This directory contains all world saves.  <br/>
+  This directory contains all world saves.<br/>
   By default, it includes `world`, `world_nether`, and `world_the_end`, but any custom worlds you configure will also appear here, either in addition to or in
   place of the defaults.<br/>
   Mount this directory to persist or import your game worlds.
