@@ -67,8 +67,22 @@ The directory structure is as follows:
     a custom OCI image based on this one.
     This hybrid approach offers both flexibility and reproducibility.
 
-!!! info "💾 Anonymous Volumes"
+## 💾 Anonymous Volumes
 
-    If you don’t specify volume mounts for `/data/worlds` or `/data/plugins`, the image will automatically create anonymous volumes for them.
-    This ensures your data persists across container restarts and can improve container performance.
-    However, these volumes won’t be easily accessible or manageable from outside the container.
+If you don’t specify volume mounts for `/data/worlds` or `/data/plugins`, the image will automatically create anonymous volumes for them.
+This ensures your data persists across container restarts and can improve container performance.
+However, these volumes won’t be easily accessible or manageable from outside the container.
+
+!!! danger "⚠️ Risk of Data Loss"
+
+    Running `docker run --rm ...` will **automatically remove the container and any anonymous volumes** it created.
+    This can lead to **permanent data loss**, especially if important directories like `/data/worlds` or `/data/plugins` were stored in those volumes.
+
+    To avoid this, it's essential to follow proper volume management practices — **see best practices below**.
+
+## ✅ Best Practices
+
+- **Explicitly mount `/data/worlds` and `/data/plugins`** using named volumes or bind mounts to ensure data persistence.
+- Avoid relying on anonymous volumes when using `--rm`, as they are deleted along with the container.
+- **Use a custom OCI image** based on this one to include static files such as default configurations or plugin JARs, while keeping dynamic data in volumes.
+- **Implement regular backups** of your mounted data directories to safeguard against accidental loss or corruption.
