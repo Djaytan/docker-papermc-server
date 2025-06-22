@@ -67,7 +67,8 @@ The directory structure is as follows:
     a custom OCI image based on this one.
     This hybrid approach offers both flexibility and reproducibility.
 
-!!! info "🗃️ Anonymous Volume"
+!!! info "💾 Anonymous Volumes"
 
-    If you don’t specify a volume mount for any of these directories, the image will create an anonymous volume for the `/data` folder.
-    This ensures your data persists across container restarts, but the volume won’t be easily accessible or manageable outside the container.
+    If you don’t specify volume mounts for `/data/worlds` or `/data/plugins`, the image will automatically create anonymous volumes for them.
+    This ensures your data persists across container restarts and can improve container performance.
+    However, these volumes won’t be easily accessible or manageable from outside the container.
