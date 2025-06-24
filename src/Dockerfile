@@ -73,7 +73,7 @@ FROM docker.io/itzg/mc-monitor:0.15.5@sha256:301d416d2636be3461046f783853a45e095
 
 
 # Use the CUE lang to handle configuration validation and generation.
-FROM docker.io/cuelang/cue:0.13.1@sha256:c23495bb29cdd5731f110e4219ae4f24d17cde074bc75d76daa67c165a73cf58 AS cuelang-build
+FROM docker.io/cuelang/cue:0.13.2@sha256:3296cdefb31c57c8e09da34a19f2f80308cfa60e1f88d5762034654001f265a2 AS cuelang-build
 
 
 
