@@ -16,7 +16,7 @@ They provide a more maintainable and future-proof approach to configuring advanc
 
 All configuration files must be placed in:
 
-    /opt/papermc/config/overrides
+    /config/
 
 You are free to choose any file names that suit your organization.
 
@@ -53,7 +53,7 @@ We’ll do our best to find a solution!
 
 Suppose you want to disable the End dimension in your PaperMC server.
 This would normally require setting the `settings.allow-end` property inside `bukkit.yml`.
-Now, you can create any file inside `/opt/papermc/config/overrides` and define the property under the `bukkit.global.settings` key like this:
+Now, you can create any file inside `/config/` and define the property under the `bukkit.global.settings` key like this:
 
 ```yaml
 bukkit:
