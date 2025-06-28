@@ -9,7 +9,6 @@
 [![OpenSSF Best Practices](https://www.bestpractices.dev/projects/10360/badge)](https://www.bestpractices.dev/projects/10360)
 [![OpenSSF Scorecard](https://api.securityscorecards.dev/projects/github.com/Djaytan/docker-papermc-server/badge)](https://securityscorecards.dev/viewer/?uri=github.com/Djaytan/docker-papermc-server)<br/>
 [![Docker Pulls](https://img.shields.io/docker/pulls/djaytan/papermc-server.svg?logo=docker)](https://hub.docker.com/r/djaytan/papermc-server/)
-[![Docker Stars](https://img.shields.io/docker/stars/djaytan/papermc-server.svg?logo=docker)](https://hub.docker.com/r/djaytan/papermc-server/)
 
 A general-purpose, OCI-compliant PaperMC server with streamlined and fine-grained customization options.
 
