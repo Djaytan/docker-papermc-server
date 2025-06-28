@@ -144,6 +144,9 @@ COPY --from=cuelang-build --chmod=550 /usr/bin/cue /usr/local/bin/cue
 # https://docs.redhat.com/en/documentation/openshift_container_platform/4.18/html/images/creating-images#use-uid_create-images
 USER daemon:root
 
+# Mount points for data persistence.
+VOLUME ["/data/worlds"]
+
 # Minecraft port.
 EXPOSE 25565
 
