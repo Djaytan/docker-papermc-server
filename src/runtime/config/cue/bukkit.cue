@@ -19,7 +19,7 @@ bukkit: {
 			"shutdown-message":    *"Server closed" | string @tag(BUKKIT_GLOBAL_SETTINGS_SHUTDOWN_MESSAGE, type=string)
 			"minimum-api":         *"none" | string          @tag(BUKKIT_GLOBAL_SETTINGS_MINIMUM_API, type=string)
 			"use-map-color-cache": *true | bool              @tag(BUKKIT_GLOBAL_SETTINGS_USE_MAP_COLOR_CACHE, type=bool)
-			"world-container":     "worlds"                  // System-managed property
+			"world-container":     "/data/worlds"            // System-managed property
 		}
 
 		// These properties are overridden by PaperMC
