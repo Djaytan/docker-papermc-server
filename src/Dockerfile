@@ -121,8 +121,11 @@ COPY --chmod=770 runtime/ ./
 RUN chmod 770 /opt/papermc && \
     chmod 550 /opt/papermc/start.sh
 
-# Minecraft port.
-EXPOSE 25565
+# Prepare data directories by setting proper default permissions.
+# Avoid "access denied" errors when the server attempts to create or modify files.
+# See https://stackoverflow.com/a/64034092/10165346
+RUN mkdir --parent /data/worlds && \
+    chown daemon /data/worlds
 
 # mc-monitor setup for health-checks.
 COPY --from=mc-monitor-build --chmod=550 /mc-monitor /usr/local/bin/mc-monitor
@@ -141,7 +144,8 @@ COPY --from=cuelang-build --chmod=550 /usr/bin/cue /usr/local/bin/cue
 # https://docs.redhat.com/en/documentation/openshift_container_platform/4.18/html/images/creating-images#use-uid_create-images
 USER daemon:root
 
-# TODO: explicitly declare volume mount points with VOLUME (e.g., /opt/papermc/worlds, /opt/papermc/plugins/my-plugin, etc)
+# Minecraft port.
+EXPOSE 25565
 
 ENTRYPOINT ["./start.sh"]
 
