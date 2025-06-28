@@ -26,6 +26,8 @@ COPY requirements/requirements.txt .
 # Install MkDocs and its dependencies
 RUN pip install --user --require-hashes --requirement requirements.txt && rm requirements.txt
 
+VOLUME ["/run"]
+
 WORKDIR /run
 
 EXPOSE 8000
