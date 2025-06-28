@@ -6,7 +6,7 @@ SCRIPT_DIR=$(cd "$(dirname "$0")" > /dev/null 2>&1 && pwd -P)
 
 sh "${SCRIPT_DIR}"/build-dev.sh
 
-echo '🚀 Starting the localdev PaperMC server...'
+echo 'Starting the localdev PaperMC server...'
 
 # Simulate a production-like environment by enforcing strict security policies:
 # - Drop all Linux capabilities (PaperMC does not require any).
