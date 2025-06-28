@@ -56,11 +56,12 @@ theme:
 
 nav:
   - Home: index.md
-  - Getting Started:
+  - General:
     - Quick Start: quick-start.md
+    - Directory Layout & Volumes: directory-layout-and-volumes.md
     - Production-Grade Deployment: production-grade-deployment.md
   - Configuration:
-      - General: configuration.md
+      - Overview: configuration.md
       - Environment Variables: environment-variables.md
       - Configuration Files: configuration-files.md
   - License: license.md

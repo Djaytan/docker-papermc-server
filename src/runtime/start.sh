@@ -60,7 +60,6 @@ SERVER_ARGS="
   --log-strip-color
   --nogui
 "
-# TODO: document internal directory layout (particularly important since non-standard)
 
 cd "${ROOT_DIR}"
 

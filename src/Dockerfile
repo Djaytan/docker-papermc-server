@@ -139,7 +139,6 @@ COPY --from=cuelang-build --chmod=550 /usr/bin/cue /usr/local/bin/cue
 # that assign arbitrary UIDs at runtime, such as OpenShift.
 # For more on OpenShift-compatible image design, see:
 # https://docs.redhat.com/en/documentation/openshift_container_platform/4.18/html/images/creating-images#use-uid_create-images
-# TODO: fix for Kubernetes (custom GID seems to be enforced, thus leading to permission issues)
 USER daemon:root
 
 # TODO: explicitly declare volume mount points with VOLUME (e.g., /opt/papermc/worlds, /opt/papermc/plugins/my-plugin, etc)
