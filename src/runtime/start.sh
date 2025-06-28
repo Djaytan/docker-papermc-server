@@ -73,7 +73,7 @@ SERVER_ARGS="
 cd "${ROOT_DIR}"
 
 if [ "${IS_SERVER_RESTART}" = false ]; then
-  echo '⚙️ Preparing PaperMC server configuration files...'
+  echo '⚙️ Preparing configuration files...'
 
   # shellcheck disable=SC2016  # Use single quotes to prevent variable expansion with envsubst
   TMP="$(envsubst '$EULA' < eula.txt)"
