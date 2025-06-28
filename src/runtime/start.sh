@@ -7,7 +7,7 @@ SCRIPT_DIR=$(cd "$(dirname "$0")" > /dev/null 2>&1 && pwd -P)
 ## Directories
 ROOT_DIR="${SCRIPT_DIR}"
 CONFIG_DIR="${SCRIPT_DIR}/config"
-OVERRIDES_CONFIG_DIR="${CONFIG_DIR}/overrides"
+OVERRIDES_CONFIG_DIR="/config"
 CUE_DIR="${CONFIG_DIR}/cue"
 
 IS_SERVER_RESTART=false

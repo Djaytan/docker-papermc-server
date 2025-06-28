@@ -118,13 +118,14 @@ RUN apk add --no-cache gettext libudev-zero
 COPY --chmod=770 runtime/ ./
 
 # Adjust permissions.
+# Set default ones for mount points knowing that they can be overridden at runtime (e.g., Kubernetes's security context "fsGroup").
 RUN chmod 770 /opt/papermc && \
-    chmod 550 /opt/papermc/start.sh
-
-# Prepare data directories by setting proper default permissions.
-# Avoid "access denied" errors when the server attempts to create or modify files.
-# See https://stackoverflow.com/a/64034092/10165346
-RUN mkdir --parent /data/worlds && \
+    chmod 550 /opt/papermc/start.sh && \
+    # Overrides config files
+    mkdir /config && \
+    chown daemon /config && \
+    # Data directories
+    mkdir --parent /data/worlds && \
     chown daemon /data/worlds
 
 # mc-monitor setup for health-checks.
