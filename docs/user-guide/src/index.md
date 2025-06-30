@@ -4,7 +4,7 @@ A general-purpose, OCI-compliant PaperMC server with streamlined and fine-graine
 
 ## 💻 Demonstration (12 seconds)
 
-<script src="https://asciinema.org/a/722487.js" id="asciicast-722487" async></script>
+<script src="https://asciinema.org/a/725450.js" id="asciicast-725450" async></script>
 
 ## ✨ Highlights
 
