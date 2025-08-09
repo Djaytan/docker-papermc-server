@@ -36,7 +36,7 @@ jobs:
       # -> "*.github.com": Standard interactions with GitHub
       # -> "objects.githubusercontent.com": Uploading of security reports
       # -> "raw.githubusercontent.com": Retrieve license file when building OCI image
-      # -> "*.docker.io" & "*.docker.com": Standard interactions with Docker
+      # -> "*.docker.io", "*.docker.com" & "docker-images-prod.*.r2.cloudflarestorage.com": Standard interactions with Docker
       # -> "*.alpinelinux.org": Standard interactions with Alpine Linux package repositories
       # -> "cdn.fwupd.org": Firmware updates (Alpine)
       # -> "api.papermc.io": Dynamic retrieval of the PaperMC server
@@ -54,6 +54,7 @@ jobs:
             raw.githubusercontent.com:443
             *.docker.io:443
             *.docker.com:443
+            docker-images-prod.*.r2.cloudflarestorage.com
             dl-cdn.alpinelinux.org:443
             cdn.fwupd.org:443
             api.papermc.io:443
