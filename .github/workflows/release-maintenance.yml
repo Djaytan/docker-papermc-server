@@ -29,7 +29,7 @@ permissions: {}
 
 jobs:
   validate:
-    name: Validate
+    name: Release - Validate
     uses: ./.github/workflows/ci.yml
 
     # Only runs on the default branch (i.e., main).
@@ -44,7 +44,7 @@ jobs:
       DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
 
   perform:
-    name: Perform
+    name: Release - Perform
     runs-on: ubuntu-24.04
     timeout-minutes: 15
 
