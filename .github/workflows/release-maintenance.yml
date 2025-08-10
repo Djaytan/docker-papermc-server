@@ -73,11 +73,10 @@ jobs:
           egress-policy: block
           allowed-endpoints: >
             github.com:443
-            api.github.com:443
-            raw.githubusercontent.com:443
-            uploads.github.com:443
+            *.github.com:443
+            *.githubusercontent.com:443
             *.docker.io:443
-            production.cloudflare.docker.com:443
+            *.docker.com:443
             docker-images-prod.*.r2.cloudflarestorage.com
             dl-cdn.alpinelinux.org:443
             cdn.fwupd.org:443
