@@ -29,7 +29,7 @@ permissions: {}
 
 jobs:
   perform:
-    name: Perform
+    name: Release - Perform
     runs-on: ubuntu-24.04
     timeout-minutes: 15
 
