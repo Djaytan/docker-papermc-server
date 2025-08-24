@@ -2,7 +2,7 @@
 # check=error=true
 
 # BusyBox command help: https://www.busybox.net/downloads/BusyBox.html
-FROM docker.io/python:3.13.5-alpine@sha256:9b4929a72599b6c6389ece4ecbf415fd1355129f22bb92bb137eea098f05e975
+FROM docker.io/python:3.13.7-alpine@sha256:9ba6d8cbebf0fb6546ae71f2a1c14f6ffd2fdab83af7fa5669734ef30ad48844
 
 # Setup prerequisites for MkDocs Git-related features (e.g. revisions, collaborators, ...)
 RUN apk add --no-cache git
