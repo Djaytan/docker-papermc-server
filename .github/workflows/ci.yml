@@ -100,7 +100,7 @@ jobs:
           sarif-file: results.sarif
 
       - name: Upload to GitHub's code scanning dashboard
-        uses: github/codeql-action/upload-sarif@181d5eefc20863364f96762470ba6f862bdef56b # v3.29.2
+        uses: github/codeql-action/upload-sarif@f5c2471be782132e47a6e6f9c725e56730d6e9a3 # v3.32.3
         if: github.event.pull_request.head.repo.fork == false
         with:
           sarif_file: results.sarif
