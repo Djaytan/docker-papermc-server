@@ -5,9 +5,6 @@ on:
   push:
     branches: [ main ]
 
-permissions:
-  contents: read
-
 # Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
 # However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
 concurrency:
@@ -19,6 +16,9 @@ jobs:
     name: Build
     runs-on: ubuntu-24.04
     timeout-minutes: 5
+
+    permissions:
+      contents: read
 
     steps:
       # Firewall rules:
@@ -77,6 +77,7 @@ jobs:
     needs: build
 
     permissions:
+      contents: read
       pages: write # Required to deploy to GitHub Pages
       id-token: write # To verify the deployment originates from an appropriate source
 
