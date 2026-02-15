@@ -100,6 +100,7 @@ paper: {
 				"chat-executor-max-size":  *-1 | int @tag(PAPER_GLOBAL_MISC_CHAT_THREADS_CHAT_EXECUTOR_MAX_SIZE, type=int)
 			}
 			"compression-level":                      *"default" | _ @tag(PAPER_GLOBAL_MISC_COMPRESSION_LEVEL, type=string)
+			"enable-nether":                          *true | bool   @tag(PAPER_GLOBAL_MISC_ENABLE_NETHER, type=bool)
 			"fix-entity-position-desync":             *true | bool   @tag(PAPER_GLOBAL_MISC_FIX_ENTITY_POSITION_DESYNC, type=bool)
 			"lag-compensate-block-breaking":          *true | bool   @tag(PAPER_GLOBAL_MISC_LAG_COMPENSATE_BLOCK_BREAKING, type=bool)
 			"load-permissions-yml-before-plugins":    *true | bool   @tag(PAPER_GLOBAL_MISC_LOAD_PERMISSIONS_YML_BEFORE_PLUGINS, type=bool)
