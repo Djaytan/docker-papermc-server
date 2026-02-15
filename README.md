@@ -19,7 +19,7 @@ Available in [Docker Hub](https://hub.docker.com/r/djaytan/papermc-server).
 ## 💻 Demonstration (20 seconds)
 
 <div align="center">
-  <a href="https://asciinema.org/a/725450?autoplay=1" target="_blank"><img src="https://github.com/Djaytan/docker-papermc-server/blob/main/docs/asciinema/demo.gif" alt="asciicast"></a>
+  <a href="https://asciinema.org/a/788324?autoplay=1" target="_blank"><img src="https://github.com/Djaytan/docker-papermc-server/blob/main/docs/asciinema/demo.gif" alt="asciicast"></a>
 </div>
 
 ## 📘 Usage
