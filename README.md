@@ -2,7 +2,7 @@
 
 <div align="center">
 
-![Compatibility](https://img.shields.io/badge/PaperMC_Support-v1.21.4-blue)
+![Compatibility](https://img.shields.io/badge/PaperMC_Support-v1.21.7-blue)
 [![CI](https://github.com/Djaytan/docker-papermc-server/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/Djaytan/docker-papermc-server/actions/workflows/ci.yml)
 [![semantic-release: conventional-commits](https://img.shields.io/badge/semantic--release-conventional--commits-e10079?logo=semantic-release)](https://github.com/semantic-release/semantic-release)<br/>
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=Djaytan_docker-papermc-server&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=Djaytan_docker-papermc-server)
