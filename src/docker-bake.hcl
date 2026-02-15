@@ -58,7 +58,7 @@ variable "IS_LATEST_RELEASE" {
 }
 # renovate: datasource=papermc
 variable "MINECRAFT_VERSION" {
-  default = "1.21.10"
+  default = "1.21.11"
 }
 variable "IMAGE_VERSION" {
   default = "0.0.0"
