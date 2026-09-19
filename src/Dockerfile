@@ -68,7 +68,7 @@ RUN ./get-papermc-server.sh "$MINECRAFT_VERSION"
 #
 # The mc-monitor CLI is used for monitoring and health-checks purposes.
 # See https://github.com/itzg/mc-monitor
-FROM docker.io/itzg/mc-monitor:0.16.1@sha256:e8847581e7af9e5a3993f1a3cbb5bff0823435e38edcb382049c91de1a83edba AS mc-monitor-build
+FROM docker.io/itzg/mc-monitor:0.18.1@sha256:6e38245c074f5d15e28131657f48b41eaaac08d18a24131c545cc607345f92bb AS mc-monitor-build
 
 
 
