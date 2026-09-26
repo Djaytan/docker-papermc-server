@@ -26,7 +26,7 @@ ARG BUILDKIT_SBOM_SCAN_STAGE=true
 #
 # All modules are included (ALL-MODULE-PATH) since we are unable to know which ones
 # are required by plugins.
-FROM docker.io/eclipse-temurin:21-jdk-alpine@sha256:c98f0d2e171c898bf896dc4166815d28a56d428e218190a1f35cdc7d82efd61f AS jre-build
+FROM docker.io/eclipse-temurin:26-jdk-alpine@sha256:bfaf402b2bebb3b5c85d65c66571e1108c63c54809e29a51540d349e42cadd14 AS jre-build
 
 RUN ${JAVA_HOME}/bin/jlink \
     --add-modules ALL-MODULE-PATH \
