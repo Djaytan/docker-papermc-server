@@ -90,7 +90,7 @@ jobs:
         run: src/test/test.sh
 
       - name: Docker Scout
-        uses: docker/scout-action@f8c776824083494ab0d56b8105ba2ca85c86e4de # v1.18.2
+        uses: docker/scout-action@221e7f4860634eeb1579e3bd7ca232e577bd1864 # v1.26.0
         if: github.event.pull_request.head.repo.fork == false
         with:
           command: compare, cves
