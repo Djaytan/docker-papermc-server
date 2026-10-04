@@ -3,7 +3,7 @@
 
 # BusyBox command help: https://www.busybox.net/downloads/BusyBox.html
 # Note: impossible to rely on v3.13.14 (missing 'cache_clear' function error)
-FROM docker.io/python:3.14.3-alpine@sha256:faee120f7885a06fcc9677922331391fa690d911c020abb9e8025ff3d908e510
+FROM docker.io/python:3.14.8-alpine@sha256:f6a589d43c42b9e7f7dc67a12d37132491f362859a5d750607710cc56da3bc72
 
 # New user and group for pip
 RUN addgroup -S -g 1000 pip && \
