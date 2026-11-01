@@ -45,7 +45,7 @@ jobs:
 
   perform:
     name: Release - Perform
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     timeout-minutes: 15
 
     # Only runs on the default branch (i.e., main).
